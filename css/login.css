@@ -2,6 +2,5 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15;
-  border: 15;
+  flex-wrap: nowrap;
 }
