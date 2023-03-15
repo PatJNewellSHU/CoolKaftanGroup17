@@ -2,3 +2,6 @@
     width: 100%;
     max-width: 50vh;
 }
+#reader {
+    border: 0 !important;
+}
