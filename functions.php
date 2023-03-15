@@ -38,7 +38,7 @@ function UsernameExists($conn, $username) {
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: LogIn.php?error=stmt");
+        header("location: a");
         exit();
     }
 
