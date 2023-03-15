@@ -22,6 +22,15 @@
       <div id="result"></div>
    </main>
    <script src="../../js/reader.js"></script>
+   <script>
+      // Copyright fix ;)
+      var scan = document.querySelectorAll("a[href='https://scanapp.org']");
+      scan[0].innerHTML = "Group 17";
+      scan[0].href = location.pathname;
+      var report = document.querySelectorAll("a[href='https://github.com/mebjas/html5-qrcode/issues']");
+      report[0].innerHTML = "Don't report issues."
+      report[0].href = "https://www.youtube.com/watch?v=oHg5SJYRHA0";
+   </script>
 
 </body>
 
