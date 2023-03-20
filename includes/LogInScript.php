@@ -1,7 +1,7 @@
 <?php 
 
-require_once("includes/db_connection.php");
-require_once("functions.php");
+require_once("db_connection.php");
+require_once("../functions.php");
 
 if(isset($_POST['submit'])) {
 
