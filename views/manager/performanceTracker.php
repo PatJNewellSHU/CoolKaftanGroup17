@@ -1,4 +1,4 @@
 <?php 
-    include_once("CoolKaftanGroup17/includes/navbar.php");
+        include_once("navbar.php");
 ?>
 
