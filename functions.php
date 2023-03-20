@@ -4,21 +4,18 @@ require_once("includes/db_connection.php");
 
 function logIn($conn, $username, $password) {
 
-    $UsernameExists = UsernameExists($conn, $username);
+    $users = getUsers($conn, $username);
 
-
-    if($UsernameExists === false) {
-        header("location: views/index.html");
+    if(!$users) {
+        header("location: views/index.php");
         exit();
     }
-    
-    
 
-    if ($password != $UsernameExists["password"]) {
-        header("location: ");
+    if ($password != $users["password"]) {
+        header("location: views/index.php");
         exit();
     }
-    else if ($password == $UsernameExists["password"]) {
+    else if ($password == $users["password"]) {
         if($UsernameExists["isManager"] == 0) {
 
             header("location: views/staff/scan.html");
@@ -31,29 +28,18 @@ function logIn($conn, $username, $password) {
     }
 }
 
-function UsernameExists($conn, $username) {
+function getUsers($conn, $username) {
 
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $mysqli -> prepare("SELECT * FROM users WHERE username = ?");
+    $stmt -> bind_param("s", $username);
+    $stmt -> execute();
 
-    $stmt = mysqli_stmt_init($conn);
+    $result = $stmt -> get_result();
 
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: a");
-        exit();
-    }
+    $row = $result -> fetch_assoc();
 
-    mysqli_stmt_bind_param($stmt, "s", $username);
-    mysqli_stmt_execute($stmt);
+    $stmt -> close();
+    $mysqli -> close();
 
-    $resultData = mysqli_stmt_get_result($stmt);
-
-    if($row = mysqli_fetch_assoc($resultData)) {
-        return $row;
-    }
-    else {
-        $result = false;
-        return $result;
-    }
-
-    mysqli_stmt_close($stmt);
+    return $row;
 }
