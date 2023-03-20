@@ -2,6 +2,8 @@
 
 require_once("includes/db_connection.php");
 
+//Login functions
+
 function logIn($conn, $username, $password) {
 
     $users = getUsers($conn, $username);
@@ -18,10 +20,10 @@ function logIn($conn, $username, $password) {
     else if ($password == $users["password"]) {
         if($UsernameExists["isManager"] == 0) {
 
-            header("location: views/staff/scan.html");
+            header("location: views/staff/scan.php");
         }
         else if($UsernameExists["isManager"] == 1) {
-            header("location: views/manager/buffer.html");
+            header("location: views/manager/shelves.php");
             exit();
         }
             
@@ -43,3 +45,5 @@ function getUsers($conn, $username) {
 
     return $row;
 }
+
+//Item functions
