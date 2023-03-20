@@ -8,8 +8,10 @@
    <title>Kaftan :: Scan</title>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
    <link rel="stylesheet" href="../../css/login.css">
    <link rel="stylesheet" href="../../css/app.css">
+   <link rel="stylesheet" href="../../css/table.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"
       integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -35,6 +37,9 @@
                </div>
                <div class="navbar-nav">
                   <a class="nav-link" aria-current="page" href="performanceTracker.php">Performance Tracker</a>
+               </div>
+               <div class="navbar-nav">
+                  <a class="nav-link" aria-current="page" href="allItems.php">All Items</a>
                </div>
                <div class="navbar-nav">
                   <a class="nav-link" aria-current="page" href="/logout">Log out</a>
