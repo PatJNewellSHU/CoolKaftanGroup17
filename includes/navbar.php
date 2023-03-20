@@ -25,16 +25,16 @@
             </button>
             <div class="collapse navbar-collapse" id="content">
                 <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="views/manager/shelves.php">Long Stock</a>
+                  <a class="nav-link" aria-current="page" href="shelves.php">Long Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="views/manager/buffer.php">Buffer Stock</a>
+                  <a class="nav-link" aria-current="page" href="buffer.php">Buffer Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="views/manager/mixedBoxes.php">Mixed Boxes</a>
+                  <a class="nav-link" aria-current="page" href="mixedBoxes.php">Mixed Boxes</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="views/manager/performanceTracker.php">Performance Tracker</a>
+                  <a class="nav-link" aria-current="page" href="performanceTracker.php">Performance Tracker</a>
                </div>
                <div class="navbar-nav">
                   <a class="nav-link" aria-current="page" href="/logout">Log out</a>
