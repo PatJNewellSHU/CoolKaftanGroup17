@@ -1,5 +1,5 @@
 <?php 
-    include_once("/Applications/MAMP/htdocs/CoolKaftanGroup17/includes/navbar.php");
+    include_once("/CoolKaftanGroup17/includes/navbar.php");
 ?>
 
 <body>

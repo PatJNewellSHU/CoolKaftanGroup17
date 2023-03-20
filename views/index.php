@@ -30,7 +30,7 @@
           <div class="col-12 col-lg-6">
             <div class="card">
               <div class="card-body">
-                <form method="POST" action="/Applications/MAMP/htdocs/CoolKaftanGroup17/includes/LogInScript.php">
+                <form method="POST" action="CoolKaftanGroup17/includes/LogInScript.php">
                   <div class="row mb-3">
                     <h1 class="col-md-4 col-form-label text-md-end fw-bold">Welcome Back</h1>
                   </div>

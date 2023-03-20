@@ -18,11 +18,11 @@ function logIn($conn, $username, $password) {
         exit();
     }
     else if ($password == $users["password"]) {
-        if($UsernameExists["isManager"] == 0) {
+        if($UsernameExists["id"] == 2) {
 
             header("location: views/staff/scan.php");
         }
-        else if($UsernameExists["isManager"] == 1) {
+        else if($UsernameExists["id"] == 1) {
             header("location: views/manager/shelves.php");
             exit();
         }
