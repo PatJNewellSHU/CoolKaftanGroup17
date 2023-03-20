@@ -15,7 +15,6 @@
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
    <div id="app">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
          <div class="container-fluid">
