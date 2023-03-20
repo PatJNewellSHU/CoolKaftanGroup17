@@ -7,7 +7,11 @@ if(isset($_POST['submit'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
+
     
         logIn($conn, $username, $password);
 
+}
+else {
+    header("location: ../views/index.php?error=form");
 }

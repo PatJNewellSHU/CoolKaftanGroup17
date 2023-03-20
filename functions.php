@@ -9,21 +9,21 @@ function logIn($conn, $username, $password) {
     $users = getUsers($conn, $username);
 
     if(!$users) {
-        header("location: views/index.php");
+        header("location: ../views/index.php");
         exit();
     }
 
     if ($password != $users["password"]) {
-        header("location: views/index.php");
+        header("location: ../views/index.php");
         exit();
     }
     else if ($password == $users["password"]) {
-        if($UsernameExists["id"] == 2) {
+        if($users["id"] == 2) {
 
-            header("location: views/staff/scan.php");
+            header("location: ../views/staff/scan.html");
         }
-        else if($UsernameExists["id"] == 1) {
-            header("location: views/manager/shelves.php");
+        else if($users["id"] == 1) {
+            header("location: ../views/manager/shelves.php");
             exit();
         }
             
@@ -32,7 +32,7 @@ function logIn($conn, $username, $password) {
 
 function getUsers($conn, $username) {
 
-    $stmt = $mysqli -> prepare("SELECT * FROM users WHERE username = ?");
+    $stmt = $conn -> prepare("SELECT * FROM user WHERE username = ?");
     $stmt -> bind_param("s", $username);
     $stmt -> execute();
 
@@ -41,7 +41,7 @@ function getUsers($conn, $username) {
     $row = $result -> fetch_assoc();
 
     $stmt -> close();
-    $mysqli -> close();
+    $conn -> close();
 
     return $row;
 }
