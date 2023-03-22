@@ -4,7 +4,7 @@
     require_once("../../includes/functions.php");
     require_once("../../includes/db_connection.php");
 
-    $shelfID = 1;
+    $shelfID = 2;
 
     GetBoxShelf($conn, $shelfID);
 ?>

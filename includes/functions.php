@@ -65,3 +65,21 @@ function GetBoxShelf($conn, $shelfID) {
     return $row;
 
 }
+
+function MoveToBuffer($conn, $boxID) {
+
+    $stmt = $conn -> prepare("SELECT * FROM box WHERE box_id = ?");
+    $stmt -> bind_param("s", $boxID);
+    $stmt -> execute();
+
+    $result = $stmt -> get_result();
+
+    $row = $result -> fetch_assoc();
+
+    $stmt -> close();
+    $conn -> close();
+
+    return $row;
+
+
+}
