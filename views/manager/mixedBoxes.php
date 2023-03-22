@@ -3,15 +3,14 @@
 ?>
 
 <body>
-        <div class="row m-2">
-            <div class="col-11">
+        <div class="container">
+        <div class="row mw-100 ms-0 row-gap-3 mt-3">
+        <div class="col-10">
                 <a href="shelves.php" class="btn btn-success">Back</a>
             </div>
-            <div class="col-1">
-                <a href="shelves.php" class="btn btn-success">Add Box</a>
+            <div class="col-2 text-end">
+                <a href="shelves.php" class="btn btn-success">Add Product</a>
             </div>
-        </div>
-        <div class="row mw-100">
             <div class="col-12">
                 <table class="table table-striped">
                     <thead class="table-dark">
@@ -27,5 +26,6 @@
                     </tr>
                 </table>    
             </div>
+        </div>
         </div>
 </body>

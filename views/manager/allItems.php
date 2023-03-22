@@ -27,6 +27,9 @@
                         <td>Category</td>
                         <td>Number of units</td>
                         <td>Price</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
                     </thead>
 
