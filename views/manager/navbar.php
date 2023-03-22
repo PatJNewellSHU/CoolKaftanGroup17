@@ -20,29 +20,32 @@
    <div id="app">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
          <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">Cool Kaftan</a>
+            <a class="navbar-brand" href="#">
+      <img src="../../images/kaftan_logo.png" alt="Kaftan" class="w-100" height="30">
+    </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#content"
                aria-controls="content" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="content">
                 <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="shelves.php">Long Stock</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'shelves') ? "active" : "")?>" aria-current="page" href="shelves.php">Long Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="buffer.php">Buffer Stock</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'buffer') ? "active" : "")?>" aria-current="page" href="buffer.php">Buffer Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="mixedBoxes.php">Mixed Boxes</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'mixedBoxes') ? "active" : "")?>" aria-current="page" href="mixedBoxes.php">Mixed Boxes</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="performanceTracker.php">Performance Tracker</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'performanceTracker') ? "active" : "")?>" aria-current="page" href="performanceTracker.php">Performance Tracker</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="allItems.php">All Items</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'allItems.php') ? "active" : "")?>" aria-current="page" href="allItems.php">All Items</a>
                </div>
-               <div class="navbar-nav">
-                  <a class="nav-link" aria-current="page" href="/logout">Log out</a>
+               <div class="navbar-nav ms-auto">
+                  <a class="nav-link" aria-current="page" href="/">Log out</a>
                </div>
             </div>
          </div>
