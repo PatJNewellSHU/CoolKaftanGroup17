@@ -1,4 +1,4 @@
-window.result = null;
+
  const scanner = new Html5QrcodeScanner('reader', {
     qrbox: {
     width: 250,
@@ -10,7 +10,7 @@ window.result = null;
     function success(result) {
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
-    <p><a href="${result}">${result}</a></p>
+    <p>${result}</p>
     `;
     scanner.clear();
     document.getElementById('reader').remove();
