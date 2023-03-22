@@ -3,6 +3,7 @@
 ?>
 
 <body>
+        <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
         <div class="col-10">
                 <a href="shelves.php" class="btn btn-success">Back</a>
@@ -33,5 +34,6 @@
                     </tr>
                 </table>    
             </div>
+        </div>
         </div>
 </body>
