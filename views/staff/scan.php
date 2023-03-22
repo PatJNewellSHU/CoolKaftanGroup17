@@ -46,8 +46,9 @@
          </div>
       </main>
       <?php
-         include("../../js/reader.php")
+      include_once(../../)
       ?>
+      <script src = "../../js/reader.js"></script>
       <script>
          // Copyright fix ;)
          var scan = document.querySelectorAll("a[href='https://scanapp.org']");

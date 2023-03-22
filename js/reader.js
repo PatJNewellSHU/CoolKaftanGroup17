@@ -12,9 +12,9 @@ window.result = null;
     <h2>Success!</h2>
     <p><a href="${result}">${result}</a></p>
     `;
-    $barcode = window.result;
     scanner.clear();
     document.getElementById('reader').remove();
+    window.result = result
     }
     function error(err) {
     console.error(err);
