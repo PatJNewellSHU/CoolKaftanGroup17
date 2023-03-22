@@ -1,7 +1,7 @@
 <?php 
 
 require_once("db_connection.php");
-require_once("../functions.php");
+require_once("functions.php");
 
 if(isset($_POST['submit'])) {
 
@@ -13,5 +13,5 @@ if(isset($_POST['submit'])) {
 
 }
 else {
-    header("location: ../views/index.php?error=form");
+    header("location: /?error=form");
 }
