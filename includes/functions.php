@@ -76,10 +76,17 @@ function MoveToBuffer($conn, $boxID) {
 
     $row = $result -> fetch_assoc();
 
-    $stmt -> close();
-    $conn -> close();
+    $stmt -> close(); 
 
-    return $row;
+    $sql = "INSERT INTO buffer (product_id, number_of_items) VALUES (?, ?)";
 
+    $stmt = $conn ->prepare($sql);
+    $stmt -> bind_param("ss", $row["product_id"], $row["units"]);
+
+    if ($conn->query($stmt) === TRUE) {
+    echo "New record created successfully";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 
 }
