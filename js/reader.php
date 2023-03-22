@@ -1,4 +1,6 @@
-const scanner = new Html5QrcodeScanner('reader', {
+<?php
+require_once("includes/db_connection.php");
+<script>const scanner = new Html5QrcodeScanner('reader', {
     qrbox: {
     width: 250,
     height: 250,
@@ -11,9 +13,11 @@ const scanner = new Html5QrcodeScanner('reader', {
     <h2>Success!</h2>
     <p><a href="${result}">${result}</a></p>
     `;
+    $barcode = result;
     scanner.clear();
     document.getElementById('reader').remove();
     }
     function error(err) {
     console.error(err);
-    }
+    }</script>
+?>
