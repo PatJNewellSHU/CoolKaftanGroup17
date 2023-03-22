@@ -20,7 +20,8 @@ function logIn($conn, $username, $password) {
     else if ($password == $users["password"]) {
         if($users["id"] == 2) {
 
-            header("location: ../views/staff/scan.html");
+            header("location: ../views/staff/scan.php");
+            exit();
         }
         else if($users["id"] == 1) {
             header("location: ../views/manager/shelves.php");

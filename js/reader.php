@@ -1,6 +1,8 @@
 <?php
-require_once("includes/db_connection.php");
-<script>const scanner = new Html5QrcodeScanner('reader', {
+require_once("../../includes/db_connection.php");
+
+?>
+<script> const scanner = new Html5QrcodeScanner('reader', {
     qrbox: {
     width: 250,
     height: 250,
@@ -20,4 +22,3 @@ require_once("includes/db_connection.php");
     function error(err) {
     console.error(err);
     }</script>
-?>

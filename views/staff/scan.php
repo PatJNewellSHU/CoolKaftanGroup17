@@ -46,7 +46,7 @@
          </div>
       </main>
       <?php
-         include("../../includes/reader.php")
+         include("../../js/reader.php")
       ?>
       <script>
          // Copyright fix ;)
