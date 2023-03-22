@@ -9,7 +9,7 @@ if(isset($_POST['submit'])) {
     $password = $_POST['password'];
 
     
-        logIn($conn, $username, $password);
+    logIn($conn, $username, $password);
 
 }
 else {

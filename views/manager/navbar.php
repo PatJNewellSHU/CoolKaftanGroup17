@@ -30,7 +30,7 @@
             </button>
             <div class="collapse navbar-collapse" id="content">
                 <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'shelves') ? "active" : "")?>" aria-current="page" href="shelves.php">Long Stock</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager') ? "active" : "")?>" aria-current="page" href="/manager">Long Stock</a>
                </div>
                <div class="navbar-nav">
                   <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'buffer') ? "active" : "")?>" aria-current="page" href="buffer.php">Buffer Stock</a>

@@ -9,22 +9,22 @@ function logIn($conn, $username, $password) {
     $users = getUsers($conn, $username);
 
     if(!$users) {
-        header("location: ../index.php");
+        header("location: /");
         exit();
     }
 
     if ($password != $users["password"]) {
-        header("location: ../index.php");
+        header("location: /");
         exit();
     }
     else if ($password == $users["password"]) {
         if($users["id"] == 2) {
 
-            header("location: ../views/staff/scan.php");
+            header("location: /staff");
             exit();
         }
         else if($users["id"] == 1) {
-            header("location: ../views/manager/shelves.php");
+            header("location: /manager");
             exit();
         }
             
