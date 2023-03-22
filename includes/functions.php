@@ -48,3 +48,20 @@ function getUsers($conn, $username) {
 }
 
 //Item functions
+
+function GetBoxShelf($conn, $shelfID) {
+
+    $stmt = $conn -> prepare("SELECT * FROM box WHERE shelf_id = ?");
+    $stmt -> bind_param("s", $shelfID);
+    $stmt -> execute();
+
+    $result = $stmt -> get_result();
+
+    $row = $result -> fetch_assoc();
+
+    $stmt -> close();
+    $conn -> close();
+
+    return $row;
+
+}
