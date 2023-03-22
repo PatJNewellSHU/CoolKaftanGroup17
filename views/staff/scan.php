@@ -47,10 +47,10 @@
       </main>
       <script src = "../../js/reader.js"></script>
       <div id="submit_Button">
-         <button class="btn btn-success my-2">submit</button>
+         <button class="btn btn-success my-2" id="submit_Button">submit</button>
       </div>
       <div id="clear_Button">
-         <button class="btn btn-success my-2">clear</button>
+         <button class="btn btn-success my-2" id="clear_Button">clear</button>
       </div>
 
       <script>
