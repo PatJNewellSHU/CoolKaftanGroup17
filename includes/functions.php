@@ -9,12 +9,12 @@ function logIn($conn, $username, $password) {
     $users = getUsers($conn, $username);
 
     if(!$users) {
-        header("location: ../views/index.php");
+        header("location: ../index.php");
         exit();
     }
 
     if ($password != $users["password"]) {
-        header("location: ../views/index.php");
+        header("location: ../index.php");
         exit();
     }
     else if ($password == $users["password"]) {
