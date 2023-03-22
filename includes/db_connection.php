@@ -1,13 +1,9 @@
 <?php
 
 $servername = "sp2023.mysql.database.azure.com";
-
 $username = "Group17";
-
 $password = "Gr0Up17_Sp";
-
 $dbname = "group17";
-
 $port = 3306;
 
 // Create connection

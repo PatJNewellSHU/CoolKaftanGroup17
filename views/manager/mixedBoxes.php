@@ -16,6 +16,8 @@
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <td>Name</td>
+                        <td></td>
+                        <td></td>
                     </thead>
 
                     <tr>

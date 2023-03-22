@@ -5,3 +5,27 @@
 #reader {
     border: 0 !important;
 }
+.active {
+    border-bottom: 3px solid grey;
+}
+.nav-link:hover {
+    border-bottom: 3px solid grey;
+    transition: all .1s ease-in-out;
+}
+.nav-link {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    transition: all .1s ease-in-out;
+}
+.navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+a > .card > .card-body {
+    text-decoration: none !important;
+    color: black;
+}
+a:hover > .card {
+    border-color: lightblue;
+    transition: all .1s ease-in-out;
+}
