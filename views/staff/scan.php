@@ -45,9 +45,6 @@
             </div>
          </div>
       </main>
-      <?php
-      include_once(../../)
-      ?>
       <script src = "../../js/reader.js"></script>
       <script>
          // Copyright fix ;)
