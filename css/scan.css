@@ -11,3 +11,10 @@ body{
     text-align: center;
     font-size: 1.5rem;
     }
+
+#submit_Button{
+    visibility: hidden;
+}
+#clear_Button{
+    visibility: hidden;
+}
