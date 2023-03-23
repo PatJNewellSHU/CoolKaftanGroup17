@@ -20,14 +20,14 @@ class loginController {
             $password = $_POST['password'];
 
             $users = getUsers(connect(), $username);
-            
-            if(!$users) {
-                header("location: /");
+ 
+            if($users == null) {
+                header("location: /?error=Username not found, please try again.");
                 exit();
-            }
+            }        
             
             if ($password != $users["password"]) {
-                header("location: /");
+                header("location: /?error=Password does not match, please try again.");
                 exit();
             }
             if ($password == $users["password"]) {
@@ -42,8 +42,7 @@ class loginController {
                 exit();
             }
         }
-
-        header("location: /?error=form");
+        header("location: /?error=Something went wrong, try again.");
     }
         
 }

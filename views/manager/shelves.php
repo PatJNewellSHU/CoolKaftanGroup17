@@ -9,7 +9,8 @@
                 <a href="/manager/top">
                 <div class="card">
                     <div class="card-body">
-                    <h2 class="fw-bold text-center my-2">Top Floor</h2>
+                    <h4 class="fw-bold my-0 text-secondary">Shelf</h4>
+                    <h2 class="fw-bold my-2">Top Floor</h2>
                 </div>
                 </div>
                 </a>
@@ -18,7 +19,8 @@
                 <a href="/manager/p/1">
                 <div class="card">
                     <div class="card-body">
-                    <h2 class="fw-bold text-center my-2">P1</h2>
+                    <h4 class="fw-bold my-0 text-secondary">Shelf</h4>
+                    <h2 class="fw-bold my-2">P1</h2>
                 </div>
                 </div>
                 </a>
@@ -27,7 +29,8 @@
                 <a href="/manager/p/2">
                 <div class="card">
                     <div class="card-body">
-                    <h2 class="fw-bold text-center my-2">P2</h2>
+                    <h4 class="fw-bold my-0 text-secondary">Shelf</h4>
+                    <h2 class="fw-bold my-2">P2</h2>
                 </div>
                 </div>
                 </a>
@@ -36,7 +39,8 @@
                 <a href="/manager/p/3">
                 <div class="card">
                     <div class="card-body">
-                    <h2 class="fw-bold text-center my-2">P3</h2>
+                    <h4 class="fw-bold my-0 text-secondary">Shelf</h4>
+                    <h2 class="fw-bold my-2">P3</h2>
                 </div>
                 </div>
                 </a>
@@ -45,7 +49,8 @@
                 <a href="/manager/p/4">
                 <div class="card">
                     <div class="card-body">
-                    <h2 class="fw-bold text-center my-2">P4</h2>
+                    <h4 class="fw-bold my-0 text-secondary">Shelf</h4>
+                    <h2 class="fw-bold my-2">P4</h2>
                 </div>
                 </div>
                 </a>

@@ -19,7 +19,15 @@ use App\Controllers\managerController;
 
 $request = $_SERVER['REQUEST_URI'];
 
-switch ($request) {
+// Need to check for '?'
+if(str_contains($request, '?') == true)
+{
+    $url = current(explode('?', $request));
+} else {
+    $url = $request;
+}
+
+switch ($url) {
     case '/' : // Index page
         loginController::login();
         break;

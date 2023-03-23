@@ -26,7 +26,15 @@
     </nav>
     <main class="py-4">
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center gap-row-3">
+        <?php
+                      if(str_contains($_SERVER['REQUEST_URI'], '?error='))
+                      {
+                        echo "<div class='alert alert-danger col-12 col-lg-7' role='alert'>
+                        ". urldecode(explode('?error=', $_SERVER['REQUEST_URI'])[1]) ."
+                      </div>";
+                      }
+                      ?>
           <div class="col-12 col-lg-6">
             <div class="card">
               <div class="card-body">
@@ -39,9 +47,6 @@
                     <div class="col-md-6">
                       <input id="username" type="text" class="form-control" name="username" value="" required
                         autocomplete="email" autofocus>
-                      <!-- <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span> -->
                     </div>
                   </div>
 

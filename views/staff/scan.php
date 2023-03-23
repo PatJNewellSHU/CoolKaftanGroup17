@@ -45,7 +45,7 @@
             </div>
          </div>
       </main>
-      <script src = "../../js/reader.js"></script>
+      <script src = "../../public/js/reader.js"></script>
       <div id="submit_Button">
          <button class="btn btn-success my-2" id="submit_Button">submit</button>
       </div>
