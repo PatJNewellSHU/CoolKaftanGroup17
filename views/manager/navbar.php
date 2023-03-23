@@ -9,9 +9,9 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-   <link rel="stylesheet" href="../../css/login.css">
-   <link rel="stylesheet" href="../../css/app.css">
-   <link rel="stylesheet" href="../../css/table.css">
+   <link rel="stylesheet" href="../../public/css/login.css">
+   <link rel="stylesheet" href="../../public/css/app.css">
+   <link rel="stylesheet" href="../../public/css/table.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"
       integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -21,7 +21,7 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
          <div class="container-fluid">
             <a class="navbar-brand" href="#">
-      <img src="../../images/kaftan_logo.png" alt="Kaftan" class="w-100" height="30">
+      <img src="../../public/images/kaftan_logo.png" alt="Kaftan" class="w-100" height="30">
     </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#content"

@@ -1,13 +1,13 @@
 <?php
 
 // No autoloader so have to include + use it.
-include './Controllers/loginController.php';
-include './Controllers/staffController.php';
-include './Controllers/managerController.php';
+include './App/Controllers/loginController.php';
+include './App/Controllers/staffController.php';
+include './App/Controllers/managerController.php';
 
-use Controllers\loginController;
-use Controllers\staffController;
-use Controllers\managerController;
+use App\Controllers\loginController;
+use App\Controllers\staffController;
+use App\Controllers\managerController;
 
 //// Message from Ethan:
 // This is the MAIN file for the entire website. (Everytime the server is requested http://localhost/...)

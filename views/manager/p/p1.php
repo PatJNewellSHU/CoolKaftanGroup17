@@ -1,8 +1,8 @@
 <?php 
     include_once(__DIR__."/../navbar.php");
 
-    require_once(__DIR__."/../../../includes/functions.php");
-    require_once(__DIR__."/../../../includes/db_connection.php");
+    require_once(__DIR__."/../../../App/Helpers/functions.php");
+    require_once(__DIR__."/../../../App/Helpers/db_connection.php");
 
     $shelfID = 2;
 
