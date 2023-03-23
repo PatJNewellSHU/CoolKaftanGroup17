@@ -1,5 +1,6 @@
 <?php 
         include_once("navbar.php");
+        echo $test;
 ?>
 
 <body>
