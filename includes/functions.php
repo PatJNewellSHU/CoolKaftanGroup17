@@ -2,35 +2,6 @@
 
 require_once("db_connection.php");
 
-//Login functions
-
-function logIn($conn, $username, $password) {
-
-    $users = getUsers($conn, $username);
-
-    if(!$users) {
-        header("location: /");
-        exit();
-    }
-
-    if ($password != $users["password"]) {
-        header("location: /");
-        exit();
-    }
-    else if ($password == $users["password"]) {
-        if($users["id"] == 2) {
-
-            header("location: /staff");
-            exit();
-        }
-        else if($users["id"] == 1) {
-            header("location: /manager");
-            exit();
-        }
-            
-    }
-}
-
 function getUsers($conn, $username) {
 
     $stmt = $conn -> prepare("SELECT * FROM user WHERE username = ?");

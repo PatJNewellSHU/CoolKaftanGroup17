@@ -30,19 +30,19 @@
             </button>
             <div class="collapse navbar-collapse" id="content">
                 <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager') ? "active" : "")?>" aria-current="page" href="/manager">Long Stock</a>
+                  <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/manager' ? "active" : "")?>" aria-current="page" href="/manager">Long Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'buffer') ? "active" : "")?>" aria-current="page" href="buffer.php">Buffer Stock</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/buffer') ? "active" : "")?>" aria-current="page" href="/manager/buffer">Buffer Stock</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'mixedBoxes') ? "active" : "")?>" aria-current="page" href="mixedBoxes.php">Mixed Boxes</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/mixed') ? "active" : "")?>" aria-current="page" href="/manager/mixed">Mixed Boxes</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'performanceTracker') ? "active" : "")?>" aria-current="page" href="performanceTracker.php">Performance Tracker</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/performance') ? "active" : "")?>" aria-current="page" href="/manager/performance">Performance Tracker</a>
                </div>
                <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'allItems.php') ? "active" : "")?>" aria-current="page" href="allItems.php">All Items</a>
+                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/all') ? "active" : "")?>" aria-current="page" href="/manager/all">All Items</a>
                </div>
                <div class="navbar-nav ms-auto">
                   <a class="nav-link" aria-current="page" href="/">Log out</a>

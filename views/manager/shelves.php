@@ -6,7 +6,7 @@
     <div class="container">
     <div class="row row-gap-3 mt-3">
             <div class="col-md-12">
-                <a href="topShelf.php">
+                <a href="/manager/top">
                 <div class="card">
                     <div class="card-body">
                     <h2 class="fw-bold text-center my-2">Top Floor</h2>
@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="p1.php">
+                <a href="/manager/p/1">
                 <div class="card">
                     <div class="card-body">
                     <h2 class="fw-bold text-center my-2">P1</h2>
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="p2.php">
+                <a href="/manager/p/2">
                 <div class="card">
                     <div class="card-body">
                     <h2 class="fw-bold text-center my-2">P2</h2>
@@ -33,7 +33,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="p3.php">
+                <a href="/manager/p/3">
                 <div class="card">
                     <div class="card-body">
                     <h2 class="fw-bold text-center my-2">P3</h2>
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="p4.php">
+                <a href="/manager/p/4">
                 <div class="card">
                     <div class="card-body">
                     <h2 class="fw-bold text-center my-2">P4</h2>

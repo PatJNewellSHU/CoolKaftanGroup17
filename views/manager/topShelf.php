@@ -1,21 +1,21 @@
 <?php 
-        include_once("navbar.php");
+        include_once(__DIR__."/navbar.php");
 
-        require_once("../../includes/functions.php");
-        require_once("../../includes/db_connection.php");
+        require_once(__DIR__."/../../includes/functions.php");
+        require_once(__DIR__."/../../includes/db_connection.php");
     
         $shelfID = 1;
     
-        GetBoxShelf($conn, $shelfID);
+        GetBoxShelf(connect(), $shelfID);
 ?>
 
 <body>
         <div class="row m-2">
             <div class="col-11">
-                <a href="shelves.php" class="btn btn-success">Back</a>
+                <a href="/manager" class="btn btn-success">Back</a>
             </div>
             <div class="col-1">
-                <a href="shelves.php" class="btn btn-success">Add Box</a>
+                <a href="/manager" class="btn btn-success">Add Box</a>
             </div>
         </div>
         <div class="row mw-100">
