@@ -6,6 +6,7 @@ class managerController {
 
     public static function shelves()
     {
+        $test = "abc";
         return require __DIR__.'/../../views/manager/shelves.php';
     }
 
