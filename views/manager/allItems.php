@@ -1,5 +1,6 @@
 <?php 
     include_once("navbar.php");
+
 ?>
 
 <body>
@@ -24,26 +25,33 @@
                         <td>Name</td>
                         <td>Colour</td>
                         <td>Size</td>
-                        <td>Category</td>
                         <td>Number of units</td>
                         <td>Price</td>
                         <td></td>
                         <td></td>
-                        <td></td>
 
                     </thead>
+                    <?php
+
+                        for ($i=0; $i<count($items); $i++):
+                            $ProdName = $items[$i][1];
+                            $ProdDetail = $items[$i][2];
+                            $ProdSize = $items[$i][3];
+                            $ProdPrice = $items[$i][4];
+                    
+                    ?>
 
                     <tr>
+                        <td><?php echo($ProdName)?></td>
+                        <td><?php echo($ProdDetail)?></td>
+                        <td><?php echo($ProdSize)?></td>
                         <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
+                        <td><?php echo($ProdPrice)?></td>
                         <td><a href="updateBox.php">Update</a></td>
                         <td><a href="deleteBox.php">Delete</a></td>
                     </tr>
+
+                    <?php endfor ?>
                 </table>    
             </div>
         </div>

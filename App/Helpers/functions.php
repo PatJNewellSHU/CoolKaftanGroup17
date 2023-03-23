@@ -37,6 +37,20 @@ function GetBoxShelf($conn, $shelfID) {
 
 }
 
+function GetAllItems($conn) {
+
+    $stmt = $conn -> prepare("SELECT * FROM product");
+    $stmt -> execute();
+
+    $result = $stmt -> get_result();
+
+    $row = $result -> fetch_all();
+
+    $conn -> close();
+
+    return $row;
+}
+
 function MoveToBuffer($conn, $boxID) {
 
     $stmt = $conn -> prepare("SELECT * FROM box WHERE box_id = ?");
