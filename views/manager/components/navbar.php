@@ -46,7 +46,7 @@
                   <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/all') ? "active" : "")?>" aria-current="page" href="/manager/all">All Items</a>
                </div>
                <div class="navbar-nav ms-auto">
-                  <a class="nav-link" aria-current="page" href="/">Log out</a>
+                  <a class="nav-link" aria-current="page" href="/logout">Log out</a>
                </div>
             </div>
          </div>

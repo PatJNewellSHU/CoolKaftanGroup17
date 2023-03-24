@@ -9,27 +9,35 @@ class managerController {
 
     public static function shelves()
     {
+        authenticationHelper::isAuth('manager');
+
         return require __DIR__.'/../../views/manager/shelves.php';
     }
 
     public static function buffer()
     {
+        authenticationHelper::isAuth('manager');
+
         return require __DIR__.'/../../views/manager/buffer.php';
     }
 
     public static function mixed()
     {
+        authenticationHelper::isAuth('manager');
+
         return require __DIR__.'/../../views/manager/mixedBoxes.php';
     }
 
     public static function performance()
     {
+        authenticationHelper::isAuth('manager');
+
         return require __DIR__.'/../../views/manager/performanceTracker.php';
     }
 
     public static function all()
     {
-
+        authenticationHelper::isAuth('manager');
         require_once(__DIR__ . "/../Helpers/db_connection.php");
         require_once(__DIR__ . "/../Helpers/functions.php");
         $items = GetAllItems(connect());
@@ -41,11 +49,13 @@ class managerController {
 
     public static function top()
     {
+        authenticationHelper::isAuth('manager');
         return require __DIR__.'/../../views/manager/topShelf.php';
     }
 
     public static function addItem()
     {
+        authenticationHelper::isAuth('manager');
         if(isset($_POST['submit'])) {
 
             $prodName = $_POST['prodName'];
@@ -69,6 +79,7 @@ class managerController {
 
     public static function p($request)
     {
+        authenticationHelper::isAuth('manager');
         $selector = explode('/', $request)[3];
 
         if(intval($selector) > 4)
