@@ -46,11 +46,13 @@
          </div>
       </main>
       <script src = "../../public/js/reader.js"></script>
-      <div id="submit_Button">
-         <button class="btn btn-success my-2" id="submit_Button">submit</button>
-      </div>
-      <div id="clear_Button">
-         <button class="btn btn-success my-2" id="clear_Button">clear</button>
+      <div id="button_Container">
+         <div id="submit_Button">
+            <button class="btn btn-success my-2" id="submit_Button">submit</button>
+         </div>
+         <div id="clear_Button">
+            <button class="btn btn-success my-2" id="clear_Button">clear</button>
+         </div>
       </div>
 
       <script>
