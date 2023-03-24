@@ -14,8 +14,7 @@
     `;
     scanner.clear();
     document.getElementById('reader').remove();
-    document.getElementById("button_Submit").style.visibility = "visible";
-    document.getElementById("button_Clear").style.visibility = "visible";
+    document.getElementById('button_Container').style.display = 'inline'
     }
     function error(err) {
     console.error(err);
