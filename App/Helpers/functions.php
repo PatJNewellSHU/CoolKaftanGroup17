@@ -76,7 +76,9 @@ function MoveToBuffer($conn, $boxID) {
 
 }
 
-function AddItem($conn, $prodName, $prodDetail, $prodSize, $prodPrice) {
+function AddItems($conn, $prodName, $prodDetail, $prodSize, $prodPrice) {
+
+    $added = false;
 
     $sql = "INSERT INTO product(product_Name, product_Detail, product_Size, product_Price) VALUES (?, ?, ?, ?);";
 
@@ -91,4 +93,7 @@ function AddItem($conn, $prodName, $prodDetail, $prodSize, $prodPrice) {
     mysqli_stmt_bind_param($stmt, "ssss", $prodName, $prodDetail, $prodSize, $prodPrice);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+
+    $added = true;
+    return $added;
 }

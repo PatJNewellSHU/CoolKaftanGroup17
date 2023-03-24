@@ -68,6 +68,15 @@
         </div>
         </div>
         <!-- New product -->
+
+        <?php
+                      if(str_contains($_SERVER['REQUEST_URI'], '?error='))
+                      {
+                        echo "<div class='alert alert-danger col-12 col-lg-7' role='alert'>
+                        ". urldecode(explode('?error=', $_SERVER['REQUEST_URI'])[1]) ."
+                      </div>";
+                      }
+                      ?>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct" aria-labelledby="addProductLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="addProductLabel">New Product</h5>
@@ -77,7 +86,7 @@
         <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <form method="POST" action="/login">
+                <form method="POST" action="/manager/addItem">
 
                     <div class="row mb-3">
                         <label for="prodName" class="col-md-4 col-form-label text-md-end">Product Name</label>
