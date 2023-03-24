@@ -9,7 +9,7 @@
                 <h2>Buffer Stock</h2>
             </div>
             <div class="col-3 text-end">
-                <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#addProduct" role="button"
+                <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
                     aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
                     aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>

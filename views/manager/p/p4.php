@@ -30,7 +30,7 @@
                         <li><a class="dropdown-item" href="/manager/p/4">P4</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#addProduct" role="button"
+                <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
                     aria-controls="offcanvasExample">Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
                     aria-controls="offcanvasExample">Filter</a>
