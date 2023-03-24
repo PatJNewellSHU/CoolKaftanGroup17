@@ -6,7 +6,7 @@
         <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
         <div class="col-10">
-                <h2>Mixed Boxes</h2>
+                <h2><i class="bi bi-box-seam-fill"></i> Mixed Boxes</h2>
             </div>
             <div class="col-2 text-end">
                 <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#addProduct" role="button"
