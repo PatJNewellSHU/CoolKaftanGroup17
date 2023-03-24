@@ -46,7 +46,7 @@
          </div>
       </main>
       <script src = "../../public/js/reader.js"></script>
-      <div id="button_Container">
+      <div id="button_Container" class="d-flex justify-content-center">
          <div id="submit_Button">
             <button class="btn btn-success my-2" id="submit_Button">submit</button>
          </div>
