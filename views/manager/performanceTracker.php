@@ -9,7 +9,7 @@
                 <h2><i class="bi bi-graph-up"></i> Performance Tracker</h2>
         </div>
             <div class="col-2 text-end">
-                <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#addProduct" role="button"
+                <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
                     aria-controls="offcanvasExample">Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
                     aria-controls="offcanvasExample">Filter</a>
