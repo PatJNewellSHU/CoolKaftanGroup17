@@ -28,14 +28,14 @@ class authenticationHelper {
         
         if($enabled == true)
         {
-            session_start();
+            
             if(isset($_SESSION['userId'])) {
-                if($_SESSION['userType'] = 'staff')
+                if($_SESSION['userType'] == 'staff')
                 {
                     header("location: /staff");
                 }
 
-                if($_SESSION['userType'] = 'manager')
+                if($_SESSION['userType'] == 'manager')
                 {
                     header("location: /manager");
                 }
