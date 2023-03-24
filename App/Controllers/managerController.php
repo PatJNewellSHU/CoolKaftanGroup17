@@ -30,11 +30,7 @@ class managerController {
     public static function all()
     {
         $items = GetAllItems(connect());
-
-
         
-        
-
         return require __DIR__.'/../../views/manager/allitems.php';
 
        
