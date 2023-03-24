@@ -44,6 +44,29 @@ class managerController {
         return require __DIR__.'/../../views/manager/topShelf.php';
     }
 
+    public static function addItem()
+    {
+        if(isset($_POST['submit'])) {
+
+            $prodName = $_POST['prodName'];
+            $prodDetail = $_POST['prodDetail'];
+            $prodSize = $_POST['prodSize'];
+            $prodPrice = $_POST['prodPrice'];
+
+            $added = AddItems(connect(), $prodName, $prodDetail, $prodSize, $prodPrice);
+ 
+            if($added = false) {
+                header("location: /manager/all?error=Something went wrong, try again");
+                exit();
+            }
+            else{
+                header("location: /manager/all");
+            }
+            
+        }
+    }
+    
+
     public static function p($request)
     {
         $selector = explode('/', $request)[3];

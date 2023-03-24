@@ -58,6 +58,9 @@ switch ($url) {
     case '/manager/top':
         managerController::top();
         break;
+    case '/manager/addItem':
+        managerController::addItem();
+        break;
     case (preg_match('/manager\/p\/.*/', $request)? true: false):
         managerController::p($request);
         break;
