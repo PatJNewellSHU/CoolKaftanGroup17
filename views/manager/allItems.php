@@ -74,8 +74,57 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div> Some text as placeholder. </div>
-            <button class="btn btn-success" type="button"> Submit </button>
+        <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <form method="POST" action="/login">
+
+                    <div class="row mb-3">
+                        <label for="prodName" class="col-md-4 col-form-label text-md-end">Product Name</label>
+                        <div class="col-md-6">
+                            <input id="prodName" type="text" class="form-control" name="prodName" value="" required
+                                autocomplete="" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="prodDetail" class="col-md-4 col-form-label text-md-end">Product Detail</label>
+
+                        <div class="col-md-6">
+                        <input id="prodDetail" type="text" class="form-control" name="prodDetail" required
+                            autocomplete="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="prodSize" class="col-md-4 col-form-label text-md-end">Product Size</label>
+
+                        <div class="col-md-6">
+                            <input id="prodSize" type="text" class="form-control" name="prodSize" required
+                                autocomplete="">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="prodPrice" class="col-md-4 col-form-label text-md-end">Product Price</label>
+
+                        <div class="col-md-6">
+                        <input id="prodPrice" type="text" class="form-control" name="prodPrice" required
+                            autocomplete="">
+                        </div>
+                    </div>
+                
+
+                  <div class="row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                      <button type="submit" name="submit" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
         </div>
     </div>
     <?php 

@@ -78,18 +78,17 @@ function MoveToBuffer($conn, $boxID) {
 
 function AddItem($conn, $prodName, $prodDetail, $prodSize, $prodPrice) {
 
-    $sql = "INSERT INTO box(product_Name, product_Detail, product_Size, product_Price) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO product(product_Name, product_Detail, product_Size, product_Price) VALUES (?, ?, ?, ?);";
 
-    $stmt = mysqli_stmt_init($mysqli);
+    $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../createPost.php?error=stmt");
+        header("location: ../../views/manager/allItems.php");
         exit();
     }
 
-    $date = date("Y-m-d");
 
-    mysqli_stmt_bind_param($stmt, "siiiiiissi", $description, $userID, $tag1, $tag2, $tag3, $tag4, $tag5, $folder, $date, $tag6);
+    mysqli_stmt_bind_param($stmt, "ssss", $prodName, $prodDetail, $prodSize, $prodPrice);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
