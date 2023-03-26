@@ -1,12 +1,7 @@
 <?php 
         include_once(__DIR__."/../components/navbar.php");
 
-        require_once(__DIR__."/../../../App/Helpers/functions.php");
-        require_once(__DIR__."/../../../App/Helpers/db_connection.php");
-    
-        $shelfID = 1;
-    
-        GetBoxShelf(connect(), $shelfID);
+        var_dump($results);
 ?>
 
 <body>

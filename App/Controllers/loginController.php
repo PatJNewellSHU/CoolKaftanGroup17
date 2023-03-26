@@ -2,10 +2,8 @@
 
 namespace App\Controllers;
 
-require_once(__DIR__ . "/../Helpers/db_connection.php");
-require_once(__DIR__ . "/../Helpers/functions.php");
-require_once(__DIR__ . "/../Helpers/authenticationHelper.php");
-
+use App\Helpers\authenticationHelper;
+use App\Helpers\dbHelper;
 
 class loginController {
 
@@ -32,8 +30,9 @@ class loginController {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $users = getUsers(connect(), $username);
- 
+            $database = new dbHelper();
+            $users = $database->get('user', '*', "WHERE username = '" . $username."'", true);
+            
             if($users == null) {
                 header("location: /?error=Username not found, please try again.");
                 exit();

@@ -34,6 +34,26 @@ a:hover > .card {
     border-color: black;
     transition: all .1s ease-in-out;
 }
+.table-hover>tbody>tr {
+    transition: all .1s ease-in-out;
+}
 .table-hover>tbody>tr:hover>* {
     cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.table-head > tr > td {
+    font-weight: bold;
+    opacity: .75;
+    letter-spacing: 0 !important;
+    line-height: 1rem;
+    padding-bottom: 20px !important;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.table-head {
+    position: sticky;
+    top: 0;
+    background-color: white;
 }

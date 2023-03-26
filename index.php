@@ -1,9 +1,7 @@
 <?php
 
 // No autoloader so have to include + use it.
-include './App/Controllers/loginController.php';
-include './App/Controllers/staffController.php';
-include './App/Controllers/managerController.php';
+include 'autoload.php';
 
 use App\Controllers\loginController;
 use App\Controllers\staffController;
