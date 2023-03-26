@@ -97,3 +97,24 @@ function AddItems($conn, $prodName, $prodDetail, $prodSize, $prodPrice) {
     $added = true;
     return $added;
 }
+
+function AddBoxes($conn, $shelfID, $prodID) {
+
+    $added = false;
+
+    $sql = "INSERT INTO box(shelf_id, product_id) VALUES (?, ?);";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../../views/manager/manager.php");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $shelfID, $prodID);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    $added = true;
+    return $added;
+}

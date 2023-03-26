@@ -41,8 +41,23 @@ class managerController {
 
     public static function top()
     {
+
+        $items = GetAllItems(connect());
         return require __DIR__.'/../../views/manager/topShelf.php';
     }
+
+    public static function p($request)
+    {
+        $selector = explode('/', $request)[3];
+
+        if(intval($selector) > 4)
+        {
+            header("location: /404");
+        }
+
+        return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
+    }
+
 
     public static function addItem()
     {
@@ -65,18 +80,71 @@ class managerController {
             
         }
     }
-    
 
-    public static function p($request)
+    public static function addBox()
     {
-        $selector = explode('/', $request)[3];
+        if(isset($_POST['submit'])) {
 
-        if(intval($selector) > 4)
-        {
-            header("location: /404");
+            $shelfID = $_POST["shelfID"];
+            $prodID = $_POST["productID"];
+            
+
+            $added = AddBoxes(connect(), $shelfID, $prodID);
+ 
+            if($added = false) {
+                header("location: /manager?error=Something went wrong, try again");
+                exit();
+            }
+            else{
+                header("location: /manager");
+            }
+            
         }
-
-        return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
     }
+
+    public static function addMixedBox()
+    {
+        if(isset($_POST['submit'])) {
+
+            $prodName = $_POST['prodName'];
+            $prodDetail = $_POST['prodDetail'];
+            $prodSize = $_POST['prodSize'];
+            $prodPrice = $_POST['prodPrice'];
+
+            $added = AddItems(connect(), $prodName, $prodDetail, $prodSize, $prodPrice);
+ 
+            if($added = false) {
+                header("location: /manager/all?error=Something went wrong, try again");
+                exit();
+            }
+            else{
+                header("location: /manager/all");
+            }
+            
+        }
+    }
+
+    public static function moveToBuffer()
+    {
+        if(isset($_POST['submit'])) {
+
+            $prodName = $_POST['prodName'];
+            $prodDetail = $_POST['prodDetail'];
+            $prodSize = $_POST['prodSize'];
+            $prodPrice = $_POST['prodPrice'];
+
+            $added = AddItems(connect(), $prodName, $prodDetail, $prodSize, $prodPrice);
+ 
+            if($added = false) {
+                header("location: /manager/all?error=Something went wrong, try again");
+                exit();
+            }
+            else{
+                header("location: /manager/all");
+            }
+            
+        }
+    }
+
         
 }

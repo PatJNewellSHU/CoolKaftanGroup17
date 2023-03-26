@@ -77,6 +77,7 @@
                       </div>";
                       }
                       ?>
+        
     <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct" aria-labelledby="addProductLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="addProductLabel">New Product</h5>
