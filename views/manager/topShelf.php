@@ -1,12 +1,6 @@
 <?php 
         include_once(__DIR__."/components/navbar.php");
-
-        require_once(__DIR__."/../../App/Helpers/functions.php");
-        require_once(__DIR__."/../../App/Helpers/db_connection.php");
-    
-        $shelfID = 1;
-    
-        GetBoxShelf(connect(), $shelfID);
+        var_dump($results);
 ?>
 
 <body>
@@ -82,8 +76,59 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div> Some text as placeholder. </div>
-            <button class="btn btn-success" type="button"> Submit </button>
+        <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <form method="POST" action="/manager/addItem">
+
+                    <div class="row mb-3">
+                        <label for="prodID" class="col-md-4 col-form-label text-md-end">Product</label>
+                        <div class="col-md-6">
+                            <select id="prodID" type="text" class="form-control" name="prodID" value="" required
+                                autocomplete="" autofocus>
+                                <?php for($i = 0; $i < count($items); $i++): ?>
+                                <option value="<?php echo($items[$i][0])?>"><?php echo($items[$i][1] . " " . $items[$i][2] . " " . $items[$i][3]) ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="shelfID" class="col-md-4 col-form-label text-md-end">ShelfID</label>
+
+                        <div class="col-md-6">
+                        <input id="shelfID" type="text" class="form-control" name="shelfID" value="1" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="NoBoxes" class="col-md-4 col-form-label text-md-end">Number of Boxes</label>
+
+                        <div class="col-md-6">
+                        <input id="NoBoxes" type="text" class="form-control" name="NoBoxes" value="">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="NoUnits" class="col-md-4 col-form-label text-md-end">Number of Units</label>
+
+                        <div class="col-md-6">
+                        <input id="NoUnits" type="text" class="form-control" name="NoUnits" value="">
+                        </div>
+                    </div>
+                
+
+                  <div class="row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                      <button type="submit" name="submit" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
         </div>
     </div>
     <?php 

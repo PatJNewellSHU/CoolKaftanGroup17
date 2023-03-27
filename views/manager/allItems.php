@@ -1,24 +1,25 @@
-<?php 
-    include_once("components/navbar.php");
+<?php
+
+include_once 'components/navbar.php';
 
 ?>
 
 <body>
 
-        <div class="container">
+    <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
-        <div class="col-10">
+            <div class="col-12 col-md-9">
                 <h2>All Items</h2>
             </div>
-            <div class="col-2 text-end">
+            <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
-                    aria-controls="offcanvasExample">Add Product</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
-                    aria-controls="offcanvasExample">Filter</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>
             </div>
             <div class="col-12">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
+                <table class="table table-hover">
+                    <thead class="table-head">
                         <td>Name</td>
                         <td>Colour</td>
                         <td>Size</td>
@@ -37,106 +38,125 @@
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#editModal_<?php echo($i)?>">
-                        <td><?php echo($ProdName)?></td>
-                        <td><?php echo($ProdDetail)?></td>
-                        <td><?php echo($ProdSize)?></td>
+                    <tr data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $i; ?>">
+                        <td>
+                            <?php echo $ProdName; ?>
+                        </td>
+                        <td>
+                            <?php echo $ProdDetail; ?>
+                        </td>
+                        <td>
+                            <?php echo $ProdSize; ?>
+                        </td>
                         <td>Dummy</td>
-                        <td><?php echo($ProdPrice)?></td>
+                        <td>
+                            <?php echo $ProdPrice; ?>
+                        </td>
                     </tr>
-                    <div class="modal fade" id="editModal_<?php echo($i)?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editing: <?php echo($ProdName)?></h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body"> ... </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger me-auto" data-bs-dismiss="modal">Delete</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="modal fade" id="editModal_<?php echo $i; ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <form method="POST" action="/manager/all/edit">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="d-block">
+                                            <div class="fw-bold">
+                                                Editing
+                                            </div>
+                                            <div class="modal-title fs-5" id="exampleModalLabel">
+                                                <?php echo $ProdName; ?>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="prodName" class="form-control" id="prodName"
+                                                placeholder="name" required value="<?php echo $ProdName; ?>">
+                                            <label for="productname">Product Name</label>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="prodDetail" class="form-control" id="prodDetail"
+                                                placeholder="details" required>
+                                            <label for="prodDetail" value="<?php echo $ProdDetail; ?>">Product Details</label>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="prodSize" class="form-control" id="prodSize"
+                                                placeholder="size" required value="<?php echo $ProdSize; ?>">
+                                            <label for="prodSize">Product Size</label>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="prodPrice" class="form-control" id="prodPrice"
+                                                placeholder="price" required value="<?php echo $ProdPrice; ?>">
+                                            <label for="prodPrice">Product Price</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
+                                            <i class="bi bi-x-lg"></i>
+                                            Delete
+                                        </a>
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i>
+                                            Save changes</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                        </form>
                     </div>
 
                     <?php endfor ?>
-                </table>    
+                </table>
             </div>
         </div>
-        </div>
-        <!-- New product -->
-
-        <?php
-                      if(str_contains($_SERVER['REQUEST_URI'], '?error='))
-                      {
-                        echo "<div class='alert alert-danger col-12 col-lg-7' role='alert'>
-                        ". urldecode(explode('?error=', $_SERVER['REQUEST_URI'])[1]) ."
-                      </div>";
-                      }
-                      ?>
+    </div>
+    <!-- New product -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct" aria-labelledby="addProductLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="addProductLabel">New Product</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-        <div class="col-12">
-            <div class="card">
-              <div class="card-body">
-                <form method="POST" action="/manager/addItem">
+            <form method="POST" action="/manager/addItem">
 
-                    <div class="row mb-3">
-                        <label for="prodName" class="col-md-4 col-form-label text-md-end">Product Name</label>
-                        <div class="col-md-6">
-                            <input id="prodName" type="text" class="form-control" name="prodName" value="" required
-                                autocomplete="" autofocus>
-                        </div>
-                    </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="prodName" class="form-control" id="prodName" placeholder="name"
+                        required>
+                    <label for="prodName">Product Name</label>
+                </div>
 
-                    <div class="row mb-3">
-                        <label for="prodDetail" class="col-md-4 col-form-label text-md-end">Product Detail</label>
+                <div class="form-floating mb-3">
+                    <input type="text" name="prodDetail" class="form-control" id="prodDetail"
+                        placeholder="details" required>
+                    <label for="prodDetail">Product Details</label>
+                </div>
 
-                        <div class="col-md-6">
-                        <input id="prodDetail" type="text" class="form-control" name="prodDetail" required
-                            autocomplete="">
-                        </div>
-                    </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="prodSize" class="form-control" id="prodSize" placeholder="size"
+                        required>
+                    <label for="prodSize">Product Size</label>
+                </div>
 
-                    <div class="row mb-3">
-                        <label for="prodSize" class="col-md-4 col-form-label text-md-end">Product Size</label>
+                <div class="form-floating mb-3">
+                    <input type="text" name="prodPrice" class="form-control" id="prodPrice" placeholder="price"
+                        required>
+                    <label for="prodPrice">Product Price</label>
+                </div>
 
-                        <div class="col-md-6">
-                            <input id="prodSize" type="text" class="form-control" name="prodSize" required
-                                autocomplete="">
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-3">
-                        <label for="prodPrice" class="col-md-4 col-form-label text-md-end">Product Price</label>
 
-                        <div class="col-md-6">
-                        <input id="prodPrice" type="text" class="form-control" name="prodPrice" required
-                            autocomplete="">
-                        </div>
-                    </div>
-                
-
-                  <div class="row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                      <button type="submit" name="submit" class="btn btn-primary">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+                <button type="submit" name="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </form>
         </div>
     </div>
-    <?php 
-        include_once("components/filter_table.php");
+    <?php
+    include_once 'components/filter_table.php';
     ?>
 </body>

@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Helpers\authenticationHelper;
+
 class staffController {
 
     public static function scan()
     {
-        require_once(__DIR__ . "/../Helpers/db_connection.php");
+        authenticationHelper::isAuth('staff');
+
         return require __DIR__ . '../../../views/staff/scan.php';
         
     }
-        
 }

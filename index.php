@@ -1,9 +1,7 @@
 <?php
 
 // No autoloader so have to include + use it.
-include './App/Controllers/loginController.php';
-include './App/Controllers/staffController.php';
-include './App/Controllers/managerController.php';
+include 'autoload.php';
 
 use App\Controllers\loginController;
 use App\Controllers\staffController;
@@ -37,6 +35,9 @@ switch ($url) {
     case '/login' : // Login
         loginController::sendlogin();
         break;
+    case '/logout' : // Login
+        loginController::logout();
+        break;    
     case '/staff':
         staffController::scan();
         break;
@@ -63,6 +64,10 @@ switch ($url) {
         break;
     case (preg_match('/manager\/p\/.*/', $request)? true: false):
         managerController::p($request);
+        break;
+    case '/400':
+        http_response_code(400);
+        require __DIR__ . '/views/other/400.php';
         break;
     default: // Any other (random files)
         http_response_code(404);
