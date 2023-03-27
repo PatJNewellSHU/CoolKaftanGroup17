@@ -1,21 +1,16 @@
 <?php 
         include_once(__DIR__."/../components/navbar.php");
 
-        require_once(__DIR__."/../../../App/Helpers/functions.php");
-        require_once(__DIR__."/../../../App/Helpers/db_connection.php");
-    
-        $shelfID = 3;
-    
-        GetBoxShelf(connect(), $shelfID);
+        var_dump($results);
 ?>
 
 <body>
         <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
-        <div class="col-9">
+        <div class="col-8">
                 <h2>P2</h2>
             </div>
-            <div class="col-3 text-end">
+            <div class="col-4 text-end">
                 <div class="btn-group">
                     <a href="/manager" class="btn bg-transparent">Back</a>
                     <button type="button" class="btn bg-transparent dropdown-toggle dropdown-toggle-split"
@@ -31,9 +26,9 @@
                     </ul>
                 </div>
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
-                    aria-controls="offcanvasExample">Add Product</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
-                    aria-controls="offcanvasExample">Filter</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>
             </div>
             <div class="col-12">
                 <table class="table table-striped table-hover">

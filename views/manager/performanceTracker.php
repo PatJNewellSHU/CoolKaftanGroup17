@@ -5,18 +5,18 @@
 <body>
         <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
-        <div class="col-10">
+        <div class="col-12 col-md-9">
                 <h2><i class="bi bi-graph-up"></i> Performance Tracker</h2>
         </div>
-            <div class="col-2 text-end">
+        <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
-                    aria-controls="offcanvasExample">Add Product</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Product</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
-                    aria-controls="offcanvasExample">Filter</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>
             </div>
             <div class="col-12">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
+            <table class="table table-hover">
+                    <thead class="table-head">
                         <td>Name</td>
                         <td>Colour</td>
                         <td>Size</td>

@@ -21,7 +21,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-lg-6">
-          <h1 class="fw-bold">404. Page not found.</h1>
+          <h1 class="fw-bold">Error 404. Page not found.</h1>
           </div>
         </div>
       </div>
