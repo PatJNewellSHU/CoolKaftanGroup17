@@ -1,5 +1,8 @@
 <?php
 
+// Better error reporting
+error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
+
 // This file pre-loads all the other files so code is cleaner.
 // Doesn't impact performance as this is a tiny project.
 
