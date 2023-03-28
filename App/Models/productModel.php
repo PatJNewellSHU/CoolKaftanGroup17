@@ -23,6 +23,5 @@ class productModel {
     {
         // find $id
     } 
-
             
 }

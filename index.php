@@ -17,6 +17,11 @@ use App\Controllers\managerController;
 
 $request = $_SERVER['REQUEST_URI'];
 
+if(session_status() == 1)
+{
+    session_start();
+}
+
 // Need to check for '?'
 if(str_contains($request, '?') == true)
 {
@@ -41,7 +46,7 @@ switch ($url) {
     case '/staff':
         staffController::scan();
         break;
-    case '/manager':
+    case (preg_match('/manager\/long.*/', $request)? true: false):
         managerController::shelves();
         break;
     case '/manager/buffer':
@@ -61,9 +66,6 @@ switch ($url) {
         break;
     case '/manager/addItem':
         managerController::addItem();
-        break;
-    case (preg_match('/manager\/p\/.*/', $request)? true: false):
-        managerController::p($request);
         break;
     case '/400':
         http_response_code(400);

@@ -28,7 +28,6 @@ class authenticationHelper {
         
         if($enabled == true)
         {
-            
             if(isset($_SESSION['userId'])) {
                 if($_SESSION['userType'] == 'staff')
                 {
@@ -37,7 +36,7 @@ class authenticationHelper {
 
                 if($_SESSION['userType'] == 'manager')
                 {
-                    header("location: /manager");
+                    header("location: /manager/long");
                 }
             }
         }
