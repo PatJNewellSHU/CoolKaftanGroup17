@@ -55,7 +55,8 @@
                   aria-current="page" href="/manager/all"><i class="bi bi-collection"></i> All Items</a>
             </div>
             <div class='navbar-nav ms-auto'>
-               <a class='nav-link' aria-current='page' href='/settings'><i class="bi bi-sliders"></i> Settings</a>
+               <a class='nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'settings') ? " active" : ""
+                  )?>' aria-current='page' href='/settings'><i class="bi bi-sliders"></i> Settings</a>
             </div>
             <div class='navbar-nav '>
                <a class='nav-link' aria-current='page' href='/logout'><i class="bi bi-box-arrow-right"></i> Log out</a>

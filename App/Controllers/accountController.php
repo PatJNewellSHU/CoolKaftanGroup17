@@ -5,13 +5,19 @@ namespace App\Controllers;
 use App\Helpers\authenticationHelper;
 use App\Helpers\dbHelper;
 
-class loginController {
+class accountController {
 
     
     public static function login()
     {
         authenticationHelper::isGuest();
         return require __DIR__ . '../../../views/login.php';
+    }
+
+    public static function settings()
+    {
+        authenticationHelper::isAuth(['manager', 'staff']);
+        return require __DIR__ . '../../../views/settings.php';
     }
 
     public static function logout()
