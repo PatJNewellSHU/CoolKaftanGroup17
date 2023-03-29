@@ -70,4 +70,16 @@ class dbHelper {
         return true;
     }
 
+    public function delete($table, $columns = [], $values = [])
+    {
+
+        $prepare = "DELETE FROM " . $table . " WHERE '$columns[0]' = '$values[0]' AND '$columns[1]' = '$values[1]';";
+        $statement = $this->connection->prepare($prepare);
+        $statement->execute();
+
+        return true;
+
+
+    }
+
 }
