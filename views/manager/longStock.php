@@ -177,7 +177,8 @@
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="shelf" id="shelf" aria-label="Shelf">
-                        <option selected value="all">Top Shelf</option>
+                        <option selected value="all">All</option>
+                        <option value="top">Top Shelf</option>
                         <option value="mixed">Shelf #P1</option>
                         <option value="mixed">Shelf #P2</option>
                         <option value="mixed">Shelf #P3</option>
