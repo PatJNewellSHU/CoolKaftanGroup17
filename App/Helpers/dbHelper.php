@@ -53,11 +53,40 @@ class dbHelper {
     public function create($table, $columns=[], $values=[])
     {
 
-        $prepare = "INSERT INTO " . $table . "('".implode("','", $columns)."') VALUES ('" .implode("','", $values).");";
+        $statement = "INSERT INTO ? ("; 
         //^ Cant test til database is finished but I think this should prevent having to add quotations around each variable beforehand? 
         
+        $params = array();
+        for($i =0; $i < count($columns); $i++)
+        {
+            if($i = count($columns)) {
+                $prepare .= "?)";
+            }
+            else
+            {
+                $prepare .= "?,";
+            }
+            $params[] = $columns[$i];
+        }
+        $prepare .= " VALUES";
+        for($i =0; $i < count($values); $i++)
+        {
+            if($i = count($values)) {
+                $prepare .= "?)";
+            }
+            else
+            {
+                $prepare .= "?,";
+            }
+            $params[] = $values[$i];
+        }
+
         $statement = $this->connection->prepare($prepare);
+        $types = str_repeat("s", count($columns)); //creates the variable types 
+        $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
+
+        return true;
 
         return true;
     }
