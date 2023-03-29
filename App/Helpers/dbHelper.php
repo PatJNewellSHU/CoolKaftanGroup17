@@ -50,6 +50,7 @@ class dbHelper {
         return $results;
     }
 
+    //If these dont work i sincerely apologise - I'll rewrite them again back to how they used to be 
     public function create($table, $columns=[], $values=[])
     {
 
