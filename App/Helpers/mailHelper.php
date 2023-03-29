@@ -8,8 +8,10 @@ class mailHelper {
     {
         $to_email = "finbates16@gmail.com";
         $subject = "Simple Email Test via PHP";
-        $body = "Test Mail";
-        $headers = "From: PerformanceTracker";
+        $body = "<h1 style='color:red'>Performance Alert</h1>";
+        $body .= "<b>This item has been underperforming: </b>";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
         if (mail($to_email, $subject, $body, $headers)) {
             echo "Email successfully sent to $to_email...";
