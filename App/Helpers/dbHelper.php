@@ -82,5 +82,6 @@ class dbHelper {
     }
     /*
     Tried just taking each string out of the array rather than imploding as I wanted to use "AND" in a delete statement, but not actually removing from the database.
+    push#2
     */
 }
