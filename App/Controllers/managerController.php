@@ -113,6 +113,10 @@ function MoveToBuffer($conn, $boxID) {
         }
     }
 
+    /*
+    ==FIN==
+    Copied the addItem code from above.
+    */
     public static function addBox()
     {
         if(isset($_POST['submit'])) {
