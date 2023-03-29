@@ -21,7 +21,7 @@
 </head>
 
 <div id="app">
-   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+   <nav class="navbar navbar-expand-lg mt-2">
       <div class="container-fluid">
          <a class="navbar-brand" href="#">
             <img src="../../public/images/kaftan_logo.png" alt="Kaftan" class="w-100" height="30">
@@ -33,31 +33,33 @@
          </button>
          <div class="collapse navbar-collapse" id="content">
             <div class="navbar-nav">
-               <a class="nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/manager' ? " active" : "" )?>"
-                  aria-current="page" href="/manager">Long Stock</a>
+               <a class="nav-link<?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long') ? " active" : ""
+                  )?>"
+                  aria-current="page" href="/manager/long"><i class="bi bi-box-fill"></i> Long Stock</a>
             </div>
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/buffer') ? " active" : ""
-                  )?>" aria-current="page" href="/manager/buffer">Buffer Stock</a>
+                  )?>" aria-current="page" href="/manager/buffer"><i class="bi bi-box-seam-fill"></i> Buffer Stock</a>
             </div>
 
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/mixed') ? " active" : ""
-                  )?>" aria-current="page" href="/manager/mixed">Mixed Boxes</a>
+                  )?>" aria-current="page" href="/manager/mixed"><i class="bi bi-boxes"></i> Mixed Boxes</a>
             </div>
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/performance') ? " active"
-                  : "" )?>" aria-current="page" href="/manager/performance">Performance Tracker</a>
+                  : "" )?>" aria-current="page" href="/manager/performance"><i class="bi bi-bar-chart-steps"></i> Performance Tracker</a>
             </div>
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/all') ? " active" : "" )?>"
-                  aria-current="page" href="/manager/all">All Items</a>
+                  aria-current="page" href="/manager/all"><i class="bi bi-collection"></i> All Items</a>
             </div>
             <div class='navbar-nav ms-auto'>
-               <a class='nav-link' aria-current='page' href='/settings'>Settings</a>
+               <a class='nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'settings') ? " active" : ""
+                  )?>' aria-current='page' href='/settings'><i class="bi bi-sliders"></i> Settings</a>
             </div>
             <div class='navbar-nav '>
-               <a class='nav-link' aria-current='page' href='/logout'>Log out</a>
+               <a class='nav-link' aria-current='page' href='/logout'><i class="bi bi-box-arrow-right"></i> Log out</a>
             </div>
 
          </div>

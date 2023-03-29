@@ -3,19 +3,16 @@
 // No autoloader so have to include + use it.
 include 'autoload.php';
 
-use App\Controllers\loginController;
+use App\Controllers\accountController;
 use App\Controllers\staffController;
 use App\Controllers\managerController;
 
-//// Message from Ethan:
-// This is the MAIN file for the entire website. (Everytime the server is requested http://localhost/...)
-// This file is requested. Not fastest solution but it works. 
-// TLD >> It means we don't use the system's filesystem and now we can do fancy stuff (e.g. authentication using middleware)
-// If you want to make a new page then add a route (BELOW) and link it to a view (IN VIEWS folder) or controller (IN CONTROLLERS folder)
-// MVC-ing this mf.
-//// Cheers <3
-
 $request = $_SERVER['REQUEST_URI'];
+
+if(session_status() == 1)
+{
+    session_start();
+}
 
 // Need to check for '?'
 if(str_contains($request, '?') == true)
@@ -26,22 +23,22 @@ if(str_contains($request, '?') == true)
 }
 
 switch ($url) {
-    case '/' : // Index page
-        loginController::login();
+    case '/' :
+        accountController::login();
         break;
-    case '' : // Catching anything else
-        loginController::login();
+    case '/login' :
+        accountController::sendlogin();
         break;
-    case '/login' : // Login
-        loginController::sendlogin();
+    case '/logout' :
+        accountController::logout();
         break;
-    case '/logout' : // Login
-        loginController::logout();
+    case '/settings' :
+        accountController::settings();
         break;    
     case '/staff':
         staffController::scan();
         break;
-    case '/manager':
+    case (preg_match('/manager\/long.*/', $request)? true: false):
         managerController::shelves();
         break;
     case '/manager/buffer':
@@ -61,9 +58,6 @@ switch ($url) {
         break;
     case '/manager/addItem':
         managerController::addItem();
-        break;
-    case (preg_match('/manager\/p\/.*/', $request)? true: false):
-        managerController::p($request);
         break;
     case '/400':
         http_response_code(400);

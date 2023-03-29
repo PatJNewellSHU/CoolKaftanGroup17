@@ -23,14 +23,14 @@ function MoveToBuffer($conn, $boxID) {
     {
         authenticationHelper::isAuth('manager');
 
-        return require __DIR__.'/../../views/manager/shelves.php';
+        return require __DIR__.'/../../views/manager/longStock.php';
     }
 
     public static function buffer()
     {
         authenticationHelper::isAuth('manager');
 
-        return require __DIR__.'/../../views/manager/buffer.php';
+        return require __DIR__.'/../../views/manager/bufferStock.php';
     }
 
     public static function mixed()
@@ -55,8 +55,7 @@ function MoveToBuffer($conn, $boxID) {
         $items = $database->get('product', '*');
 
         return require __DIR__.'/../../views/manager/allitems.php';
-
-       
+  
     }
 
     public static function top()
@@ -67,18 +66,6 @@ function MoveToBuffer($conn, $boxID) {
         $results = $database->query("SELECT * FROM box WHERE shelf_id = 1", true);
 
         return require __DIR__.'/../../views/manager/topShelf.php';
-    }
-
-    public static function p($request)
-    {
-        $selector = explode('/', $request)[3];
-
-        if(intval($selector) > 4)
-        {
-            header("location: /404");
-        }
-
-        return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
     }
 
 

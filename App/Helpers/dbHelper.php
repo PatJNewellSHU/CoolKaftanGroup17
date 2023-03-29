@@ -38,7 +38,10 @@ class dbHelper {
 
         if($statement == false)
         {
-            return $this->connection->error;
+            return header("location: /500");;
+
+            // var_dump($this->connection->error);
+            // die();
         }
 
         $statement->execute();
@@ -59,6 +62,7 @@ class dbHelper {
 
     public function add($table, $columns=[], $values=[])
     {
+
         $prepare = "INSERT INTO " . $table . "(".implode(', ', $columns).") VALUES (" .implode(', ', $values).");";
         
         $statement = $this->connection->prepare($prepare);

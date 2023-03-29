@@ -10,14 +10,28 @@ class authenticationHelper {
 
         if($enabled == true)
         {
-            session_start();
             if(!isset($_SESSION['userId'])) {
                 header("location: /400");
             }
 
-            if($_SESSION['userType'] != $type)
+            if(is_array($type))
             {
-                header("location: /400");
+                $letIn = false;
+                foreach ($type as $t) {
+                    if($_SESSION['userType'] == $t)
+                    {
+                        $letIn = true;
+                    }
+                }
+
+                if($letIn != true) {
+                    header("location: /400");
+                }
+            } else {
+                if($_SESSION['userType'] != $type)
+                {
+                    header("location: /400");
+                }
             }
         }
     }
@@ -28,7 +42,6 @@ class authenticationHelper {
         
         if($enabled == true)
         {
-            
             if(isset($_SESSION['userId'])) {
                 if($_SESSION['userType'] == 'staff')
                 {
@@ -37,7 +50,7 @@ class authenticationHelper {
 
                 if($_SESSION['userType'] == 'manager')
                 {
-                    header("location: /manager");
+                    header("location: /manager/long");
                 }
             }
         }

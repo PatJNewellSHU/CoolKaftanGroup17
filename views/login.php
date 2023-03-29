@@ -17,9 +17,9 @@
 
 <body>
   <div id="app">
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand w-100 text-center" href="#">
+        <a class="navbar-brand w-100 text-center mt-4" href="#">
           <img src="../public/images/kaftan_logo.png" alt="Logo" class="d-inline-block align-text-top logo">
         </a>
       </div>

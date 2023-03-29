@@ -17,7 +17,7 @@ include_once 'components/navbar.php';
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
                     aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>
             </div>
-            <div class="col-12">
+            <div class="col-12 overflow-x-auto">
                 <table class="table table-hover">
                     <thead class="table-head">
                         <td>Name</td>

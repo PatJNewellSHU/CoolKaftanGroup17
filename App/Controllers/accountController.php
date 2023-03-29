@@ -5,12 +5,19 @@ namespace App\Controllers;
 use App\Helpers\authenticationHelper;
 use App\Helpers\dbHelper;
 
-class loginController {
+class accountController {
 
+    
     public static function login()
     {
         authenticationHelper::isGuest();
         return require __DIR__ . '../../../views/login.php';
+    }
+
+    public static function settings()
+    {
+        authenticationHelper::isAuth(['manager', 'staff']);
+        return require __DIR__ . '../../../views/settings.php';
     }
 
     public static function logout()
@@ -43,13 +50,13 @@ class loginController {
                 exit();
             }
 
-            session_start();
             $_SESSION['userId'] = $users["id"];
             $_SESSION['userName'] = $username;
             
             if ($password == $users["password"]) {
                 if($users["id"] == 2) {
                     $_SESSION['userType'] = 'staff';
+                    session_commit();
                     header("location: /staff");
                     exit();
                 }
@@ -57,7 +64,8 @@ class loginController {
             
             if($users["id"] == 1) {
                 $_SESSION['userType'] = 'manager';
-                header("location: /manager");
+                session_commit();
+                header("location: /manager/long");
                 exit();
             }
         }
