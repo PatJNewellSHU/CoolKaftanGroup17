@@ -9,7 +9,7 @@ class mailHelper {
         $to_email = "finbates16@gmail.com";
         $subject = "Simple Email Test via PHP";
         $body = "Test Mail";
-        $headers = "From: sender\'s email";
+        $headers = "From: PerformanceTracker";
 
         if (mail($to_email, $subject, $body, $headers)) {
             echo "Email successfully sent to $to_email...";
@@ -17,25 +17,25 @@ class mailHelper {
             echo "Email sending failed...";
         }
 
-/* 
-Make these changes to php.ini:
+        /* 
+        Make these changes to php.ini:
 
-SMTP=smtp.gmail.com
-smtp_port=587
-sendmail_from = coolkaftan17performance@gmail.com
-sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
+        SMTP=smtp.gmail.com
+        smtp_port=587
+        sendmail_from = coolkaftan17performance@gmail.com
+        sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
 
-Make these changes to sendemail.ini:
+        Make these changes to sendemail.ini:
 
-smtp_server=smtp.gmail.com
-smtp_port=587
-error_logfile=error.log
-debug_logfile=debug.log
-auth_username=coolkaftan17performance@gmail.com
-auth_password=CoolKaftan
-force_sender=YourGmailId@gmail.com(optional)
+        smtp_server=smtp.gmail.com
+        smtp_port=587
+        error_logfile=error.log
+        debug_logfile=debug.log
+        auth_username=coolkaftan17performance@gmail.com
+        auth_password=uqabtnwrpalkbodt
+        force_sender=YourGmailId@gmail.com(optional)
 
-*/
+        */
     }
 
 }
