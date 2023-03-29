@@ -71,4 +71,17 @@ class dbHelper {
         return true;
     }
 
+    public function delete($table, $columns = [], $values = [])
+    {
+
+        $prepare = "DELETE FROM " . $table . " WHERE '$columns[0]' = '$values[0]' AND '$columns[1]' = '$values[1]';";
+        $statement = $this->connection->prepare($prepare);
+        $statement->execute();
+
+        return true;
+    }
+    /*
+    Tried just taking each string out of the array rather than imploding as I wanted to use "AND" in a delete statement, but not actually removing from the database.
+    push#2
+    */
 }

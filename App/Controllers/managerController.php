@@ -95,6 +95,29 @@ function MoveToBuffer($conn, $boxID) {
         }
     }
 
+    public static function deleteItem()
+    {
+        authenticationHelper::isAuth('manager');
+        if (isset($_POST['delete'])) {
+
+            $prodName = $_POST['prodName'];
+            $prodDetail = $_POST['prodDetail'];
+            $prodSize = $_POST['prodSize'];
+            $prodPrice = $_POST['prodPrice'];
+
+            $database = new dbHelper();
+            $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
+            $data = ["'" . $prodName . "'", "'" . $prodDetail . "'", "'" . $prodSize . "'", "'" . $prodPrice . "'"];
+            $database->delete('product', $columns, $data);
+
+        }
+    }
+
+    /*
+    ==FIN==
+    Copied the addItem code from above.
+    push#2
+    */
     public static function addBox()
     {
         if(isset($_POST['submit'])) {
