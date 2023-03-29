@@ -7,28 +7,7 @@
     <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
             <div class="col-12 col-md-9">
-            <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (($_SERVER['REQUEST_URI'] == '/manager/long') ? "active text-dark" : "text-dark"
-                  )?>" aria-current="page" href="/manager/long">Top Shelf</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long?s=2') ? "active text-dark" : "text-dark"
-                  )?>" href="/manager/long?s=2">Shelf #1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long?s=3') ? "active text-dark" : "text-dark"
-                  )?>" href="/manager/long?s=3">Shelf #2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long?s=4') ? "active text-dark" : "text-dark"
-                  )?>" href="/manager/long?s=4">Shelf #3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long?s=5') ? "active text-dark" : "text-dark"
-                  )?>" href="/manager/long?s=5">Shelf #4</a>
-                    </li>
-                </ul>
+                <h2>Long Stock</h2>
             </div>
             <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
@@ -157,7 +136,57 @@
             </form>
         </div>
     </div>
-    <?php 
-        include_once("components/filter_table.php");
-    ?>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter" aria-labelledby="filterLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="filterLabel">Table Filter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form method="GET">
+                <div class="form-floating mb-3">
+                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan">
+                    <label for="searchinput">Search</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="order" id="orderselect" aria-label="order select">
+                        <option selected value="id_desending">ID (Desending)</option>
+                        <option value="id_asending">ID (Asending)</option>
+                        <option value="desending">Date (Desending)</option>
+                        <option value="asending">Date  (Asending)</option>
+                    </select>
+                    <label for="orderselect">Order By</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
+                        <option selected value="all">All</option>
+                        <option value="25">Max: 25</option>
+                        <option value="50">Max: 50</option>
+                        <option value="100">Max: 100</option>
+                        <option value="200">Max: 200</option>
+                    </select>
+                    <label for="showingselect">Showing</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="box_type" id="box_type" aria-label="Box Type">
+                        <option selected value="all">All</option>
+                        <option value="mixed">Mixed Only</option>
+                        <option value="shelf">Unmixed Only</option>
+
+                    </select>
+                    <label for="showingselect">Box Type</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="shelf" id="shelf" aria-label="Shelf">
+                        <option selected value="all">Top Shelf</option>
+                        <option value="mixed">Shelf #P1</option>
+                        <option value="mixed">Shelf #P2</option>
+                        <option value="mixed">Shelf #P3</option>
+                        <option value="mixed">Shelf #P4</option>
+                    </select>
+                    <label for="showingselect">Shelf</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </body>
