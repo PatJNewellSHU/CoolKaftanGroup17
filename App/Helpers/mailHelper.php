@@ -7,7 +7,7 @@ class mailHelper {
     public static function go()
     {
         $to_email = "finbates16@gmail.com";
-        $subject = "Simple Email Test via PHP";
+        $subject = "Performance Review";
         $body = "<h1 style='color:red'>Performance Alert</h1>";
         $body .= "<b>This item has been underperforming: </b>";
         $headers = "MIME-Version: 1.0" . "\r\n";
