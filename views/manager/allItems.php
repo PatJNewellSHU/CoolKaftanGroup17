@@ -98,7 +98,7 @@ include_once 'components/navbar.php';
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="#" type="delete" name="delete" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
+                                        <a href="#" type="submit" name="delete" class="btn btn-danger ms-auto"      data-bs-dismiss="modal">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>
