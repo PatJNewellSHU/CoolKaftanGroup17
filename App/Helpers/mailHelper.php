@@ -8,7 +8,7 @@ class mailHelper {
     {
         $to_email = "finbates16@gmail.com";
         $subject = "Simple Email Test via PHP";
-        $body = "Hi,nn This is test email send by PHP Script";
+        $body = "Test Mail";
         $headers = "From: sender\'s email";
 
         if (mail($to_email, $subject, $body, $headers)) {
@@ -22,7 +22,7 @@ Make these changes to php.ini:
 
 SMTP=smtp.gmail.com
 smtp_port=587
-sendmail_from = YourGmailId@gmail.com
+sendmail_from = coolkaftan17performance@gmail.com
 sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
 
 Make these changes to sendemail.ini:
@@ -31,8 +31,8 @@ smtp_server=smtp.gmail.com
 smtp_port=587
 error_logfile=error.log
 debug_logfile=debug.log
-auth_username=YourGmailId@gmail.com
-auth_password=Your-Gmail-Password
+auth_username=coolkaftan17performance@gmail.com
+auth_password=CoolKaftan
 force_sender=YourGmailId@gmail.com(optional)
 
 */
