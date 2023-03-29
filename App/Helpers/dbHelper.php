@@ -79,6 +79,30 @@ class dbHelper {
 
     public function update($table, $columns = [], $values = []) {
 
+        $statement = "UPDATE ? SET";
+        $params = array();
+        for($i = 0; $i < count($columns); $i++) //Should go through as many columns are in the array columns and add to the sql statement
+        {
+            if($i = 0) //This seems like a bad way to check if were on the first run of the for loop but idk how else to do it in php
+            {
+                $prepare .= " ? = ?";
+            }
+            else
+            {
+                $prepare .= " AND ? = ?";
+            }
+            
+            $params[] = $columns[$i];
+            $params[] = $values[$i];
+        }  
+
+        $statement = $this->connection->prepare($prepare);
+        $types = str_repeat("s", count($columns)); //creates the variable types 
+        $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
+        $statement->execute();
+
+        return true;
+
     }
 
     public function delete($table, $columns = [], $values = [])
@@ -102,7 +126,7 @@ class dbHelper {
         }  
 
         $statement = $this->connection->prepare($prepare);
-        $types = str_repeat("s", count($columns)); //creates the variable types - kind of temp as it wont work with numbers but idk how the database looks yet
+        $types = str_repeat("s", count($columns)); //creates the variable types 
         $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
 
