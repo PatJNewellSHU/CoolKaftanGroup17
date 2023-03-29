@@ -19,6 +19,7 @@ class dbHelper {
 
     }
 
+
     public function get($table, $columns="*", $query=null, $associate=false)
     {
         $prepare = "SELECT " . $columns . " FROM " . $table . " ";
