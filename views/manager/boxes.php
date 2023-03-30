@@ -1,6 +1,6 @@
 <?php 
         include_once("components/navbar.php");
-        // var_dump($results);
+        var_dump($boxes);
 ?>
 
 <body>
@@ -11,7 +11,7 @@
             </div>
             <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
-                    aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Product</a>
+                    aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> New Box</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
                     aria-controls="offcanvasExample"><i class="bi bi-filter"></i> Filter</a>
             </div>

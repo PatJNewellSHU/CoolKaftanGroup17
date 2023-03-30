@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Helpers\authenticationHelper;
 use App\Helpers\dbHelper;
-
 class managerController {
 
     
@@ -22,6 +21,17 @@ function MoveToBuffer($conn, $boxID) {
     public static function boxes()
     {
         authenticationHelper::isAuth('manager');
+
+        // Remove me after DB is setup
+        $boxes = [
+            1 => [
+                'id' => 1,
+                'box_type' => 'mixed',
+                'shelf' => 'top_floor',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ],
+        ];
 
         return require __DIR__.'/../../views/manager/boxes.php';
     }
