@@ -96,8 +96,6 @@ class dbHelper {
         $statement->execute();
 
         return true;
-
-        return true;
     }
 
     public function read($table, $columns="*", $query=null, $associate=false)
