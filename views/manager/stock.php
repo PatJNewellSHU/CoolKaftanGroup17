@@ -1,13 +1,12 @@
 <?php 
         include_once("components/navbar.php");
-        // var_dump($results);
 ?>
 
 <body>
     <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
             <div class="col-12 col-md-9">
-                <h2>Long Stock</h2>
+                <h2>Stock</h2>
             </div>
             <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
@@ -53,6 +52,8 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
+
+
                                         <div class="form-floating mb-3">
                                             <input type="text" name="prodName" class="form-control" id="prodName"
                                                 placeholder="name" required value="<?php echo $ProdName; ?>">
@@ -80,7 +81,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a href="/manage/long/buffer" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">
-                                            Move to buffer
+                                            Move to long
                                         </a>
                                         <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto" data-bs-dismiss="modal">
                                             View Products
@@ -111,89 +112,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form method="POST" action="/manager/addItem">
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodName" class="form-control" id="prodName" placeholder="name" required>
-                    <label for="prodName">Product Name</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodDetail" class="form-control" id="prodDetail" placeholder="details"
-                        required>
-                    <label for="prodDetail">Product Details</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodSize" class="form-control" id="prodSize" placeholder="size" required>
-                    <label for="prodSize">Product Size</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodPrice" class="form-control" id="prodPrice" placeholder="price"
-                        required>
-                    <label for="prodPrice">Product Price</label>
-                </div>
-
-                <button type="submit" name="submit" class="btn btn-primary">
-                    Submit
-                </button>
-            </form>
+            <div> Some text as placeholder. </div>
+            <button class="btn btn-success" type="button"> Submit </button>
         </div>
     </div>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter" aria-labelledby="filterLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="filterLabel">Table Filter</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <form method="GET">
-                <div class="form-floating mb-3">
-                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan">
-                    <label for="searchinput">Search</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="order" id="orderselect" aria-label="order select">
-                        <option selected value="id_desending">ID (Desending)</option>
-                        <option value="id_asending">ID (Asending)</option>
-                        <option value="desending">Date (Desending)</option>
-                        <option value="asending">Date  (Asending)</option>
-                    </select>
-                    <label for="orderselect">Order By</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
-                        <option selected value="all">All</option>
-                        <option value="25">Max: 25</option>
-                        <option value="50">Max: 50</option>
-                        <option value="100">Max: 100</option>
-                        <option value="200">Max: 200</option>
-                    </select>
-                    <label for="showingselect">Showing</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="box_type" id="box_type" aria-label="Box Type">
-                        <option selected value="all">All</option>
-                        <option value="mixed">Mixed Only</option>
-                        <option value="shelf">Unmixed Only</option>
-
-                    </select>
-                    <label for="showingselect">Box Type</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="shelf" id="shelf" aria-label="Shelf">
-                        <option selected value="all">All</option>
-                        <option value="top">Top Shelf</option>
-                        <option value="mixed">Shelf #P1</option>
-                        <option value="mixed">Shelf #P2</option>
-                        <option value="mixed">Shelf #P3</option>
-                        <option value="mixed">Shelf #P4</option>
-                    </select>
-                    <label for="showingselect">Shelf</label>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+    <?php 
+        include_once("components/filter_table.php");
+    ?>
 </body>

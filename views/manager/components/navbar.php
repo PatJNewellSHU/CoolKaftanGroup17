@@ -33,21 +33,21 @@
          </button>
          <div class="collapse navbar-collapse" id="content">
             <div class="navbar-nav">
-               <a class="nav-link<?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/long') ? " active" : ""
+               <a class="nav-link<?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/boxes') ? " active" : ""
                   )?>"
-                  aria-current="page" href="/manager/long"><i class="bi bi-box-fill"></i> Long Stock</a>
+                  aria-current="page" href="/manager/boxes"><i class="bi bi-box-fill"></i> Boxes</a>
             </div>
             <div class="navbar-nav">
-               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/buffer') ? " active" : ""
-                  )?>" aria-current="page" href="/manager/buffer"><i class="bi bi-box-seam-fill"></i> Buffer Stock</a>
-            </div>
-            <div class="navbar-nav">
-               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/performance') ? " active"
-                  : "" )?>" aria-current="page" href="/manager/performance"><i class="bi bi-bar-chart-steps"></i> Performance Tracker</a>
+               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/stock') ? " active" : ""
+                  )?>" aria-current="page" href="/manager/stock"><i class="bi bi-stack-overflow"></i> Stock</a>
             </div>
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/product') ? " active" : "" )?>"
-                  aria-current="page" href="/manager/products"><i class="bi bi-collection"></i> Products</a>
+                  aria-current="page" href="/manager/products"><i class="bi bi-tag-fill"></i> Products</a>
+            </div>
+            <div class="navbar-nav">
+               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/performance') ? " active"
+                  : "" )?>" aria-current="page" href="/manager/performance"><i class="bi bi-bar-chart-steps"></i> Performance</a>
             </div>
             <div class='navbar-nav ms-auto'>
                <a class='nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'settings') ? " active" : ""

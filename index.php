@@ -38,11 +38,11 @@ switch ($url) {
     case '/staff':
         staffController::scan();
         break;
-    case (preg_match('/manager\/long.*/', $request)? true: false):
-        managerController::long();
+    case (preg_match('/manager\/boxes.*/', $request)? true: false):
+        managerController::boxes();
         break;
-    case (preg_match('/manager\/buffer.*/', $request)? true: false):
-        managerController::buffer();
+    case (preg_match('/manager\/stock.*/', $request)? true: false):
+        managerController::stock();
         break;
     case (preg_match('/manager\/performance.*/', $request)? true: false):
         managerController::performance();

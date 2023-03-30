@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-class occurrencesModel {
+class boxModel {
 
     private $model;
     private $columns = [
+        'id',
         'product_id',
-        'stock_id',
         'created_at',
         'updated_at'
     ];

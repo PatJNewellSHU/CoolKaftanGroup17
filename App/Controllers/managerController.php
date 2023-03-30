@@ -19,25 +19,25 @@ function MoveToBuffer($conn, $boxID) {
     var_dump($result); // idk what to do with this lol
 }
 
-    public static function long()
+    public static function boxes()
     {
         authenticationHelper::isAuth('manager');
 
-        return require __DIR__.'/../../views/manager/longStock.php';
+        return require __DIR__.'/../../views/manager/boxes.php';
     }
 
-    public static function buffer()
+    public static function stock()
     {
         authenticationHelper::isAuth('manager');
 
-        return require __DIR__.'/../../views/manager/bufferStock.php';
+        return require __DIR__.'/../../views/manager/stock.php';
     }
 
     public static function performance()
     {
         authenticationHelper::isAuth('manager');
 
-        return require __DIR__.'/../../views/manager/performanceTracker.php';
+        return require __DIR__.'/../../views/manager/performance.php';
     }
 
     public static function products()

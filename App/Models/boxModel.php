@@ -4,14 +4,13 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-class stockModel {
+class boxModel {
 
     private $model;
-
     private $columns = [
         'id',
-        'product_id',
-        'box_id',
+        'box_type', // mixed, non-mixed
+        'shelf', // top-floor, p1-4 or buffer.
         'created_at',
         'updated_at'
     ];
@@ -28,12 +27,19 @@ class stockModel {
 
     public static function getProduct()
     {
-        // returns linked product
+        // 
     }
 
-    public static function getBox()
+    public static function getStock()
     {
-        // returns linked box
+        //
     }
+
+
             
 }
+
+// $product = new productModel();
+// $product->find($id);
+// $product->attribute;
+// $product->getAttribute(['attribute']); // checks attributes array if exists;
