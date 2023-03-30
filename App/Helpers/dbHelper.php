@@ -68,7 +68,7 @@ class dbHelper {
             }
             $params[] = $columns[$i];
         }
-        $prepare .= " VALUES";
+        $prepare .= " VALUES (";
         for($i =0; $i < count($values); $i++)
         {
             if($i = count($values)) {
