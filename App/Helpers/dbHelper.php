@@ -20,7 +20,7 @@ class dbHelper {
     }
 
 
-    public function query($query, $associate, $params, $columns, $table, $values)
+    public function query($query, $associate)
     {
         $statement = $this->connection->prepare($query);
 
@@ -94,7 +94,7 @@ class dbHelper {
 
     public function read($table, $columns="*", $query=null, $associate=false)
     {
-        $prepare = "SELECT " . $$columns . "FROM " . $table; 
+        $prepare = "SELECT " . $columns . "FROM " . $table; 
         //^ removed quotes at the end as I dont think they are needed?
 
         
