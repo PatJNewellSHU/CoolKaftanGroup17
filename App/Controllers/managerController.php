@@ -24,10 +24,11 @@ function MoveToBuffer($conn, $boxID) {
 
         // Remove me after DB is setup
         $boxes = [
-            1 => [
+            0 => [
                 'id' => 1,
                 'box_type' => 'mixed',
                 'shelf' => 'top_floor',
+                'products' => 12,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],

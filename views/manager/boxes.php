@@ -1,6 +1,6 @@
 <?php 
         include_once("components/navbar.php");
-        var_dump($boxes);
+       // var_dump($boxes);
 ?>
 
 <body>
@@ -18,22 +18,33 @@
             <div class="col-12 overflow-x-auto">
                 <table class="table table-hover">
                     <thead class="table-head">
-                        <td>Name</td>
-                        <td>Colour</td>
-                        <td>Size</td>
-                        <td>Category</td>
-                        <td>Number of units</td>
-                        <td>Performance</td>
+                        <td>#</td>
+                        <td>Type</td>
+                        <td>Products</td>
+                        <td>Shelf</td>
+                        <td>Created</td>
+                        <td>Updated</td>
                     </thead>
+
+                    <?php
+
+                        for ($i=0; $i<count($boxes); $i++):
+                            $id = $boxes[$i]['id'];
+                            $type = $boxes[$i]['box_type'];
+                            $products = $boxes[$i]['products']; 
+                            $shelf = $boxes[$i]['shelf'];
+                            $created = $boxes[$i]['created_at'];
+                            $updated = $boxes[$i]['updated_at'];                    
+                    ?>
 
                     <!-- Database Item -->
                     <tr data-bs-toggle="modal" data-bs-target="#editModal_ID">
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo $type ?></td>
+                        <td><?php echo $products ?></td>
+                        <td><?php echo $shelf ?></td>
+                        <td><?php echo $created ?></td>
+                        <td><?php echo $updated ?></td>
                     </tr>
                     <div class="modal fade" id="editModal_ID" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -99,6 +110,8 @@
 
                         </form>
                     </div>
+
+                    <?php endfor ?>
 
                 </table>
             </div>
