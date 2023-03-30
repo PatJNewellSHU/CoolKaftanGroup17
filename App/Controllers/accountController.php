@@ -65,7 +65,7 @@ class accountController {
             if($users["id"] == 1) {
                 $_SESSION['userType'] = 'manager';
                 session_commit();
-                header("location: /manager/long");
+                header("location: /manager/boxes");
                 exit();
             }
         }
