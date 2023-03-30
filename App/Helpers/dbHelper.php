@@ -53,7 +53,6 @@ class dbHelper {
     //If these dont work i sincerely apologise - I'll rewrite them again back to how they used to be 
     public function create($table, $columns=[], $values=[])
     {
-
         $statement = "INSERT INTO ? ("; 
         //^ Cant test til database is finished but I think this should prevent having to add quotations around each variable beforehand? 
         
@@ -69,7 +68,7 @@ class dbHelper {
             }
             $params[] = $columns[$i];
         }
-        $prepare .= " VALUES";
+        $prepare .= " VALUES (";
         for($i =0; $i < count($values); $i++)
         {
             if($i = count($values)) {
@@ -83,11 +82,18 @@ class dbHelper {
         }
 
         $statement = $this->connection->prepare($prepare);
+
+        if($statement == false)
+        {
+            // return header("location: /500");;
+
+            var_dump($this->connection->error);
+            die();
+        }
+
         $types = str_repeat("s", count($columns)); //creates the variable types 
         $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
-
-        return true;
 
         return true;
     }
@@ -128,6 +134,15 @@ class dbHelper {
         }  
 
         $statement = $this->connection->prepare($prepare);
+
+        if($statement == false)
+        {
+            // return header("location: /500");;
+
+            var_dump($this->connection->error);
+            die();
+        }
+
         $types = str_repeat("s", count($columns)); //creates the variable types 
         $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
@@ -157,6 +172,15 @@ class dbHelper {
         }  
 
         $statement = $this->connection->prepare($prepare);
+
+        if($statement == false)
+        {
+            // return header("location: /500");;
+
+            var_dump($this->connection->error);
+            die();
+        }
+        
         $types = str_repeat("s", count($columns)); //creates the variable types 
         $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
