@@ -39,22 +39,16 @@ switch ($url) {
         staffController::scan();
         break;
     case (preg_match('/manager\/long.*/', $request)? true: false):
-        managerController::shelves();
+        managerController::long();
         break;
-    case '/manager/buffer':
+    case (preg_match('/manager\/buffer.*/', $request)? true: false):
         managerController::buffer();
         break;
-    case '/manager/mixed':
-        managerController::mixed();
-        break;
-    case '/manager/performance':
+    case (preg_match('/manager\/performance.*/', $request)? true: false):
         managerController::performance();
         break;
-    case '/manager/all':
-        managerController::all();
-        break;
-    case '/manager/top':
-        managerController::top();
+    case (preg_match('/manager\/products.*/', $request)? true: false):
+        managerController::products();
         break;
     case '/manager/addItem':
         managerController::addItem();

@@ -4,15 +4,12 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-class productModel {
+class occurrencesModel {
 
     private $model;
     private $columns = [
-        'id',
-        'name',
-        'colour', // nullable
-        'size', // nullable
-        'barcode',
+        'product_id',
+        'stock_id',
         'created_at',
         'updated_at'
     ];
@@ -27,15 +24,14 @@ class productModel {
         // find specific product using it's $id
     } 
 
-    public static function calTotalQuanity()
+    public static function getProduct()
     {
-        // workout total quantity of product in system
+        // 
     }
 
-    public static function checkBufferStock()
+    public static function getStock()
     {
-        // Get boxes in buffer, for each box then check what products belong to it.
-        // 
+        //
     }
 
 

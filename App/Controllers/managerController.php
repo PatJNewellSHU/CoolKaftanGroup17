@@ -19,7 +19,7 @@ function MoveToBuffer($conn, $boxID) {
     var_dump($result); // idk what to do with this lol
 }
 
-    public static function shelves()
+    public static function long()
     {
         authenticationHelper::isAuth('manager');
 
@@ -33,13 +33,6 @@ function MoveToBuffer($conn, $boxID) {
         return require __DIR__.'/../../views/manager/bufferStock.php';
     }
 
-    public static function mixed()
-    {
-        authenticationHelper::isAuth('manager');
-
-        return require __DIR__.'/../../views/manager/mixedBoxes.php';
-    }
-
     public static function performance()
     {
         authenticationHelper::isAuth('manager');
@@ -47,27 +40,16 @@ function MoveToBuffer($conn, $boxID) {
         return require __DIR__.'/../../views/manager/performanceTracker.php';
     }
 
-    public static function all()
+    public static function products()
     {
         authenticationHelper::isAuth('manager');
     
         $database = new dbHelper();
-        $items = $database->get('product', '*');
+        $items = $database->read('product', '*');
 
-        return require __DIR__.'/../../views/manager/allitems.php';
+        return require __DIR__.'/../../views/manager/products.php';
   
     }
-
-    public static function top()
-    {
-        authenticationHelper::isAuth('manager');
-        
-        $database = new dbHelper();
-        $results = $database->query("SELECT * FROM box WHERE shelf_id = 1", true);
-
-        return require __DIR__.'/../../views/manager/topShelf.php';
-    }
-
 
     public static function addItem()
     {

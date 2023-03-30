@@ -41,18 +41,13 @@
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/buffer') ? " active" : ""
                   )?>" aria-current="page" href="/manager/buffer"><i class="bi bi-box-seam-fill"></i> Buffer Stock</a>
             </div>
-
-               <!-- <div class="navbar-nav">
-                  <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/mixed') ? " active" : ""
-                     )?>" aria-current="page" href="/manager/mixed"><i class="bi bi-boxes"></i> Mixed Boxes</a>
-               </div> -->
             <div class="navbar-nav">
                <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/performance') ? " active"
                   : "" )?>" aria-current="page" href="/manager/performance"><i class="bi bi-bar-chart-steps"></i> Performance Tracker</a>
             </div>
             <div class="navbar-nav">
-               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/all') ? " active" : "" )?>"
-                  aria-current="page" href="/manager/all"><i class="bi bi-collection"></i> Products</a>
+               <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'manager/product') ? " active" : "" )?>"
+                  aria-current="page" href="/manager/products"><i class="bi bi-collection"></i> Products</a>
             </div>
             <div class='navbar-nav ms-auto'>
                <a class='nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], 'settings') ? " active" : ""

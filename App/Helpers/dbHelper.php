@@ -20,7 +20,7 @@ class dbHelper {
     }
 
 
-    public function query($query, $associate, $params, $columns, $table, $values)
+    public function query($query, $associate, $params, $columns, $table, $values=null)
     {
         $statement = $this->connection->prepare($query);
 
