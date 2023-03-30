@@ -85,10 +85,10 @@ class dbHelper {
 
         if($statement == false)
         {
-            return header("location: /500");;
+            // return header("location: /500");;
 
-            // var_dump($this->connection->error);
-            // die();
+            var_dump($this->connection->error);
+            die();
         }
 
         $types = str_repeat("s", count($columns)); //creates the variable types 
@@ -175,10 +175,10 @@ class dbHelper {
 
         if($statement == false)
         {
-            return header("location: /500");;
+            // return header("location: /500");;
 
-            // var_dump($this->connection->error);
-            // die();
+            var_dump($this->connection->error);
+            die();
         }
         
         $types = str_repeat("s", count($columns)); //creates the variable types 
