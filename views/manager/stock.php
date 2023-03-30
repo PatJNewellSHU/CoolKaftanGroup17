@@ -6,7 +6,20 @@
     <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
             <div class="col-12 col-md-9">
+                <?php if($_GET['box'] != null) : ?>
+                <div>
+
+                    <h2><a class="btn btn-secondary mb-1" href="/manager/boxes?box=<?php echo($_GET['box']) ?>">
+                            <i class="bi bi-arrow-left"></i> Back
+                        </a> Stock</h2>
+                    <div class="mt-1 mb-3">
+                        You are viewing stock for box
+                        <?php echo($_GET['box']) ?>.
+                    </div>
+                </div>
+                <?php else : ?>
                 <h2>Stock</h2>
+                <?php endif; ?>
             </div>
             <div class="col-12 col-md-3 text-end">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
@@ -80,10 +93,12 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">
+                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto"
+                                            data-bs-dismiss="modal">
                                             Move to long
                                         </a>
-                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto"
+                                            data-bs-dismiss="modal">
                                             View Products
                                         </a>
                                     </div>

@@ -38,15 +38,27 @@
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#editModal_ID">
-                        <td><?php echo $id ?></td>
-                        <td><?php echo $type ?></td>
-                        <td><?php echo $products ?></td>
-                        <td><?php echo $shelf ?></td>
-                        <td><?php echo $created ?></td>
-                        <td><?php echo $updated ?></td>
+                    <tr data-bs-toggle="modal" data-bs-target="#box_<?php echo $id ?>">
+                        <td>
+                            <?php echo $id ?>
+                        </td>
+                        <td>
+                            <?php echo $type ?>
+                        </td>
+                        <td>
+                            <?php echo $products ?>
+                        </td>
+                        <td>
+                            <?php echo $shelf ?>
+                        </td>
+                        <td>
+                            <?php echo $created ?>
+                        </td>
+                        <td>
+                            <?php echo $updated ?>
+                        </td>
                     </tr>
-                    <div class="modal fade" id="editModal_ID" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="box_<?php echo $id ?>" role="dialog" tabindex="-1" aria-labelledby="box"
                         aria-hidden="true">
                         <form method="POST" action="/manager/all/edit">
                             <div class="modal-dialog">
@@ -56,8 +68,8 @@
                                             <div class="fw-bold">
                                                 Editing
                                             </div>
-                                            <div class="modal-title fs-5" id="exampleModalLabel">
-                                                <?php echo $ProdName; ?>
+                                            <div class="modal-title fs-5" id="box">
+                                                <?php echo $id; ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -65,40 +77,50 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="prodName" class="form-control" id="prodName"
-                                                placeholder="name" required value="<?php echo $ProdName; ?>">
-                                            <label for="productname">Product Name</label>
+                                            <select class="form-select" name="type" id="type"
+                                                aria-label="showing select">
+                                                <option <?php echo(($type=='mixed' ) ? "selected" : "" ) ?>
+                                                    value="mixed">Mixed</option>
+                                                <option <?php echo(($type=='non_mixed' ) ? "selected" : "" ) ?>
+                                                    value="non_mixed">Non-Mixed</option>
+                                            </select>
+                                            <label for="type">Type</label>
                                         </div>
 
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="prodDetail" class="form-control" id="prodDetail"
-                                                placeholder="details" required>
-                                            <label for="prodDetail" value="<?php echo $ProdDetail; ?>">Product
-                                                Details</label>
-                                        </div>
 
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodSize" class="form-control" id="prodSize"
-                                                placeholder="size" required value="<?php echo $ProdSize; ?>">
-                                            <label for="prodSize">Product Size</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodPrice" class="form-control" id="prodPrice"
-                                                placeholder="price" required value="<?php echo $ProdPrice; ?>">
-                                            <label for="prodPrice">Product Price</label>
+                                            <select class="form-select" name="type" id="type"
+                                                aria-label="showing select">
+                                                <option <?php echo(($shelf=='buffer' ) ? "selected" : "" ) ?>
+                                                    value="buffer">Buffer</option>
+                                                <option <?php echo(($shelf=='top_floor' ) ? "selected" : "" ) ?>
+                                                    value="top_shelf">Top Shelf</option>
+                                                <option <?php echo(($shelf=='shelf_1' ) ? "selected" : "" ) ?>
+                                                    value="shelf_1">Shelf #1</option>
+                                                <option <?php echo(($shelf=='shelf_2' ) ? "selected" : "" ) ?>
+                                                    value="shelf_2">Shelf #2</option>
+                                                <option <?php echo(($shelf=='shelf_3' ) ? "selected" : "" ) ?>
+                                                    value="shelf_2">Shelf #3</option>
+                                                <option <?php echo(($shelf=='shelf_4' ) ? "selected" : "" ) ?>
+                                                    value="shelf_2">Shelf #4</option>
+                                            </select>
+                                            <label for="type">Shelf</label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">
-                                            Move to buffer
+                                        <a href="/manager/stock?box=<?php echo $id ?>"
+                                            class="btn btn-secondary ms-auto">
+                                            <i class="bi bi-eye-fill"></i>
+                                            View Stock
                                         </a>
-                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                        <a href="/manager/products?box=<?php echo $id ?>"
+                                            class="btn btn-secondary me-auto">
+                                            <i class="bi bi-eye-fill"></i>
                                             View Products
                                         </a>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="#" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
+                                        <a href="#" class="btn btn-danger" data-bs-dismiss="modal">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>
@@ -117,35 +139,34 @@
             </div>
         </div>
     </div>
-    <!-- New product -->
+    <!-- New Box -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct" aria-labelledby="addProductLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="addProductLabel">New Product</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form method="POST" action="/manager/addItem">
+            <form method="POST" action="/manager/add/box">
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodName" class="form-control" id="prodName" placeholder="name" required>
-                    <label for="prodName">Product Name</label>
+                    <select class="form-select" name="type" id="type" aria-label="showing select">
+                        <option value="mixed">Mixed</option>
+                        <option value="non_mixed">Non-Mixed</option>
+                    </select>
+                    <label for="type">Type</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodDetail" class="form-control" id="prodDetail" placeholder="details"
-                        required>
-                    <label for="prodDetail">Product Details</label>
-                </div>
 
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodSize" class="form-control" id="prodSize" placeholder="size" required>
-                    <label for="prodSize">Product Size</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodPrice" class="form-control" id="prodPrice" placeholder="price"
-                        required>
-                    <label for="prodPrice">Product Price</label>
+                    <select class="form-select" name="type" id="type" aria-label="showing select">
+                        <option value="buffer">Buffer</option>
+                        <option value="top_shelf">Top Shelf</option>
+                        <option value="shelf_1">Shelf #1</option>
+                        <option value="shelf_2">Shelf #2</option>
+                        <option value="shelf_2">Shelf #3</option>
+                        <option value="shelf_2">Shelf #4</option>
+                    </select>
+                    <label for="type">Shelf</label>
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-primary">
@@ -170,7 +191,7 @@
                         <option selected value="id_desending">ID (Desending)</option>
                         <option value="id_asending">ID (Asending)</option>
                         <option value="desending">Date (Desending)</option>
-                        <option value="asending">Date  (Asending)</option>
+                        <option value="asending">Date (Asending)</option>
                     </select>
                     <label for="orderselect">Order By</label>
                 </div>
@@ -205,9 +226,22 @@
                     </select>
                     <label for="showingselect">Shelf</label>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+    <?php
+    if($_GET['box'] != null)
+    {
+        echo("
+        <script defer>
+            window.onload = function(e){ 
+                var modal = new window.bootstrap.Modal('#box_" . $_GET['box'] . "');
+                modal.show();
+            }
+        </script>
+        ");
+    }  
+?>
 </body>

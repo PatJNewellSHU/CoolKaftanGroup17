@@ -28,7 +28,7 @@ function MoveToBuffer($conn, $boxID) {
                 'id' => 1,
                 'box_type' => 'mixed',
                 'shelf' => 'top_floor',
-                'products' => 12,
+                'products' => 12, // Calculated from how many stock
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
