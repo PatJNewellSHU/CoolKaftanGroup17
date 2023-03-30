@@ -38,7 +38,7 @@ class accountController {
             $password = $_POST['password'];
 
             $database = new dbHelper();
-            $users = $database->get('user', '*', "WHERE username = '" . $username."'", true);
+            $users = $database->read('user', '*', "WHERE username = '" . $username."'", true);
             
             if($users == null) {
                 header("location: /?error=Username not found, please try again.");

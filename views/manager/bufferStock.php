@@ -80,6 +80,14 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
+                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">
+                                            Move to long
+                                        </a>
+                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                            View Products
+                                        </a>
+                                    </div>
+                                    <div class="modal-footer">
                                         <a href="#" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
                                             <i class="bi bi-x-lg"></i>
                                             Delete

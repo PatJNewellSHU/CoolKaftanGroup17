@@ -53,8 +53,6 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-
-
                                         <div class="form-floating mb-3">
                                             <input type="text" name="prodName" class="form-control" id="prodName"
                                                 placeholder="name" required value="<?php echo $ProdName; ?>">
@@ -79,6 +77,14 @@
                                                 placeholder="price" required value="<?php echo $ProdPrice; ?>">
                                             <label for="prodPrice">Product Price</label>
                                         </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">
+                                            Move to buffer
+                                        </a>
+                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                            View Products
+                                        </a>
                                     </div>
                                     <div class="modal-footer">
                                         <a href="#" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
@@ -128,7 +134,6 @@
                         required>
                     <label for="prodPrice">Product Price</label>
                 </div>
-
 
                 <button type="submit" name="submit" class="btn btn-primary">
                     Submit

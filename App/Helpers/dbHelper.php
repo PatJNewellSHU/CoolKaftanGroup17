@@ -26,10 +26,10 @@ class dbHelper {
 
         if($statement == false)
         {
-            return header("location: /500");;
+            // return header("location: /500");;
 
-            // var_dump($this->connection->error);
-            // die();
+            var_dump($this->connection->error);
+            die();
         }
 
         $statement->execute();
@@ -100,8 +100,10 @@ class dbHelper {
         
         if($query != null)
         {
-            $prepare = $prepare . $query;
+            $prepare = $prepare . " " . $query;
         }
+
+        var_dump($prepare);
 
         return $this->query($prepare, $associate);
     }
