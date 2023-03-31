@@ -45,13 +45,13 @@ class productModel {
     {
         $database = new dbHelper();
         $bufferBoxes = $database->read('boxes', 'shelf', "WHERE shelf='buffer'");
-        $ids = array();
+        $boxIds = array();
         foreach ($bufferBoxes as $row) {
-            $ids[] = $row['id'];
+            $boxIds[] = $row['id'];
         }
-        $ids_string = implode(",", $ids);
+        $boxIds_string = implode(",", $boxIds);
 
-        $productsId = $database->read('stock', 'product_id', "WHERE box_id IN ($ids_string)");
+        $productsId = $database->read('stock', 'product_id', "WHERE box_id IN ($boxIds_string)");
         $productIds = array();
         foreach ($productsId as $row) {
             $productIds[] = $row['product_id'];
