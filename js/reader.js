@@ -14,8 +14,8 @@
     `;
     scanner.clear();
     document.getElementById('reader').remove();
-    var element = document.getElementById('button_Container');
-    element.classList.remove('invisible');
+    window.location.href = window.location.href + "?scanned = result";
+    
     }
     function error(err) {
     console.error(err);
