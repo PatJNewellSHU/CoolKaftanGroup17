@@ -12,10 +12,10 @@
     <h2>Success!</h2>
     <p>${result}</p>
     `;
+    let currentURL = window.location.href;
     scanner.clear();
     document.getElementById('reader').remove();
-    document.getElementById("button_Submit").style.visibility = "visible";
-    document.getElementById("button_Clear").style.visibility = "visible";
+    window.location.href = currentURL + "?scanResult=result"
     }
     function error(err) {
     console.error(err);
