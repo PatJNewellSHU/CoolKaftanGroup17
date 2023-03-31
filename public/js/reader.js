@@ -16,6 +16,7 @@
     scanner.clear();
     document.getElementById('reader').remove();
     window.location.href = currentURL + "?scanResult=result"
+    
     }
     function error(err) {
     console.error(err);
