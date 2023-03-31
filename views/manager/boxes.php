@@ -52,10 +52,10 @@
                             <?php echo $shelf ?>
                         </td>
                         <td>
-                            <?php echo $created ?>
+                            <?php echo App\Helpers\generalHelper::time_format($created) ?>
                         </td>
                         <td>
-                            <?php echo $updated ?>
+                            <?php echo App\Helpers\generalHelper::time_format($updated) ?>
                         </td>
                     </tr>
                     <div class="modal fade" id="box_<?php echo $id ?>" role="dialog" tabindex="-1" aria-labelledby="box"
@@ -69,6 +69,7 @@
                                                 Editing
                                             </div>
                                             <div class="modal-title fs-5" id="box">
+                                                Box:
                                                 <?php echo $id; ?>
                                             </div>
                                         </div>

@@ -5,23 +5,34 @@
 <body>
     <div class="container">
         <div class="row mw-100 ms-0 row-gap-3 mt-3">
-            <div class="col-12 col-md-9">
-                <?php if($_GET['box'] != null) : ?>
-                <div>
+            <?php if($_GET['box'] != null) : ?>
+            <div class="col-12 col-md-5">
+                <div class="card">
 
-                    <h2><a class="btn btn-secondary mb-1" href="/manager/boxes?box=<?php echo($_GET['box']) ?>">
-                            <i class="bi bi-arrow-left"></i> Back
-                        </a> Stock</h2>
-                    <div class="mt-1 mb-3">
-                        You are viewing stock for box
-                        <?php echo($_GET['box']) ?>.
+                    <div class="card-body row">
+                        <div class="col-auto d-flex">
+                            <a class="btn btn-primary mt-auto mb-auto"
+                                href="/manager/boxes?box=<?php echo($_GET['box']) ?>">
+                                <i class="bi bi-arrow-left"></i> Back
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <h1 class="mb-0">Stock</h1>
+                            <div class="mt-1 mb-2">
+                                You are viewing stock for box
+                                <?php echo($_GET['box']) ?>.
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <?php else : ?>
-                <h2>Stock</h2>
-                <?php endif; ?>
             </div>
-            <div class="col-12 col-md-3 text-end">
+
+            <?php else : ?>
+            <div class="col-12 col-md-9">
+                <h2>Stock</h2>
+            </div>
+            <?php endif; ?>
+            <div class="col-12 col-md-3 text-end ms-auto">
                 <a class="btn btn-success" data-bs-toggle="offcanvas" href="#addProduct" role="button"
                     aria-controls="offcanvasExample"><i class="bi bi-database-add"></i> Add Stock</a>
                 <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
@@ -41,28 +52,29 @@
 
                         for ($i=0; $i<count($stock); $i++):
                             $id = $stock[$i]['id'];
-                            $BoxID = $stock[$i]['box_id'];   
-                            $ProdID = $stock[$i]['product_id'];  
+                            $boxid = $stock[$i]['box_id'];   
+                            $productid = $stock[$i]['product_id'];  
+                            $productname = $stock[$i]['product_name'];
                             $Updated = $stock[$i]['updated_at'];  
                             $Created = $stock[$i]['created_at'];               
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $id ?>">
+                    <tr data-bs-toggle="modal" data-bs-target="#stock_<?php echo $id ?>">
                         <td>
                             <?php echo $id ?>
                         </td>
                         <td>
-                            <?php echo $BoxID ?>
+                            <?php echo $boxid ?>
                         </td>
                         <td>
-                            <?php echo $ProdID ?>
+                            <?php echo $productname ?>
                         </td>
                         <td>
-                            <?php echo $Created ?>
+                            <?php echo App\Helpers\generalHelper::time_format($created) ?>
                         </td>
                         <td>
-                            <?php echo $Updated ?>
+                            <?php echo App\Helpers\generalHelper::time_format($updated) ?>
                         </td>
                     </tr>
                     <div class="modal fade" id="stock_<?php echo $id ?>" tabindex="-1" aria-labelledby="stock"
@@ -76,6 +88,7 @@
                                                 Editing
                                             </div>
                                             <div class="modal-title fs-5" id="stock">
+                                                Stock:
                                                 <?php echo $id; ?>
                                             </div>
                                         </div>
@@ -83,41 +96,29 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-
-
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="prodName" class="form-control" id="prodName"
-                                                placeholder="name" required value="<?php echo $ProdName; ?>">
-                                            <label for="productname">Product Name</label>
+                                            <select class="form-select" name="type" id="product"
+                                                aria-label="showing select">
+                                                <option value="1">1: Product Name</option>
+                                            </select>
+                                            <label for="type">Product</label>
                                         </div>
-
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="prodDetail" class="form-control" id="prodDetail"
-                                                placeholder="details" required>
-                                            <label for="prodDetail" value="<?php echo $ProdDetail; ?>">Product
-                                                Details</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodSize" class="form-control" id="prodSize"
-                                                placeholder="size" required value="<?php echo $ProdSize; ?>">
-                                            <label for="prodSize">Product Size</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodPrice" class="form-control" id="prodPrice"
-                                                placeholder="price" required value="<?php echo $ProdPrice; ?>">
-                                            <label for="prodPrice">Product Price</label>
+                                            <select class="form-select" name="type" id="product"
+                                                aria-label="showing select">
+                                                <option value="1">Box 1 (12 items)</option>
+                                            </select>
+                                            <label for="type">Box</label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/manage/long/buffer" class="btn btn-secondary ms-auto"
-                                            data-bs-dismiss="modal">
-                                            Move to long
+                                        <a href="/manager/boxes?box=<?php echo($boxid) ?>"
+                                            class="btn btn-secondary ms-auto">
+                                            View Box
                                         </a>
-                                        <a href="/manager/products?stock=ID" class="btn btn-secondary me-auto"
-                                            data-bs-dismiss="modal">
-                                            View Products
+                                        <a href="/manager/products?product=<?php echo($productid) ?>"
+                                            class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                            View Product
                                         </a>
                                     </div>
                                     <div class="modal-footer">

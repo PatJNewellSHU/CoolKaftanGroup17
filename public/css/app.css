@@ -104,7 +104,9 @@
     --bs-nav-pills-link-active-color: #fff;
     --bs-nav-pills-link-active-bg: #D6CFCB;
 }
-
+.card {
+    --bs-card-border-color: #e3d6ce;
+}
 .btn {
     --bs-btn-border-radius: 0.75rem;
 }

@@ -15,6 +15,7 @@ require_once(__DIR__."/App/Controllers/staffController.php");
 require_once(__DIR__ . "/App/Helpers/dbHelper.php");
 require_once(__DIR__ . "/App/Helpers/authenticationHelper.php");
 require_once(__DIR__ . "/App/Helpers/mailHelper.php");
+require_once(__DIR__ . "/App/Helpers/generalHelper.php");
 
 // Models
 require_once(__DIR__ . "/App/Models/productModel.php");
