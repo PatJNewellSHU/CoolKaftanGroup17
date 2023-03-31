@@ -11,15 +11,18 @@ body{
     text-align: center;
     font-size: 1.5rem;
     }
-#button_Container{
-    padding: 25px;
-}
-#submit_Button{
-    border: 0px;
-    padding: 15px;
-}
-#clear_Button{
-    border: 0px;
-    padding: 15px;
-}
+    #button_Container{
+        padding:10px;
+        margin:auto;
+        border:10px;
+        
+      }
+      #submit_Button{
+        margin:10px;
+        border:10px;
+      }
+      #clear_Button{
+        margin:10px;
+        border:10px;
+      }
 
