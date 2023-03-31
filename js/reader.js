@@ -14,7 +14,7 @@
     `;
     scanner.clear();
     document.getElementById('reader').remove();
-    window.location.href = window.location.href + "?scanned = result";
+    window.location.href = window.location.href + '?scanned =' + result;
     
     }
     function error(err) {
