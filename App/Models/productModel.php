@@ -36,7 +36,7 @@ class productModel {
     public static function calTotalQuanity()
     {
         $database = new dbHelper();
-        $product = $database->read('product', '*', "WHERE id='$id'");
+        $product = $database->count('product');
         return $product;
         // workout total quantity of product in system
     }
