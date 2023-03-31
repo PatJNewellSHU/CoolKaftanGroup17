@@ -44,7 +44,7 @@ class productModel {
     public static function checkBufferStock()
     {
         $database = new dbHelper();
-        $bufferBoxes = $database->read('boxes', 'id', "WHERE id='buffer'");
+        $bufferBoxes = $database->read('boxes', 'shelf', "WHERE shelf='buffer'");
         $ids = array();
         foreach ($bufferBoxes as $row) {
             $ids[] = $row['id'];
@@ -62,8 +62,6 @@ class productModel {
         return $products;
     }
 
-
-            
 }
 
 // $product = new productModel();
