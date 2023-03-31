@@ -30,24 +30,42 @@
             <div class="col-12 overflow-x-auto">
                 <table class="table table-hover">
                     <thead class="table-head">
-                        <td>Name</td>
-                        <td>Colour</td>
-                        <td>Size</td>
-                        <td>Category</td>
-                        <td>Number of units</td>
-                        <td>Performance</td>
+                        <td>#</td>
+                        <td>BoxID</td>
+                        <td>Product Name</td>
+                        <td>Created</td>
+                        <td>Updated</td>
                     </thead>
 
+                    <?php
+
+                        for ($i=0; $i<count($stock); $i++):
+                            $id = $stock[$i]['id'];
+                            $BoxID = $stock[$i]['box_id'];   
+                            $ProdID = $stock[$i]['product_id'];  
+                            $Updated = $stock[$i]['updated_at'];  
+                            $Created = $stock[$i]['created_at'];               
+                    ?>
+
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#editModal_ID">
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
+                    <tr data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $id ?>">
+                        <td>
+                            <?php echo $id ?>
+                        </td>
+                        <td>
+                            <?php echo $BoxID ?>
+                        </td>
+                        <td>
+                            <?php echo $ProdID ?>
+                        </td>
+                        <td>
+                            <?php echo $Created ?>
+                        </td>
+                        <td>
+                            <?php echo $Updated ?>
+                        </td>
                     </tr>
-                    <div class="modal fade" id="editModal_ID" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="stock_<?php echo $id ?>" tabindex="-1" aria-labelledby="stock"
                         aria-hidden="true">
                         <form method="POST" action="/manager/all/edit">
                             <div class="modal-dialog">
@@ -57,8 +75,8 @@
                                             <div class="fw-bold">
                                                 Editing
                                             </div>
-                                            <div class="modal-title fs-5" id="exampleModalLabel">
-                                                <?php echo $ProdName; ?>
+                                            <div class="modal-title fs-5" id="stock">
+                                                <?php echo $id; ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -115,6 +133,8 @@
 
                         </form>
                     </div>
+
+                    <?php endfor ?>
 
                 </table>
             </div>
