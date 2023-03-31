@@ -8,6 +8,7 @@
     });
     scanner.render(success, error);
     function success(result) {
+      console.log(result)
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
     <p>${result}</p>
