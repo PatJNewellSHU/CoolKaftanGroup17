@@ -44,7 +44,7 @@ class productModel {
     public static function checkBufferStock()
     {
         $database = new dbHelper();
-        $bufferBoxes = $database->read('boxes', 'shelf', "WHERE shelf='buffer'");
+        $bufferBoxes = $database->read('boxes', 'id', "WHERE shelf='buffer'");
         $boxIds = array();
         foreach ($bufferBoxes as $row) {
             $boxIds[] = $row['id'];
