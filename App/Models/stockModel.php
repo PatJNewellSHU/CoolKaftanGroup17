@@ -23,6 +23,9 @@ class stockModel {
 
     public static function find($id)
     {
+        $database = new dbHelper();
+        $stock = $database->read('stock', '*', "WHERE id='$id'");
+        return $stock;
         // find specific product using it's $id
     } 
 

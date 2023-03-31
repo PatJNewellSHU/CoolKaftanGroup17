@@ -25,6 +25,9 @@ class userModel {
 
     public static function find($id)
     {
+        $database = new dbHelper();
+        $user = $database->read('users', '*', "WHERE id='$id'");
+        return $user;
         // find specific product using it's $id
     } 
             

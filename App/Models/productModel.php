@@ -19,16 +19,25 @@ class productModel {
 
     public static function all()
     {
+        $database = new dbHelper();
+        $product = $database->read('product', '*');
+        return $product;
        // get all products
     }
 
     public static function find($id)
     {
+        $database = new dbHelper();
+        $product = $database->read('product', '*', "WHERE id='$id'");
+        return $product;
         // find specific product using it's $id
     } 
 
     public static function calTotalQuanity()
     {
+        $database = new dbHelper();
+        $product = $database->read('product', '*', "WHERE id='$id'");
+        return $product;
         // workout total quantity of product in system
     }
 
