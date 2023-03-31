@@ -116,11 +116,12 @@ class dbHelper {
 
     public function update($table, $columns = [], $values = []) {
 
-        $statement = "UPDATE ? SET";
-        $params = array();
+        $statement = "UPDATE ? SET"; //Sets up the initial sql statement 
+        $params = array(); //Creates an array for the parameters
         for($i = 0; $i < count($columns); $i++) //Should go through as many columns are in the array columns and add to the sql statement
         {
             if($i = 0) //This seems like a bad way to check if were on the first run of the for loop but idk how else to do it in php
+            //Adds to the sql statement for the placement of the variables
             {
                 $prepare .= " ? = ?";
             }
@@ -129,7 +130,7 @@ class dbHelper {
                 $prepare .= " AND ? = ?";
             }
             
-            $params[] = $columns[$i];
+            $params[] = $columns[$i]; //Pushes columns and values onto the params array.
             $params[] = $values[$i];
         }  
 
@@ -145,6 +146,7 @@ class dbHelper {
 
         $types = str_repeat("s", count($columns)); //creates the variable types 
         $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
+        //The "..." should allow bind_param to take the param array and use it as a variable. Not 100% confident itll work tho lol
         $statement->execute();
 
         return true;
