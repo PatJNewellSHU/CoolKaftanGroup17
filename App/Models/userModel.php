@@ -20,6 +20,9 @@ class userModel {
 
     public static function all()
     {
+        $database = new dbHelper();
+        $users = $database->read('users');
+        return $users;
        // get all products
     }
 

@@ -16,7 +16,9 @@ class performanceModel {
 
     public static function all()
     {
-        
+        $database = new dbHelper();
+        $product = $database->read('product', '*');
+        return $product;
        // get all products
     }
 

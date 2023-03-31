@@ -36,15 +36,30 @@ class productModel {
     public static function calTotalQuanity()
     {
         $database = new dbHelper();
-        $product = $database->count('product');
+        $product = $database->count('stock');
         return $product;
         // workout total quantity of product in system
     }
 
     public static function checkBufferStock()
     {
-        // Get boxes in buffer, for each box then check what products belong to it.
-        // 
+        $database = new dbHelper();
+        $bufferBoxes = $database->read('boxes', 'id', "WHERE id='buffer'");
+        $ids = array();
+        foreach ($bufferBoxes as $row) {
+            $ids[] = $row['id'];
+        }
+        $ids_string = implode(",", $ids);
+
+        $productsId = $database->read('stock', 'product_id', "WHERE box_id IN ($ids_string)");
+        $productIds = array();
+        foreach ($productsId as $row) {
+            $productIds[] = $row['product_id'];
+        }
+        $productIds_string = implode(",", $productIds);
+        
+        $products = $database->read('product', '*', "WHERE id IN ($productIds_string)");
+        return $products;
     }
 
 
