@@ -8,16 +8,16 @@
     });
     scanner.render(success, error);
     function success(result) {
-      console.log(result)
+
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
     <p>${result}</p>
     `;
+    window.location.href = window.location.href + `?scan = ${result}`;
     scanner.clear();
     document.getElementById('reader').remove();
-    window.location.href = window.location.href + `?scanned =' ${result}`;
-    
+    console.log(result)
     }
-    function error(err) {
-    console.error(err);
-    }
+    //function error(err) {
+    //console.error(err);
+    //}
