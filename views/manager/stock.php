@@ -114,10 +114,12 @@
                                     <div class="modal-footer">
                                         <a href="/manager/boxes?box=<?php echo($boxid) ?>"
                                             class="btn btn-secondary ms-auto">
+                                            <i class="bi bi-eye-fill"></i>
                                             View Box
                                         </a>
                                         <a href="/manager/products?product=<?php echo($productid) ?>"
                                             class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                            <i class="bi bi-eye-fill"></i>
                                             View Product
                                         </a>
                                     </div>
