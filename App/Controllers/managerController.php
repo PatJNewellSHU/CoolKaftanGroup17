@@ -44,7 +44,8 @@ function MoveToBuffer($conn, $boxID) {
         $stock = [
             0 => [
                 'id' => 1,
-                'product_id' => 'Blue kaftan', //Get product name instead of id
+                'product_name' => 'Blue kaftan', //Get product name instead of id
+                'product_id' => 1,
                 'box_id' => 1,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-class boxModel {
+class performanceModel {
 
     private $model;
     private $columns = [
@@ -16,11 +16,17 @@ class boxModel {
 
     public static function all()
     {
+        $database = new dbHelper();
+        $product = $database->read('product', '*');
+        return $product;
        // get all products
     }
 
     public static function find($id)
     {
+        $database = new dbHelper();
+        $box = $database->read('boxes', '*', "WHERE id='$id'");
+        return $box;
         // find specific product using it's $id
     } 
 

@@ -114,6 +114,19 @@ class dbHelper {
         return $this->query($prepare, $associate);
     }
 
+    public function count($table, $columns = "id", $query = null, $associate = false)
+    {
+        $prepare = "SELECT COUNT(" . $columns . ") FROM " . $table;
+       
+        if ($query != null) {
+            $prepare = $prepare . " " . $query;
+        }
+
+        var_dump($prepare);
+
+        return $this->query($prepare, $associate);
+    }
+
     public function update($table, $columns = [], $values = []) {
 
         $statement = "UPDATE ? SET"; //Sets up the initial sql statement 
