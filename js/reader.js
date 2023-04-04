@@ -13,7 +13,8 @@
     <h2>Success!</h2>
     <p>${result}</p>
     `;
-    window.location.href = window.location.href + `?scan = ${result}`;
+    let scanResult = result;
+    window.location.href = window.location.href + `?scan = ${scanResult}`;
     scanner.clear();
     document.getElementById('reader').remove();
     console.log(result)
