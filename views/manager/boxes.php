@@ -114,13 +114,6 @@
                                             <i class="bi bi-eye-fill"></i>
                                             View Stock
                                         </a>
-                                        <a href="/manager/products?box=<?php echo $id ?>"
-                                            class="btn btn-secondary me-auto">
-                                            <i class="bi bi-eye-fill"></i>
-                                            View Products
-                                        </a>
-                                    </div>
-                                    <div class="modal-footer">
                                         <a href="#" class="btn btn-danger" data-bs-dismiss="modal">
                                             <i class="bi bi-x-lg"></i>
                                             Delete

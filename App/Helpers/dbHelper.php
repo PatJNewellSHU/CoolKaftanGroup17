@@ -100,7 +100,7 @@ class dbHelper {
 
     public function read($table, $columns="*", $query=null, $associate=false)
     {
-        $prepare = "SELECT " . $columns . "FROM " . $table; 
+        $prepare = "SELECT " . $columns . " FROM " . $table; 
         //^ removed quotes at the end as I dont think they are needed?
 
         
@@ -109,7 +109,7 @@ class dbHelper {
             $prepare = $prepare . " " . $query;
         }
 
-        var_dump($prepare);
+        // var_dump($prepare);
 
         return $this->query($prepare, $associate);
     }

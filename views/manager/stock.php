@@ -118,7 +118,7 @@
                                             View Box
                                         </a>
                                         <a href="/manager/products?product=<?php echo($productid) ?>"
-                                            class="btn btn-secondary me-auto" data-bs-dismiss="modal">
+                                            class="btn btn-secondary me-auto">
                                             <i class="bi bi-eye-fill"></i>
                                             View Product
                                         </a>

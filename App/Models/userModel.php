@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-class userModel {
+class userModel extends Model {
 
-    private $model;
+    private $table = "user";
 
     private $columns = [
         'id',
@@ -17,21 +17,5 @@ class userModel {
         'created_at',
         'updated_at'
     ];
-
-    public static function all()
-    {
-        $database = new dbHelper();
-        $users = $database->read('users');
-        return $users;
-       // get all products
-    }
-
-    public static function find($id)
-    {
-        $database = new dbHelper();
-        $user = $database->read('users', '*', "WHERE id='$id'");
-        return $user;
-        // find specific product using it's $id
-    } 
             
 }

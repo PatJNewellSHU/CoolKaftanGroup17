@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Models;
+class stockModel extends Model {
 
-use App\Helpers\dbHelper;
-
-class stockModel {
-
-    private $model;
+    public $table = 'stock';
 
     private $columns = [
         'id',
@@ -16,36 +13,14 @@ class stockModel {
         'updated_at'
     ];
 
-    public static function all()
+    public function getProduct()
     {
-        $database = new dbHelper();
-        $stock = $database->read('stock');
-        return $stock;
-       // get all products
+        return productModel::find($this->product_id);
     }
 
-    public static function find($id)
+    public function getBox()
     {
-        $database = new dbHelper();
-        $stock = $database->read('stock', '*', "WHERE id='$id'");
-        return $stock;
-        // find specific product using it's $id
-    } 
-
-    public static function getProduct($id)
-    {
-        $database = new dbHelper();
-        $product_id = $database->read('stock', 'product_id', "WHERE id='$id'");
-        return productModel::find($product_id);
-        // returns linked product
-    }
-
-    public static function getBox($id)
-    {
-        $database = new dbHelper();
-        $box_id = $database->read('stock', 'box_id', "WHERE id='$id'");
-        return productModel::find($box_id);
-        // returns linked box
+        return boxModel::find($this->box_id);
     }
             
 }

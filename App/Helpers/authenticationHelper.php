@@ -50,7 +50,7 @@ class authenticationHelper {
 
                 if($_SESSION['userType'] == 'manager')
                 {
-                    header("location: /manager/long");
+                    header("location: /manager/boxes");
                 }
             }
         }

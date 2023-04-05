@@ -7,6 +7,8 @@ use App\Controllers\accountController;
 use App\Controllers\staffController;
 use App\Controllers\managerController;
 
+use App\Models\boxModel;
+
 $request = $_SERVER['REQUEST_URI'];
 
 if(session_status() == 1)
@@ -56,6 +58,10 @@ switch ($url) {
     case '/400':
         http_response_code(400);
         require __DIR__ . '/views/other/400.php';
+        break;
+    case '/test':
+        $box = new boxModel();
+        print_r($box->find(1));
         break;
     default: // Any other (random files)
         http_response_code(404);

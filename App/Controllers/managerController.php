@@ -66,8 +66,19 @@ function MoveToBuffer($conn, $boxID) {
     {
         authenticationHelper::isAuth('manager');
     
-        $database = new dbHelper();
-        $items = $database->read('product', '*');
+        $products = [
+            0 => [
+                'id' => 1,
+                'name' => 'Blue Kaftan',
+                'colour' => 'Blue',
+                'size' => 'XL',
+                'price' => 10.43,
+                'units' => 12, // Calculated from amount of stock
+                'barcode' => '12345678',
+                'created_at'=> date("Y-m-d H:i:s"),
+                'updated_at'=> date("Y-m-d H:i:s")
+            ]
+        ];
 
         return require __DIR__.'/../../views/manager/products.php';
   
