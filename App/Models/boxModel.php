@@ -18,7 +18,7 @@ class boxModel extends Model {
 
     public function getProducts()
     {
-        // 
+        return [1, 2]; 
     }
 
     public function getStocks()

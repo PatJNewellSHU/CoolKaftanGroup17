@@ -26,18 +26,9 @@ function MoveToBuffer($conn, $boxID) {
     public static function boxes()
     {
         authenticationHelper::isAuth('manager');
-
-        // Remove me after DB is setup
-        $boxes = [
-            0 => [
-                'id' => 1,
-                'box_type' => 'mixed',
-                'shelf' => 'top_floor',
-                'products' => 12, // Calculated from how many stock
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s")
-            ],
-        ];
+        
+        $box = new boxModel();
+        $boxes = $box->get();
 
         return require __DIR__.'/../../views/manager/boxes.php';
     }
