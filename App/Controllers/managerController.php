@@ -4,6 +4,11 @@ namespace App\Controllers;
 
 use App\Helpers\authenticationHelper;
 use App\Helpers\dbHelper;
+use App\Models\productModel;
+use App\Models\boxModel;
+use App\Models\performanceModel;
+use App\Models\stockModel;
+use App\Models\userModel;
 class managerController {
 
     

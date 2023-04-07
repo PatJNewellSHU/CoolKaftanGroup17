@@ -57,13 +57,18 @@ class dbHelper {
         $_values = "";
         foreach($columns as $v=>$col)
         {
+            if(gettype($values[$col]) != 'integer')
+            {
+                $values[$col] = "'" . $values[$col] . "'";
+            }
+
             if(count($columns) == $v+1)
             {
                 $_columns = $_columns . "`".$col."`";
-                $_values = $_values . "'".$values[$col]."'";
+                $_values = $_values . $values[$col];
             } else {
                 $_columns = $_columns . "`".$col."`,";
-                $_values = $_values . "'".$values[$col]."',";
+                $_values = $_values . $values[$col].",";
             }
         }
         
@@ -114,15 +119,19 @@ class dbHelper {
         foreach ($values as $v => $val) {
             $i = array_search($v, array_keys($values));
 
+            if(gettype($val) != 'integer')
+            {
+                $val = "'" . $val . "'";
+            }
+
             if(count($values) == $i+1)
             {
-                $statement = $statement . $v . " = '" . $val . "'";
+                $statement = $statement . $v . " = " . $val;
             } else {
-                $statement = $statement . $v . " = '" . $val . "', ";
+                $statement = $statement . $v . " = " . $val . ", ";
             }
         }
         $prepare = $statement . " WHERE id = " . $id;
-        
         $statement = $this->connection->prepare($prepare);
 
         if($statement == false)

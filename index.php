@@ -63,7 +63,7 @@ switch ($url) {
         $box = new boxModel();
         print_r($box->find(1)->edit([
             'box_type' => 0,
-            'shelf' => 'xyz'
+            'shelf' => 'top_floor'
         ]));
         break;
     default: // Any other (random files)
