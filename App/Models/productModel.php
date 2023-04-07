@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\dbHelper;
+use App\Models\Model;
 
 class productModel extends Model {
 

@@ -67,17 +67,35 @@ abstract class Model {
 
     public function delete()
     {
-        // ... TODO
+        return $this->connection->delete($this->table, $this->id);
     }
 
-    public function create($data)
+    public function create($data=[])
     {
-        // ... TODO
+        $create = $this->connection->create($this->table, $this->columns, $data);
+
+        if($create == true)
+        {
+            $model = new (get_called_class());
+            $count = $this->connection->count($this->table);
+            $model = $model->find($count);
+
+            return $model;
+        }
+
+        return false;
     }
 
-    public function edit($data)
+    public function edit($data=[])
     {
-        // ... TODO
+        $edit = $this->connection->update($this->table, $this->id, $data);
+        
+        if($edit == true)
+        {
+            return $this;
+        }
+
+        return false;
     }
             
 }

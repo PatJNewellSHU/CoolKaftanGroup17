@@ -18,7 +18,9 @@ require_once(__DIR__ . "/App/Helpers/mailHelper.php");
 require_once(__DIR__ . "/App/Helpers/generalHelper.php");
 
 // Models
-require_once(__DIR__ . "/App/Models/productModel.php");
 require_once(__DIR__ . "/App/Models/Model.php");
 require_once(__DIR__ . "/App/Models/boxModel.php");
+require_once(__DIR__ . "/App/Models/productModel.php");
+require_once(__DIR__ . "/App/Models/stockModel.php");
+require_once(__DIR__ . "/App/Models/userModel.php");
 

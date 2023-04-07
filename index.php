@@ -61,7 +61,10 @@ switch ($url) {
         break;
     case '/test':
         $box = new boxModel();
-        print_r($box->find(1));
+        print_r($box->find(1)->edit([
+            'box_type' => 0,
+            'shelf' => 'xyz'
+        ]));
         break;
     default: // Any other (random files)
         http_response_code(404);
