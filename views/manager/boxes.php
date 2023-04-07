@@ -27,38 +27,31 @@
                     </thead>
 
                     <?php
-
-                        for ($i=0; $i<count($boxes); $i++):
-                            $id = $boxes[$i]['id'];
-                            $type = $boxes[$i]['box_type'];
-                            $products = $boxes[$i]['products']; 
-                            $shelf = $boxes[$i]['shelf'];
-                            $created = $boxes[$i]['created_at'];
-                            $updated = $boxes[$i]['updated_at'];                    
+                    foreach ($boxes as $v => $box):                   
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#box_<?php echo $id ?>">
+                    <tr data-bs-toggle="modal" data-bs-target="#box_<?php echo $box->id ?>">
                         <td>
-                            <?php echo $id ?>
+                            <?php echo $box->id ?>
                         </td>
                         <td>
-                            <?php echo $type ?>
+                            <?php echo(($box->type==0 ) ? "mixed" : "non-mixed" ) ?>
                         </td>
                         <td>
-                            <?php echo $products ?>
+                            <?php echo number_format(count($box->getProducts())) ?>
                         </td>
                         <td>
-                            <?php echo $shelf ?>
+                            <?php echo $box->shelf ?>
                         </td>
                         <td>
-                            <?php echo App\Helpers\generalHelper::time_format($created) ?>
+                            <?php echo App\Helpers\generalHelper::time_format($box->created_at) ?>
                         </td>
                         <td>
-                            <?php echo App\Helpers\generalHelper::time_format($updated) ?>
+                            <?php echo App\Helpers\generalHelper::time_format($box->updated_at) ?>
                         </td>
                     </tr>
-                    <div class="modal fade" id="box_<?php echo $id ?>" role="dialog" tabindex="-1" aria-labelledby="box"
+                    <div class="modal fade" id="box_<?php echo $box->id ?>" role="dialog" tabindex="-1" aria-labelledby="box"
                         aria-hidden="true">
                         <form method="POST" action="/manager/all/edit">
                             <div class="modal-dialog">
@@ -70,7 +63,7 @@
                                             </div>
                                             <div class="modal-title fs-5" id="box">
                                                 Box:
-                                                <?php echo $id; ?>
+                                                <?php echo $box->id; ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -80,9 +73,9 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="type" id="type"
                                                 aria-label="showing select">
-                                                <option <?php echo(($type=='mixed' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->type==0 ) ? "selected" : "" ) ?>
                                                     value="mixed">Mixed</option>
-                                                <option <?php echo(($type=='non_mixed' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->type==1 ) ? "selected" : "" ) ?>
                                                     value="non_mixed">Non-Mixed</option>
                                             </select>
                                             <label for="type">Type</label>
@@ -92,35 +85,28 @@
 
                                             <select class="form-select" name="type" id="type"
                                                 aria-label="showing select">
-                                                <option <?php echo(($shelf=='buffer' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='buffer' ) ? "selected" : "" ) ?>
                                                     value="buffer">Buffer</option>
-                                                <option <?php echo(($shelf=='top_floor' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='top_floor' ) ? "selected" : "" ) ?>
                                                     value="top_shelf">Top Shelf</option>
-                                                <option <?php echo(($shelf=='shelf_1' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='shelf_1' ) ? "selected" : "" ) ?>
                                                     value="shelf_1">Shelf #1</option>
-                                                <option <?php echo(($shelf=='shelf_2' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='shelf_2' ) ? "selected" : "" ) ?>
                                                     value="shelf_2">Shelf #2</option>
-                                                <option <?php echo(($shelf=='shelf_3' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='shelf_3' ) ? "selected" : "" ) ?>
                                                     value="shelf_2">Shelf #3</option>
-                                                <option <?php echo(($shelf=='shelf_4' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='shelf_4' ) ? "selected" : "" ) ?>
                                                     value="shelf_2">Shelf #4</option>
                                             </select>
                                             <label for="type">Shelf</label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/manager/stock?box=<?php echo $id ?>"
+                                        <a href="/manager/stock?box=<?php echo $box->id ?>"
                                             class="btn btn-secondary ms-auto">
                                             <i class="bi bi-eye-fill"></i>
                                             View Stock
                                         </a>
-                                        <a href="/manager/products?box=<?php echo $id ?>"
-                                            class="btn btn-secondary me-auto">
-                                            <i class="bi bi-eye-fill"></i>
-                                            View Products
-                                        </a>
-                                    </div>
-                                    <div class="modal-footer">
                                         <a href="#" class="btn btn-danger" data-bs-dismiss="modal">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
@@ -134,7 +120,7 @@
                         </form>
                     </div>
 
-                    <?php endfor ?>
+                    <?php endforeach ?>
 
                 </table>
             </div>
@@ -143,7 +129,7 @@
     <!-- New Box -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct" aria-labelledby="addProductLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="addProductLabel">New Product</h5>
+            <h5 class="offcanvas-title" id="addProductLabel">New Box</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">

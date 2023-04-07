@@ -25,7 +25,11 @@ class generalHelper {
 
         foreach ($string as $constant => &$value) {
             if ($diff->$constant) {
-                $value = $diff->$constant . ' ' . $v . ($diff->$constant > 1 ? 's' : '');
+                if($diff->$constant > 1)
+                {
+                    $value = $value . "s";
+                }
+                $value = $diff->$constant . ' ' . $v . ($diff->$constant > 1 ? $value : '');
             } else {
                 unset($string[$constant]);
             }

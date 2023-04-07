@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Helpers\dbHelper;
+use App\Models\Model;
 
-class productModel {
+class productModel extends Model {
 
-    private $model;
+    public $table = 'product';
+
     private $columns = [
         'id',
         'name',
@@ -17,21 +19,7 @@ class productModel {
         'updated_at'
     ];
 
-    public static function all()
-    {
-        $database = new dbHelper();
-        $product = $database->read('product', '*');
-        return $product;
-       // get all products
-    }
-
-    public static function find($id)
-    {
-        $database = new dbHelper();
-        $product = $database->read('product', '*', "WHERE id='$id'");
-        return $product;
-        // find specific product using it's $id
-    } 
+    // Functions?
 
     public static function calTotalQuanity()
     {
@@ -65,8 +53,3 @@ class productModel {
     }
 
 }
-
-// $product = new productModel();
-// $product->find($id);
-// $product->attribute;
-// $product->getAttribute(['attribute']); // checks attributes array if exists;

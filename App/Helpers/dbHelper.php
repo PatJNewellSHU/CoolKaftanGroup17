@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Helpers;
-
-// Info: Slowly integrating and adding to this file into the rest of the project, 
-//       should make database interactions look sexy
-
 class dbHelper {
 
     function __construct()
@@ -16,9 +12,7 @@ class dbHelper {
         $this->port = 3306;
 
         $this->connection = new \mysqli($this->server, $this->username, $this->password, $this->database, $this->port);
-
     }
-
 
     public function query($query, $associate)
     {
@@ -26,10 +20,12 @@ class dbHelper {
 
         if($statement == false)
         {
-            // return header("location: /500");;
-
-            var_dump($this->connection->error);
-            die();
+            return header("location: /500");
+            // Or...
+            // print_r(debug_backtrace());
+            // var_dump($query);
+            // var_dump($this->connection->error);
+            // die();
         }
 
         $statement->execute();
@@ -45,167 +41,130 @@ class dbHelper {
             $results = $results->fetch_all(MYSQLI_ASSOC);
         }
 
-        $this->connection->close();
-
         return $results;
     }
 
     //If these dont work i sincerely apologise - I'll rewrite them again back to how they used to be 
     public function create($table, $columns=[], $values=[])
     {
-        $statement = "INSERT INTO ? ("; 
-        //^ Cant test til database is finished but I think this should prevent having to add quotations around each variable beforehand? 
-        
-        $params = array();
-        for($i =0; $i < count($columns); $i++)
-        {
-            if($i = count($columns)) {
-                $prepare .= "?)";
-            }
-            else
-            {
-                $prepare .= "?,";
-            }
-            $params[] = $columns[$i];
-        }
-        $prepare .= " VALUES (";
-        for($i =0; $i < count($values); $i++)
-        {
-            if($i = count($values)) {
-                $prepare .= "?)";
-            }
-            else
-            {
-                $prepare .= "?,";
-            }
-            $params[] = $values[$i];
-        }
+        // Inject id/created_at/updated_at into values string
+        $values['id'] = $this->count($table)+1;
+        $values['updated_at'] = date("Y-m-d H:i:s");
+        $values['created_at'] = date("Y-m-d H:i:s");
 
+        // Prepare columns and values string
+        $_columns = "";
+        $_values = "";
+        foreach($columns as $v=>$col)
+        {
+            if(gettype($values[$col]) != 'integer')
+            {
+                $values[$col] = "'" . $values[$col] . "'";
+            }
+
+            if(count($columns) == $v+1)
+            {
+                $_columns = $_columns . "`".$col."`";
+                $_values = $_values . $values[$col];
+            } else {
+                $_columns = $_columns . "`".$col."`,";
+                $_values = $_values . $values[$col].",";
+            }
+        }
+        
+        $prepare = "INSERT INTO " . $table . " (" . $_columns . ") VALUES (" . $_values . ");";
         $statement = $this->connection->prepare($prepare);
 
         if($statement == false)
         {
-            // return header("location: /500");;
+            return header("location: /500");;
 
-            var_dump($this->connection->error);
-            die();
+            // var_dump($this->connection->error);
+            // die();
         }
 
-        $types = str_repeat("s", count($columns)); //creates the variable types 
-        $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
-
+        
         return true;
     }
 
     public function read($table, $columns="*", $query=null, $associate=false)
     {
-        $prepare = "SELECT " . $columns . "FROM " . $table; 
-        //^ removed quotes at the end as I dont think they are needed?
+        $prepare = "SELECT " . $columns . " FROM " . $table; 
 
-        
         if($query != null)
         {
             $prepare = $prepare . " " . $query;
         }
 
-        var_dump($prepare);
+        $query = $this->query($prepare, $associate);
+        $this->connection->close();
 
-        return $this->query($prepare, $associate);
+        return $query;
     }
 
-    public function count($table, $columns = "id", $query = null, $associate = false)
+    public function count($table, $column = "id")
     {
-        $prepare = "SELECT COUNT(" . $columns . ") FROM " . $table;
-       
-        if ($query != null) {
-            $prepare = $prepare . " " . $query;
-        }
-
-        var_dump($prepare);
-
-        return $this->query($prepare, $associate);
+        $prepare = "SELECT COUNT(" . $column . ") FROM " . $table;
+        $query = $this->query($prepare, true);
+        $query = $query['COUNT('.$column.')'];
+    
+        return $query;
     }
 
-    public function update($table, $columns = [], $values = []) {
+    public function update($table, $id, $values = []) {
 
-        $statement = "UPDATE ? SET"; //Sets up the initial sql statement 
-        $params = array(); //Creates an array for the parameters
-        for($i = 0; $i < count($columns); $i++) //Should go through as many columns are in the array columns and add to the sql statement
-        {
-            if($i = 0) //This seems like a bad way to check if were on the first run of the for loop but idk how else to do it in php
-            //Adds to the sql statement for the placement of the variables
-            {
-                $prepare .= " ? = ?";
-            }
-            else
-            {
-                $prepare .= " AND ? = ?";
-            }
-            
-            $params[] = $columns[$i]; //Pushes columns and values onto the params array.
-            $params[] = $values[$i];
-        }  
+        $statement = "UPDATE " . $table . " SET ";
+        $values['updated_at'] = date("Y-m-d H:i:s");
+        foreach ($values as $v => $val) {
+            $i = array_search($v, array_keys($values));
 
+            if(gettype($val) != 'integer')
+            {
+                $val = "'" . $val . "'";
+            }
+
+            if(count($values) == $i+1)
+            {
+                $statement = $statement . $v . " = " . $val;
+            } else {
+                $statement = $statement . $v . " = " . $val . ", ";
+            }
+        }
+        $prepare = $statement . " WHERE id = " . $id;
         $statement = $this->connection->prepare($prepare);
 
         if($statement == false)
         {
-            // return header("location: /500");;
+            return header("location: /500");;
 
-            var_dump($this->connection->error);
-            die();
+            // var_dump($this->connection->error);
+            // die();
         }
 
-        $types = str_repeat("s", count($columns)); //creates the variable types 
-        $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
-        //The "..." should allow bind_param to take the param array and use it as a variable. Not 100% confident itll work tho lol
         $statement->execute();
+        $this->connection->close();
 
         return true;
-
     }
 
-    public function delete($table, $columns = [], $values = [])
+    public function delete($table, $id)
     {
-
-        $prepare = "DELETE FROM ? WHERE";
-        $params = array();
-        for($i = 0; $i < count($columns); $i++) //Should go through as many columns are in the array columns and add to the sql statement
-        {
-            if($i = 0) //This seems like a bad way to check if were on the first run of the for loop but idk how else to do it in php
-            {
-                $prepare .= " ? = ?";
-            }
-            else
-            {
-                $prepare .= " AND ? = ?";
-            }
-            
-            $params[] = $columns[$i];
-            $params[] = $values[$i];
-        }  
-
+        $prepare = "DELETE FROM " . $table . " WHERE id = '" . $id . "'";
         $statement = $this->connection->prepare($prepare);
 
         if($statement == false)
         {
-            // return header("location: /500");;
+            return header("location: /500");;
 
-            var_dump($this->connection->error);
-            die();
+            // var_dump($this->connection->error);
+            // die();
         }
         
-        $types = str_repeat("s", count($columns)); //creates the variable types 
-        $statement -> bind_param($types, $table, ...$params); //SHOULD go through and attatch a variable to each ? in statement. 
         $statement->execute();
+        $this->connection->close();
 
         return true;
     }
-    /*
-    Tried just taking each string out of the array rather than imploding as I wanted to use "AND" in a delete statement, but not actually removing from the database.
-    push#2
-    */
-
     
 }
