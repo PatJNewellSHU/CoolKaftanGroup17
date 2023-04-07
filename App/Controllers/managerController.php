@@ -11,24 +11,14 @@ use App\Models\stockModel;
 use App\Models\userModel;
 class managerController {
 
-    
-function MoveToBuffer($conn, $boxID) {
-
-    $database = new dbHelper();
-
-    $row = $database->query("SELECT * FROM box WHERE box_id = ?", true);
-
-    $result = $database->add('buffer', ['product_id', 'number_of_items'], [$row["product_id"], $row["units"]]);
-    
-    var_dump($result); // idk what to do with this lol
-}
-
     public static function boxes()
     {
         authenticationHelper::isAuth('manager');
-        
+
         $box = new boxModel();
         $boxes = $box->get();
+
+        // TODO: Figure out filtering
 
         return require __DIR__.'/../../views/manager/boxes.php';
     }
@@ -80,91 +70,93 @@ function MoveToBuffer($conn, $boxID) {
   
     }
 
-    public static function addItem()
-    {
-        authenticationHelper::isAuth('manager');
-        if(isset($_POST['submit'])) {
+    // No longer needed with new models CRUD, sorry.
 
-            $prodName = $_POST['prodName'];
-            $prodDetail = $_POST['prodDetail'];
-            $prodSize = $_POST['prodSize'];
-            $prodPrice = $_POST['prodPrice'];
+    // public static function addItem()
+    // {
+    //     authenticationHelper::isAuth('manager');
+    //     if(isset($_POST['submit'])) {
 
-            $database = new dbHelper();
-            $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
-            $data = ["'".$prodName."'", "'".$prodDetail."'", "'".$prodSize."'", "'".$prodPrice."'"];
-            $database->add('product', $columns, $data);
+    //         $prodName = $_POST['prodName'];
+    //         $prodDetail = $_POST['prodDetail'];
+    //         $prodSize = $_POST['prodSize'];
+    //         $prodPrice = $_POST['prodPrice'];
+
+    //         $database = new dbHelper();
+    //         $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
+    //         $data = ["'".$prodName."'", "'".$prodDetail."'", "'".$prodSize."'", "'".$prodPrice."'"];
+    //         $database->add('product', $columns, $data);
  
-            if($added = false) {
-                header("location: /manager/all?error=Something went wrong, try again");
-                exit();
-            }
-            else{
-                header("location: /manager/all");
-            }
+    //         if($added = false) {
+    //             header("location: /manager/all?error=Something went wrong, try again");
+    //             exit();
+    //         }
+    //         else{
+    //             header("location: /manager/all");
+    //         }
             
-        }
-    }
+    //     }
+    // }
 
-    public static function deleteItem()
-    {
-        authenticationHelper::isAuth('manager');
-        if (isset($_POST['delete'])) {
+    // public static function deleteItem()
+    // {
+    //     authenticationHelper::isAuth('manager');
+    //     if (isset($_POST['delete'])) {
 
-            $prodName = $_POST['prodName'];
-            $prodDetail = $_POST['prodDetail'];
-            $prodSize = $_POST['prodSize'];
-            $prodPrice = $_POST['prodPrice'];
+    //         $prodName = $_POST['prodName'];
+    //         $prodDetail = $_POST['prodDetail'];
+    //         $prodSize = $_POST['prodSize'];
+    //         $prodPrice = $_POST['prodPrice'];
 
-            $database = new dbHelper();
-            $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
-            $data = ["'" . $prodName . "'", "'" . $prodDetail . "'", "'" . $prodSize . "'", "'" . $prodPrice . "'"];
-            $database->delete('product', $columns, $data);
+    //         $database = new dbHelper();
+    //         $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
+    //         $data = ["'" . $prodName . "'", "'" . $prodDetail . "'", "'" . $prodSize . "'", "'" . $prodPrice . "'"];
+    //         $database->delete('product', $columns, $data);
 
-        }
-    }
+    //     }
+    // }
 
-    /*
-    ==FIN==
-    Copied the addItem code from above.
-    push#2
-    */
-    public static function addBox()
-    {
-        if(isset($_POST['submit'])) {
+    // /*
+    // ==FIN==
+    // Copied the addItem code from above.
+    // push#2
+    // */
+    // public static function addBox()
+    // {
+    //     if(isset($_POST['submit'])) {
 
-            $shelfID = $_POST["shelfID"];
-            $prodID = $_POST["productID"];
+    //         $shelfID = $_POST["shelfID"];
+    //         $prodID = $_POST["productID"];
             
 
-            $added = AddBoxes(connect(), $shelfID, $prodID);
+    //         $added = AddBoxes(connect(), $shelfID, $prodID);
  
-            if($added = false) {
-                header("location: /manager?error=Something went wrong, try again");
-                exit();
-            }
-            else{
-                header("location: /manager");
-            }
+    //         if($added = false) {
+    //             header("location: /manager?error=Something went wrong, try again");
+    //             exit();
+    //         }
+    //         else{
+    //             header("location: /manager");
+    //         }
             
-        }
-    }
+    //     }
+    // }
 
-    public static function addMixedBox()
-    {
-        authenticationHelper::isAuth('manager');
-        $selector = explode('/', $request)[3];
+    // public static function addMixedBox()
+    // {
+    //     authenticationHelper::isAuth('manager');
+    //     $selector = explode('/', $request)[3];
 
-        if(intval($selector) > 4)
-        {
-            header("location: /404");
-        }
+    //     if(intval($selector) > 4)
+    //     {
+    //         header("location: /404");
+    //     }
 
-        $database = new dbHelper();
-        $results = $database->query("SELECT * FROM box WHERE shelf_id = ".$selector+1, true);
+    //     $database = new dbHelper();
+    //     $results = $database->query("SELECT * FROM box WHERE shelf_id = ".$selector+1, true);
 
-        return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
-    }
+    //     return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
+    // }
 
         
 }
