@@ -60,7 +60,7 @@
 }
 
 .btn-primary {
-    --bs-btn-color: #815021;
+    --bs-btn-color: hsl(29, 59%, 32%);
     --bs-btn-bg: #D3CBC3;
     --bs-btn-border-color: #C2B2A2;
 
@@ -77,6 +77,10 @@
     --bs-btn-disabled-color: grey;
     --bs-btn-disabled-bg: #D3CBC3;
     --bs-btn-disabled-border-color: #D3CBC3;
+}
+.text-bg-primary {
+    color: #815021!important;
+    background-color: #D3CBC3!important;
 }
 .btn-danger {
     --bs-btn-color: #dc3545;

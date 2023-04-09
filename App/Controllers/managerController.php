@@ -16,9 +16,24 @@ class managerController {
         authenticationHelper::isAuth('manager');
 
         $box = new boxModel();
-        $boxes = $box->get();
 
-        // TODO: Figure out filtering
+        // Filtering        
+        if(!(isset($_REQUEST['search']) && $_REQUEST['search'] != null))
+        {
+            if(isset($_REQUEST['box_type']) && $_REQUEST['box_type'] != 'all')
+            {
+                $box->where('box_type', '=', intval($_REQUEST['box_type']));
+            }
+
+            if(isset($_REQUEST['shelf']) && $_REQUEST['shelf'] != 'all')
+            {
+                $box->where('shelf', '=', $_REQUEST['shelf']);
+            }
+        }
+
+        managerController::basicFilter($_REQUEST, $box);
+
+        $boxes = $box->get();
 
         return require __DIR__.'/../../views/manager/boxes.php';
     }
@@ -70,93 +85,78 @@ class managerController {
   
     }
 
-    // No longer needed with new models CRUD, sorry.
-
-    // public static function addItem()
-    // {
-    //     authenticationHelper::isAuth('manager');
-    //     if(isset($_POST['submit'])) {
-
-    //         $prodName = $_POST['prodName'];
-    //         $prodDetail = $_POST['prodDetail'];
-    //         $prodSize = $_POST['prodSize'];
-    //         $prodPrice = $_POST['prodPrice'];
-
-    //         $database = new dbHelper();
-    //         $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
-    //         $data = ["'".$prodName."'", "'".$prodDetail."'", "'".$prodSize."'", "'".$prodPrice."'"];
-    //         $database->add('product', $columns, $data);
- 
-    //         if($added = false) {
-    //             header("location: /manager/all?error=Something went wrong, try again");
-    //             exit();
-    //         }
-    //         else{
-    //             header("location: /manager/all");
-    //         }
+    public static function basicFilter($request, $model)
+    {
+        if($request)
+        {
+            if(isset($request['search']) && $request['search'] != '')
+            {
+                foreach ($model->columns as $c => $col) {
+                    if($col != 'id')
+                    {
+                        if($c == 1)
+                        {
+                            $model = $model->where($col, '=', $_REQUEST['search']);
+                        } else {
+                            $model = $model->orWhere($col, '=', $_REQUEST['search']);
+                        }
+                    }
+                }
+            }
             
-    //     }
-    // }
+            if(isset($request['order']))
+            {
+                if(\str_contains($request['order'], 'id'))
+                {
+                    // order by id ...
+                    if(\str_contains($request['order'], 'asending'))
+                    {
+                        $model = $model->orderBy('id', 'ASC');
+                    }
 
-    // public static function deleteItem()
-    // {
-    //     authenticationHelper::isAuth('manager');
-    //     if (isset($_POST['delete'])) {
+                    if(\str_contains($request['order'], 'desending'))
+                    {
+                        $model = $model->orderBy('id', 'DESC');
+                    }
+                }
 
-    //         $prodName = $_POST['prodName'];
-    //         $prodDetail = $_POST['prodDetail'];
-    //         $prodSize = $_POST['prodSize'];
-    //         $prodPrice = $_POST['prodPrice'];
+                if(\str_contains($request['order'], 'created'))
+                {
+                    // order by date ...
+                    if(\str_contains($request['order'], 'asending'))
+                    {
+                        $model = $model->orderBy('created_at', 'ASC');
+                    }
 
-    //         $database = new dbHelper();
-    //         $columns = ['product_Name', 'product_Detail', 'product_Size', 'product_Price'];
-    //         $data = ["'" . $prodName . "'", "'" . $prodDetail . "'", "'" . $prodSize . "'", "'" . $prodPrice . "'"];
-    //         $database->delete('product', $columns, $data);
+                    if(\str_contains($request['order'], 'desending'))
+                    {
+                        $model = $model->orderBy('created_at', 'DESC');
+                    }
+                }
 
-    //     }
-    // }
+                if(\str_contains($request['order'], 'updated'))
+                {
+                    // order by date ...
+                    if(\str_contains($request['order'], 'asending'))
+                    {
+                        $model = $model->orderBy('updated_at', 'ASC');
+                    }
 
-    // /*
-    // ==FIN==
-    // Copied the addItem code from above.
-    // push#2
-    // */
-    // public static function addBox()
-    // {
-    //     if(isset($_POST['submit'])) {
+                    if(\str_contains($request['order'], 'desending'))
+                    {
+                        $model = $model->orderBy('updated_at', 'DESC');
+                    }
+                }
+            }
 
-    //         $shelfID = $_POST["shelfID"];
-    //         $prodID = $_POST["productID"];
-            
+            if(isset($request['showing']))
+            {
+                if($request['showing'] != 'all')
+                {
+                    $model = $model->limit(intval($request['showing']));
+                }
+            }
 
-    //         $added = AddBoxes(connect(), $shelfID, $prodID);
- 
-    //         if($added = false) {
-    //             header("location: /manager?error=Something went wrong, try again");
-    //             exit();
-    //         }
-    //         else{
-    //             header("location: /manager");
-    //         }
-            
-    //     }
-    // }
-
-    // public static function addMixedBox()
-    // {
-    //     authenticationHelper::isAuth('manager');
-    //     $selector = explode('/', $request)[3];
-
-    //     if(intval($selector) > 4)
-    //     {
-    //         header("location: /404");
-    //     }
-
-    //     $database = new dbHelper();
-    //     $results = $database->query("SELECT * FROM box WHERE shelf_id = ".$selector+1, true);
-
-    //     return require __DIR__.'/../../views/manager/p/p'.$selector.'.php';
-    // }
-
-        
+        }
+    }        
 }

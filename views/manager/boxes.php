@@ -51,8 +51,8 @@
                             <?php echo App\Helpers\generalHelper::time_format($box->updated_at) ?>
                         </td>
                     </tr>
-                    <div class="modal fade" id="box_<?php echo $box->id ?>" role="dialog" tabindex="-1" aria-labelledby="box"
-                        aria-hidden="true">
+                    <div class="modal fade" id="box_<?php echo $box->id ?>" role="dialog" tabindex="-1"
+                        aria-labelledby="box" aria-hidden="true">
                         <form method="POST" action="/manager/all/edit">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -63,7 +63,8 @@
                                             </div>
                                             <div class="modal-title fs-5" id="box">
                                                 Box:
-                                                <?php echo $box->id; ?>
+                                                #
+                                                <?php echo number_format($box->id); ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -170,46 +171,48 @@
         <div class="offcanvas-body">
             <form method="GET">
                 <div class="form-floating mb-3">
-                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan">
+                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan" value="<?php echo $_REQUEST['search'] ?>">
                     <label for="searchinput">Search</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="order" id="orderselect" aria-label="order select">
-                        <option selected value="id_desending">ID (Desending)</option>
-                        <option value="id_asending">ID (Asending)</option>
-                        <option value="desending">Date (Desending)</option>
-                        <option value="asending">Date (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='' || $_REQUEST['order']=='id_desending' ) ? "selected" : "" ) ?> value="id_desending">ID (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='id_asending' ) ? "selected" : "" ) ?> value="id_asending">ID (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_desending' ) ? "selected" : "" ) ?> value="created_desending">Created (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_asending' ) ? "selected" : "" ) ?> value="created_asending">Created (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_desending' ) ? "selected" : "" ) ?> value="updated_desending">Updated (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_asending' ) ? "selected" : "" ) ?> value="updated_asending">Updated (Asending)</option>
                     </select>
                     <label for="orderselect">Order By</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
-                        <option selected value="all">All</option>
-                        <option value="25">Max: 25</option>
-                        <option value="50">Max: 50</option>
-                        <option value="100">Max: 100</option>
-                        <option value="200">Max: 200</option>
+                        <option <?php echo(($_REQUEST['showing']=='' || $_REQUEST['showing']=='all' ) ? "selected" : "" ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['showing']=='25') ? "selected" : "" ) ?> value="25">Max: 25</option>
+                        <option <?php echo(($_REQUEST['showing']=='50') ? "selected" : "" ) ?> value="50">Max: 50</option>
+                        <option <?php echo(($_REQUEST['showing']=='100') ? "selected" : "" ) ?> value="100">Max: 100</option>
+                        <option <?php echo(($_REQUEST['showing']=='200') ? "selected" : "" ) ?> value="200">Max: 200</option>
                     </select>
                     <label for="showingselect">Showing</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="box_type" id="box_type" aria-label="Box Type">
-                        <option selected value="all">All</option>
-                        <option value="mixed">Mixed Only</option>
-                        <option value="shelf">Unmixed Only</option>
+                        <option <?php echo(($_REQUEST['box_type']=='' || $_REQUEST['box_type']=='all') ? "selected" : "" ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['box_type']=='0') ? "selected" : "" ) ?> value="0">Mixed Only</option>
+                        <option <?php echo(($_REQUEST['box_type']=='1') ? "selected" : "" ) ?> value="1">Unmixed Only</option>
 
                     </select>
                     <label for="showingselect">Box Type</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="shelf" id="shelf" aria-label="Shelf">
-                        <option selected value="all">All</option>
-                        <option value="buffer">Buffer</option>
-                        <option value="top">Top Shelf</option>
-                        <option value="mixed">Shelf #P1</option>
-                        <option value="mixed">Shelf #P2</option>
-                        <option value="mixed">Shelf #P3</option>
-                        <option value="mixed">Shelf #P4</option>
+                        <option <?php echo(($_REQUEST['shelf']=='' || $_REQUEST['shelf']=='all' ) ? "selected" : "" ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['shelf']=='buffer') ? "selected" : "" ) ?> value="buffer">Buffer</option>
+                        <option <?php echo(($_REQUEST['shelf']=='top_shelf') ? "selected" : "" ) ?> value="top_shelf">Top Shelf</option>
+                        <option <?php echo(($_REQUEST['shelf']=='shelf_1') ? "selected" : "" ) ?> value="shelf_1">Shelf #P1</option>
+                        <option <?php echo(($_REQUEST['shelf']=='shelf_2') ? "selected" : "" ) ?> value="shelf_2">Shelf #P2</option>
+                        <option <?php echo(($_REQUEST['shelf']=='shelf_3') ? "selected" : "" ) ?> value="shelf_3">Shelf #P3</option>
+                        <option <?php echo(($_REQUEST['shelf']=='shelf_4') ? "selected" : "" ) ?> value="shelf_4">Shelf #P4</option>
                     </select>
                     <label for="showingselect">Shelf</label>
                 </div>

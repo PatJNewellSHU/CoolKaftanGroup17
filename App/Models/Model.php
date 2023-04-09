@@ -22,22 +22,52 @@ abstract class Model {
 
     public function where($item, $del="=", $value)
     {
-        $this->conditions[] = $item." ".$del." '".$value ."'";
+        $this->conditions['lim-'.count($this->conditions)] = $item." ".$del." '".$value ."'";
+        
+        return $this;
+    }
+
+    public function orWhere($item, $del="=", $value)
+    {
+        $this->conditions['exp-'.count($this->conditions)] = $item." ".$del." '".$value ."'";
         return $this;
     }
 
     public function get()
     {
         $queryString = "";
+
         foreach ($this->conditions as $key => $value) {
-            if($key == 0)
+            if(\str_contains($key, 'lim-'))
             {
-                $queryString = "WHERE " . $queryString . $value;
-            } else {
-                $queryString = $queryString . " AND " . $value;
+                // limit
+                if(\str_contains($key, '-0'))
+                {
+                    $queryString = "WHERE " . $queryString . $value;
+                } else {
+                    $queryString = $queryString . " AND " . $value;
+                }
+            }
+
+            if(\str_contains($key, 'exp-'))
+            {
+                if(\str_contains($key, '-0'))
+                {
+                    $queryString = "WHERE " . $queryString . $value;
+                } else {
+                    $queryString = $queryString . " OR " . $value;
+                }
+            }
+
+            if(\str_contains($key, 'order')){
+                $order = explode('=', $value);
+                $queryString = $queryString . " ORDER BY " . $order[0] . " " . $order[1]; 
+            }
+
+            if(\str_contains($key, 'limit')){
+                $queryString = $queryString . " LIMIT " . $value;
             }
         }
-
         $results = $this->connection->read($this->table, '*', $queryString);
 
         if(count($results) < 1)
@@ -58,6 +88,18 @@ abstract class Model {
         }
         
         return $models;
+    }
+
+    public function limit($limit)
+    {
+        $this->conditions['limit'] = $limit;
+        return $this;
+    }
+
+    public function orderBy($column, $value)
+    {
+        $this->conditions['order'] = $column."=".$value;
+        return $this;
     }
 
     public function find($id)

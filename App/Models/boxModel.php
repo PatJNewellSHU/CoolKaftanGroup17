@@ -10,7 +10,7 @@ class boxModel extends Model {
 
     public $columns = [
         'id',
-        'box_type', // mixed, non-mixed
+        'box_type', // 0 = mixed, 1 = non-mixed
         'shelf', // top-floor, p1-4 or buffer.
         'created_at',
         'updated_at'
