@@ -42,6 +42,13 @@ class managerController {
     {
         authenticationHelper::isAuth('manager');
 
+        $stock = new stockModel();
+
+        // Filtering        
+        managerController::basicFilter($_REQUEST, $stock);
+
+        $stock = $stock->get();
+
         $stock = [
             0 => [
                 'id' => 1,

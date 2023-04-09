@@ -7,13 +7,14 @@ use App\Models\Model;
 
 class productModel extends Model {
 
-    public $table = 'product';
+    public $table = 'products';
 
     private $columns = [
         'id',
         'name',
         'colour', // nullable
         'size', // nullable
+        'price',
         'barcode',
         'created_at',
         'updated_at'

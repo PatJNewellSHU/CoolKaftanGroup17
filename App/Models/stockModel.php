@@ -5,7 +5,7 @@ class stockModel extends Model {
 
     public $table = 'stock';
 
-    private $columns = [
+    public $columns = [
         'id',
         'product_id',
         'box_id',
