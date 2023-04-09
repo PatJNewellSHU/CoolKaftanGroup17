@@ -36,13 +36,13 @@
                             <?php echo $box->id ?>
                         </td>
                         <td>
-                            <?php echo(($box->type==0 ) ? "mixed" : "non-mixed" ) ?>
+                            <?php echo((($box->box_type== '0' ) ? "mixed" : "non-mixed" )) ?>
                         </td>
                         <td>
                             <?php echo number_format(count($box->getProducts())) ?>
                         </td>
                         <td>
-                            <?php echo $box->shelf ?>
+                            <?php echo str_replace('_', ' ', $box->shelf) ?>
                         </td>
                         <td>
                             <?php echo App\Helpers\generalHelper::time_format($box->created_at) ?>
@@ -136,28 +136,26 @@
         <div class="offcanvas-body">
             <form method="POST" action="/manager/add/box">
 
-                <div class="form-floating mb-3">
-                    <select class="form-select" name="type" id="type" aria-label="showing select">
-                        <option value="mixed">Mixed</option>
-                        <option value="non_mixed">Non-Mixed</option>
+            <div class="form-floating mb-3">
+                    <select class="form-select" name="box_type" id="box_type" aria-label="Box Type">
+                        <option value="0">Mixed Only</option>
+                        <option value="1">Unmixed Only</option>
                     </select>
-                    <label for="type">Type</label>
+                    <label for="showingselect">Box Type</label>
                 </div>
-
                 <div class="form-floating mb-3">
-
-                    <select class="form-select" name="type" id="type" aria-label="showing select">
+                    <select class="form-select" name="shelf" id="shelf" aria-label="Shelf">
                         <option value="buffer">Buffer</option>
                         <option value="top_shelf">Top Shelf</option>
-                        <option value="shelf_1">Shelf #1</option>
-                        <option value="shelf_2">Shelf #2</option>
-                        <option value="shelf_2">Shelf #3</option>
-                        <option value="shelf_2">Shelf #4</option>
+                        <option value="shelf_1">Shelf #P1</option>
+                        <option value="shelf_2">Shelf #P2</option>
+                        <option value="shelf_3">Shelf #P3</option>
+                        <option value="shelf_4">Shelf #P4</option>
                     </select>
-                    <label for="type">Shelf</label>
+                    <label for="showingselect">Shelf</label>
                 </div>
 
-                <button type="submit" name="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary">
                     Submit
                 </button>
             </form>

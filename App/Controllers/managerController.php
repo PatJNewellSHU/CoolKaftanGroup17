@@ -38,6 +38,18 @@ class managerController {
         return require __DIR__.'/../../views/manager/boxes.php';
     }
 
+    public static function addBox()
+    {
+        $box = new boxModel();
+
+        $box = $box->create([
+            'box_type' => $_REQUEST['box_type'],
+            'shelf' => $_REQUEST['shelf']
+        ]);
+        
+        return header("location: /manager/boxes");
+    }
+
     public static function stock()
     {
         authenticationHelper::isAuth('manager');

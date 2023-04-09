@@ -14,6 +14,5 @@ class userModel extends Model {
         'isManager',
         'created_at',
         'updated_at'
-    ];
-            
+    ];           
 }

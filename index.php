@@ -43,6 +43,9 @@ switch ($url) {
     case (preg_match('/manager\/boxes.*/', $request)? true: false):
         managerController::boxes();
         break;
+    case '/manager/add/box':
+        managerController::addBox();
+        break;
     case (preg_match('/manager\/stock.*/', $request)? true: false):
         managerController::stock();
         break;
