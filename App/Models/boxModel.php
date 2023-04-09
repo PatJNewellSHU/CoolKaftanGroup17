@@ -18,7 +18,13 @@ class boxModel extends Model {
 
     public function getProducts()
     {
-        return [1, 2]; 
+        $stock = new stockModel();
+        $stock = $stock->where('product_id', '=', $this->id)->get();
+        if($stock == null)
+        {
+            $stock = [];
+        }
+        return $stock;
     }
 
     public function getStocks()

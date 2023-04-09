@@ -53,7 +53,7 @@
                     </tr>
                     <div class="modal fade" id="box_<?php echo $box->id ?>" role="dialog" tabindex="-1"
                         aria-labelledby="box" aria-hidden="true">
-                        <form method="POST" action="/manager/all/edit">
+                        <form method="POST" action="/manager/edit/box?box=<?php echo $box->id ?>">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -62,9 +62,7 @@
                                                 Editing
                                             </div>
                                             <div class="modal-title fs-5" id="box">
-                                                Box:
-                                                #
-                                                <?php echo number_format($box->id); ?>
+                                                Box: #<?php echo number_format($box->id); ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -72,19 +70,19 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-floating mb-3">
-                                            <select class="form-select" name="type" id="type"
+                                            <select class="form-select" name="box_type" id="type"
                                                 aria-label="showing select">
                                                 <option <?php echo(($box->type==0 ) ? "selected" : "" ) ?>
-                                                    value="mixed">Mixed</option>
+                                                    value="0">Mixed</option>
                                                 <option <?php echo(($box->type==1 ) ? "selected" : "" ) ?>
-                                                    value="non_mixed">Non-Mixed</option>
+                                                    value="1">Non-Mixed</option>
                                             </select>
                                             <label for="type">Type</label>
                                         </div>
 
                                         <div class="form-floating mb-3">
 
-                                            <select class="form-select" name="type" id="type"
+                                            <select class="form-select" name="shelf" id="shelf"
                                                 aria-label="showing select">
                                                 <option <?php echo(($box->shelf=='buffer' ) ? "selected" : "" ) ?>
                                                     value="buffer">Buffer</option>
@@ -99,7 +97,7 @@
                                                 <option <?php echo(($box->shelf=='shelf_4' ) ? "selected" : "" ) ?>
                                                     value="shelf_2">Shelf #4</option>
                                             </select>
-                                            <label for="type">Shelf</label>
+                                            <label for="shelf">Shelf</label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -108,7 +106,7 @@
                                             <i class="bi bi-eye-fill"></i>
                                             View Stock
                                         </a>
-                                        <a href="#" class="btn btn-danger" data-bs-dismiss="modal">
+                                        <a href="/manager/delete/box?box=<?php echo $box->id ?>" class="btn btn-danger">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>

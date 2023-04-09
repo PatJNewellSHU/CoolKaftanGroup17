@@ -117,33 +117,34 @@ class dbHelper {
 
         $statement = "UPDATE " . $table . " SET ";
         $values['updated_at'] = date("Y-m-d H:i:s");
-        foreach ($values as $v => $val) {
-            $i = array_search($v, array_keys($values));
 
-            if(gettype($val) != 'integer')
-            {
-                $val = "'" . $val . "'";
-            }
+        foreach ($values as $v => $val) {            
+            $i = array_search($v, array_keys($values));
 
             if(count($values) == $i+1)
             {
-                $statement = $statement . $v . " = " . $val;
+                $statement = $statement . "`". $v . "` = '" . $val . "'";
             } else {
-                $statement = $statement . $v . " = " . $val . ", ";
+                $statement = $statement . "`". $v . "` = '" . $val . "', ";
             }
         }
-        $prepare = $statement . " WHERE id = " . $id;
+        $prepare = $statement . " WHERE (`id` = '" . $id . "');";
+
         $statement = $this->connection->prepare($prepare);
 
         if($statement == false)
         {
-            return header("location: /500");;
+           // return header("location: /500");;
 
-            // var_dump($this->connection->error);
+            print_r($this->connection->error);
             // die();
         }
+        var_dump($prepare);
+        print_r($statement); // REMOVE
+        die();
 
-        $statement->execute();
+        $exectute = $statement->execute();
+
         $this->connection->close();
 
         return true;

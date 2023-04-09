@@ -50,6 +50,40 @@ class managerController {
         return header("location: /manager/boxes");
     }
 
+    public static function deleteBox()
+    {
+        if(!isset($_REQUEST['box']))
+        {
+            return header("location: /manager/boxes");
+        }
+
+        $box = new boxModel();
+
+        $box = $box->find($_REQUEST['box']);
+        $box->delete();
+
+        return header("location: /manager/boxes");
+    }
+
+    public static function editBox()
+    {
+        if(!isset($_REQUEST['box']))
+        {
+            return header("location: /manager/boxes");
+        }
+
+        $box = new boxModel();
+
+        $box = $box->find($_REQUEST['box']);
+        $box = $box->edit([
+            'box_type' => intval($_REQUEST['box_type']),
+            'shelf' => $_REQUEST['shelf']
+        ]);
+        print_r($_REQUEST);    
+        print_r($box);
+        die();
+    }
+
     public static function stock()
     {
         authenticationHelper::isAuth('manager');

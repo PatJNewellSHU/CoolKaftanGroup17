@@ -130,6 +130,7 @@ abstract class Model {
 
     public function edit($data=[])
     {
+    
         $edit = $this->connection->update($this->table, $this->id, $data);
         
         if($edit == true)
