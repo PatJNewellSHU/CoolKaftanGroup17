@@ -48,6 +48,8 @@ class productModel extends Model {
         
         $products = $database->read('product', '*', "WHERE id IN ($productIds_string)");
         return $products;
+
+        //checks boxes in buffer, takes IDs and checks stock for box IDs and their shows information for the relative products.
     }
 
 }
