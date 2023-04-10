@@ -72,9 +72,9 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="box_type" id="type"
                                                 aria-label="showing select">
-                                                <option <?php echo(($box->type==0 ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->box_type==0 ) ? "selected" : "" ) ?>
                                                     value="0">Mixed</option>
-                                                <option <?php echo(($box->type==1 ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->box_type==1 ) ? "selected" : "" ) ?>
                                                     value="1">Non-Mixed</option>
                                             </select>
                                             <label for="type">Type</label>
@@ -86,7 +86,7 @@
                                                 aria-label="showing select">
                                                 <option <?php echo(($box->shelf=='buffer' ) ? "selected" : "" ) ?>
                                                     value="buffer">Buffer</option>
-                                                <option <?php echo(($box->shelf=='top_floor' ) ? "selected" : "" ) ?>
+                                                <option <?php echo(($box->shelf=='top_shelf' ) ? "selected" : "" ) ?>
                                                     value="top_shelf">Top Shelf</option>
                                                 <option <?php echo(($box->shelf=='shelf_1' ) ? "selected" : "" ) ?>
                                                     value="shelf_1">Shelf #1</option>

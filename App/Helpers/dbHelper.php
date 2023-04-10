@@ -134,14 +134,11 @@ class dbHelper {
 
         if($statement == false)
         {
-           // return header("location: /500");;
+           return header("location: /500");;
 
-            print_r($this->connection->error);
+            // print_r($this->connection->error);
             // die();
         }
-        var_dump($prepare);
-        print_r($statement); // REMOVE
-        die();
 
         $exectute = $statement->execute();
 

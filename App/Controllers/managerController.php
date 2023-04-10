@@ -62,7 +62,7 @@ class managerController {
         $box = $box->find($_REQUEST['box']);
         $box->delete();
 
-        return header("location: /manager/boxes");
+        return header("location: /manager/boxes?message=Item Deleted");
     }
 
     public static function editBox()
@@ -79,9 +79,8 @@ class managerController {
             'box_type' => intval($_REQUEST['box_type']),
             'shelf' => $_REQUEST['shelf']
         ]);
-        print_r($_REQUEST);    
-        print_r($box);
-        die();
+        
+        return header("location: /manager/boxes?box=".$_REQUEST['box']."&message=Changes saved.");
     }
 
     public static function stock()
