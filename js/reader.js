@@ -13,7 +13,7 @@
     <h2>Success!</h2>
     <p id>${result}</p>
     `;
-    window.location.href = window.location.href + ?result=${JSON.stringify(decodedResult)}
+    window.location.href = window.location.href + `?result=${JSON.stringify(decodedResult)}`
     scanner.clear();
     document.getElementById('reader').remove();
     }
