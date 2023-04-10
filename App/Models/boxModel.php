@@ -26,10 +26,5 @@ class boxModel extends Model {
         }
         return $stock;
     }
-
-    public function getStocks()
-    {
-        //
-    }
     
 }

@@ -9,7 +9,7 @@ class productModel extends Model {
 
     public $table = 'products';
 
-    private $columns = [
+    public $columns = [
         'id',
         'name',
         'colour', // nullable

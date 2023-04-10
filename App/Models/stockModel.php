@@ -15,7 +15,8 @@ class stockModel extends Model {
 
     public function getProduct()
     {
-        return productModel::find($this->product_id);
+        $product = new productModel();
+        return $product->find($this->product_id);
     }
 
     public function getBox()

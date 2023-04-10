@@ -49,35 +49,32 @@
                     </thead>
 
                     <?php
-
-                        for ($i=0; $i<count($stock); $i++):
-                            $id = $stock[$i]['id'];
-                            $boxid = $stock[$i]['box_id'];   
-                            $productid = $stock[$i]['product_id'];  
-                            $productname = $stock[$i]['product_name'];
-                            $Updated = $stock[$i]['updated_at'];  
-                            $Created = $stock[$i]['created_at'];               
+                    foreach ($stock as $v => $s):                   
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#stock_<?php echo $id ?>">
+                    <tr data-bs-toggle="modal" data-bs-target="#stock_<?php echo $box->id ?>">
                         <td>
-                            <?php echo $id ?>
+                            <?php echo $s->id ?>
                         </td>
                         <td>
-                            <?php echo $boxid ?>
+                            #<?php echo $s->box_id ?>
                         </td>
                         <td>
-                            <?php echo $productname ?>
+                            <?php if ($s->getProduct()->name != null) { ?>
+                                <?php echo $s->getProduct()->name ?>
+                            <?php } else { ?>
+                                N/A
+                            <?php } ?>
                         </td>
                         <td>
-                            <?php echo App\Helpers\generalHelper::time_format($created) ?>
+                            <?php echo App\Helpers\generalHelper::time_format($s->created_at) ?>
                         </td>
                         <td>
-                            <?php echo App\Helpers\generalHelper::time_format($updated) ?>
+                            <?php echo App\Helpers\generalHelper::time_format($s->updated_at) ?>
                         </td>
                     </tr>
-                    <div class="modal fade" id="stock_<?php echo $id ?>" tabindex="-1" aria-labelledby="stock"
+                    <div class="modal fade" id="stock_<?php echo $box->id ?>" tabindex="-1" aria-labelledby="stock"
                         aria-hidden="true">
                         <form method="POST" action="/manager/all/edit">
                             <div class="modal-dialog">
@@ -88,8 +85,7 @@
                                                 Editing
                                             </div>
                                             <div class="modal-title fs-5" id="stock">
-                                                Stock:
-                                                <?php echo $id; ?>
+                                                Stock: #<?php echo $s->id; ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -99,20 +95,24 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="type" id="product"
                                                 aria-label="showing select">
-                                                <option value="1">1: Product Name</option>
+                                                <?php foreach($products as $product): ?>
+                                                    <option value="<?php echo $product->id ?>">#<?php echo $product->id ?>: <?php echo $product->name ?></option>
+                                                <?php endforeach ?>
                                             </select>
                                             <label for="type">Product</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="type" id="product"
                                                 aria-label="showing select">
-                                                <option value="1">Box 1 (12 items)</option>
+                                                <?php foreach($boxes as $box): ?>
+                                                    <option value="<?php echo $box->id ?>">Box: #<?php echo $box->id ?></option>
+                                                <?php endforeach ?>
                                             </select>
                                             <label for="type">Box</label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/manager/boxes?box=<?php echo($boxid) ?>"
+                                        <a href="/manager/boxes?box=<?php echo($s->box_id) ?>"
                                             class="btn btn-secondary ms-auto">
                                             <i class="bi bi-eye-fill"></i>
                                             View Box
@@ -137,7 +137,7 @@
                         </form>
                     </div>
 
-                    <?php endfor ?>
+                    <?php endforeach ?>
 
                 </table>
             </div>
@@ -154,7 +154,40 @@
             <button class="btn btn-success" type="button"> Submit </button>
         </div>
     </div>
-    <?php 
-        include_once("components/filter_table.php");
-    ?>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter" aria-labelledby="filterLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="filterLabel">Table Filter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form method="GET">
+                <div class="form-floating mb-3">
+                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan" value="<?php echo $_REQUEST['search'] ?>">
+                    <label for="searchinput">Search</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="order" id="orderselect" aria-label="order select">
+                        <option <?php echo(($_REQUEST['order']=='' || $_REQUEST['order']=='id_desending' ) ? "selected" : "" ) ?> value="id_desending">ID (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='id_asending' ) ? "selected" : "" ) ?> value="id_asending">ID (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_desending' ) ? "selected" : "" ) ?> value="created_desending">Created (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_asending' ) ? "selected" : "" ) ?> value="created_asending">Created (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_desending' ) ? "selected" : "" ) ?> value="updated_desending">Updated (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_asending' ) ? "selected" : "" ) ?> value="updated_asending">Updated (Asending)</option>
+                    </select>
+                    <label for="orderselect">Order By</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
+                        <option <?php echo(($_REQUEST['showing']=='' || $_REQUEST['showing']=='all' ) ? "selected" : "" ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['showing']=='25') ? "selected" : "" ) ?> value="25">Max: 25</option>
+                        <option <?php echo(($_REQUEST['showing']=='50') ? "selected" : "" ) ?> value="50">Max: 50</option>
+                        <option <?php echo(($_REQUEST['showing']=='100') ? "selected" : "" ) ?> value="100">Max: 100</option>
+                        <option <?php echo(($_REQUEST['showing']=='200') ? "selected" : "" ) ?> value="200">Max: 200</option>
+                    </select>
+                    <label for="showingselect">Showing</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </body>

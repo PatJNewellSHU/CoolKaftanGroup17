@@ -47,7 +47,7 @@ class managerController {
             'shelf' => $_REQUEST['shelf']
         ]);
         
-        return header("location: /manager/boxes");
+        return header("location: /manager/boxes?message=New box added.");
     }
 
     public static function deleteBox()
@@ -62,7 +62,7 @@ class managerController {
         $box = $box->find($_REQUEST['box']);
         $box->delete();
 
-        return header("location: /manager/boxes?message=Item Deleted");
+        return header("location: /manager/boxes?message=Box deleted.");
     }
 
     public static function editBox()
@@ -88,22 +88,21 @@ class managerController {
         authenticationHelper::isAuth('manager');
 
         $stock = new stockModel();
+        $boxes = new boxModel();
+        $products = new productModel();
+        
+        $boxes = $boxes->get();
+        $products = $products->get();
 
         // Filtering        
         managerController::basicFilter($_REQUEST, $stock);
 
-        $stock = $stock->get();
+        if(isset($_REQUEST['box']) && $_REQUEST['box'] != null)
+        {
+            $stock = $stock->where('box_id', '=', intval($_REQUEST['box']));
+        }
 
-        $stock = [
-            0 => [
-                'id' => 1,
-                'product_name' => 'Blue kaftan', //Get product name instead of id
-                'product_id' => 1,
-                'box_id' => 1,
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s")
-            ],
-        ];
+        $stock = $stock->get();
 
         return require __DIR__.'/../../views/manager/stock.php';
     }
