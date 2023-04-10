@@ -7,18 +7,17 @@
     fps: 20,
     });
     scanner.render(success, error);
-    function success(result) {
+    function success(result, decodedResult) {
 
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
-    <p>${result}</p>
+    <p id>${result}</p>
     `;
-    let scanResult = result;
-    window.location.href = window.location.href + `?scan = ${scanResult}`;
+      
+    window.location.href = window.location.href + `?result = ${decodedResult}`
     scanner.clear();
     document.getElementById('reader').remove();
-    console.log(result)
     }
-    //function error(err) {
-    //console.error(err);
-    //}
+    function error(err) {
+    console.error(err);
+    }
