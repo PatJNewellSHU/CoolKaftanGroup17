@@ -1,3 +1,5 @@
+let scanResult = ""
+
 
  const scanner = new Html5QrcodeScanner('reader', {
     qrbox: {
@@ -7,15 +9,16 @@
     fps: 20,
     });
     scanner.render(success, error);
-    function success(decodedText, decodedResult) {
-      window.location.href = window.location.href + "?result=" + Html5QrcodeScanner.decodedText + "&result2=" + decodedText;
-      Html5QrcodeScanner.decodedText
-    }
-
-    //;
-    //scanner.clear();
-    //document.getElementById('reader').remove();
-    //}
+    function success(result) {
+      scanResult = result
+      document.getElementById('result').innerHTML = `      
+      <h2>Success!</h2>
+      <p id="scanned">${result}</p>
+      ;`
+      window.location.href = window.location.href + `?result=${scanResult}`
+      scanner.clear();
+      document.getElementById('reader').remove();
+      }
     function error(err) {
     console.error(err);
     }
