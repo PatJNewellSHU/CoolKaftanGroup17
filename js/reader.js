@@ -11,9 +11,8 @@
 
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
-    <p>${decodedText}</p>
+    <p id="scanned">${decodedText}</p>
     `;
-    window.location.href = window.location.href + `?result=${JSON.stringify(decodedText)}`
     scanner.clear();
     document.getElementById('reader').remove();
     }
