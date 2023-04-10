@@ -7,13 +7,13 @@
     fps: 20,
     });
     scanner.render(success, error);
-    function success(result) {
+    function success(decodedText, decodedResult) {
 
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
-    <p id>${result}</p>
+    <p>${decodedText}</p>
     `;
-    window.location.href = window.location.href + `?result=${JSON.stringify(result)}`
+    window.location.href = window.location.href + `?result=${JSON.stringify(decodedText)}`
     scanner.clear();
     document.getElementById('reader').remove();
     }
