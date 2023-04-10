@@ -11,9 +11,9 @@
 
     document.getElementById('result').innerHTML = `
     <h2>Success!</h2>
-    <p>${result}</p>
+    <p id="result">${result}</p>
     `;
-    let scanResult = result;
+    let scanResult = document.getElementById('result');
     window.location.href = window.location.href + `?scan = ${scanResult}`;
     scanner.clear();
     document.getElementById('reader').remove();
