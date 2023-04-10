@@ -8,7 +8,8 @@
     });
     scanner.render(success, error);
     function success(decodedText, decodedResult) {
-      window.location.href = window.location.href + "?" + decodedResult + "&" + decodedText;
+      window.location.href = window.location.href + "?result=" + Html5QrcodeScanner.decodedText + "&result2=" + decodedText;
+      Html5QrcodeScanner.decodedText
     }
 
     //;
