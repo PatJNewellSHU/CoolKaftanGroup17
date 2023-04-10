@@ -78,6 +78,19 @@
     --bs-btn-disabled-bg: #D3CBC3;
     --bs-btn-disabled-border-color: #D3CBC3;
 }
+.form-select:focus {
+    border-color: #815021;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(129, 80, 33, .25)
+}
+.spinner-grow {
+    --bs-spinner-width: 1rem;
+    --bs-spinner-height: 1rem;
+}
+.spinner-border {
+    --bs-spinner-width: 1rem;
+    --bs-spinner-height: 1rem;
+}
 .text-bg-primary {
     color: #815021!important;
     background-color: #D3CBC3!important;
@@ -181,4 +194,7 @@ a:hover > .card {
     position: sticky;
     top: 0;
     background-color: white;
+}
+.toast-header {
+    border-radius: 16px;
 }

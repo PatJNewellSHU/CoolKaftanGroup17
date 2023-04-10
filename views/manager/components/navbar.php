@@ -18,6 +18,7 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"
       defer></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+   <script src="../../public/js/app.js" defer></script>
 </head>
 
 <div id="app">
@@ -60,3 +61,13 @@
          </div>
       </div>
    </nav>
+   <?php if(isset($_REQUEST['message'])): ?>
+   <div class="toast-container position-fixed bottom-0 end-0 p-3 w-100">
+    <div id="messageToast" class="toast ms-auto me-auto" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header border-0">
+         <strong class="me-auto"><?php echo $_REQUEST['message'] ?></strong>
+         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+   </div>
+   <?php endif ?>
+</div>
