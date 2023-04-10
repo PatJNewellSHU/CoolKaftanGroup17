@@ -42,8 +42,8 @@
                 <table class="table table-hover">
                     <thead class="table-head">
                         <td>#</td>
-                        <td>BoxID</td>
-                        <td>Product Name</td>
+                        <td>Box ID</td>
+                        <td>Product ID</td>
                         <td>Created</td>
                         <td>Updated</td>
                     </thead>
@@ -61,11 +61,7 @@
                             #<?php echo $s->box_id ?>
                         </td>
                         <td>
-                            <?php if ($s->getProduct()->name != null) { ?>
-                                <?php echo $s->getProduct()->name ?>
-                            <?php } else { ?>
-                                N/A
-                            <?php } ?>
+                            #<?php echo $s->product_id ?>
                         </td>
                         <td>
                             <?php echo App\Helpers\generalHelper::time_format($s->created_at) ?>

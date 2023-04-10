@@ -68,6 +68,7 @@ abstract class Model {
                 $queryString = $queryString . " LIMIT " . $value;
             }
         }
+
         $results = $this->connection->read($this->table, '*', $queryString);
 
         if(count($results) < 1)
