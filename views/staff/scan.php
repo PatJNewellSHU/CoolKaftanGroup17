@@ -54,10 +54,6 @@
             <button class="btn btn-success my-2" id="clear_Button">clear</button>
          </div>
       </div>
-      <script>
-         let result = documenet.getelementbyid("scanned");
-         window.location.href = window.location.href + "?result = " + result;
-      </script>
 
       <!-- <script>
          // Copyright fix ;)
