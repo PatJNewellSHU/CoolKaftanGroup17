@@ -17,8 +17,7 @@
     window.location.href = window.location.href + `?scan = ${scanResult}`;
     scanner.clear();
     document.getElementById('reader').remove();
-    console.log(result)
     }
-    //function error(err) {
-    //console.error(err);
-    //}
+    function error(err) {
+    console.error(err);
+    }
