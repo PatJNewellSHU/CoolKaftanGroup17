@@ -102,9 +102,59 @@ class managerController {
             $stock = $stock->where('box_id', '=', intval($_REQUEST['box']));
         }
 
+        if(isset($_REQUEST['product']) && $_REQUEST['product'] != null)
+        {
+            $stock = $stock->where('product_id', '=', intval($_REQUEST['product']));
+        }
+
         $stock = $stock->get();
 
         return require __DIR__.'/../../views/manager/stock.php';
+    }
+
+    public static function addStock()
+    {
+        $stock = new stockModel();
+
+        $stock = $stock->create([
+            'product_id' => $_REQUEST['product'],
+            'box_id' => $_REQUEST['box']
+        ]);
+        
+        return header("location: /manager/stock?message=New stock added.");   
+    }
+
+    public static function deleteStock()
+    {
+        if(!isset($_REQUEST['stock']))
+        {
+            return header("location: /manager/stock");
+        }
+
+        $stock = new stockModel();
+
+        $stock = $stock->find($_REQUEST['stock']);
+        $stock->delete();
+
+        return header("location: /manager/stock?message=Stock deleted.");
+    }
+
+    public static function editStock()
+    {
+        if(!isset($_REQUEST['stock']))
+        {
+            return header("location: /manager/stock");
+        }
+
+        $stock = new stockModel();
+
+        $stock = $stock->find($_REQUEST['stock']);
+        $stock = $stock->edit([
+            'product_id' => $_REQUEST['product'],
+            'box_id' => $_REQUEST['box']
+        ]);
+        
+        return header("location: /manager/stock?stock=".$_REQUEST['stock']."&message=Changes saved.");   
     }
 
     public static function performance()

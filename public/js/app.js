@@ -10,7 +10,7 @@ buttons.forEach((btn) => {
         setTimeout(() => {
             btn.innerHTML = originalContent;
             btn.style.width = '';
-          }, 2000);   
+          }, 3000);   
     });
 });
 

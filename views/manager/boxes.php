@@ -100,6 +100,15 @@
                                             <label for="shelf">Shelf</label>
                                         </div>
                                     </div>
+                                    <?php if(isset($_REQUEST['stock'])): ?>
+                                        <div class="modal-footer">
+                                            <a href="/manager/stock?stock=<?php echo $_REQUEST['stock'] ?>"
+                                                class="btn btn-secondary ms-auto me-auto">
+                                                <i class="bi bi-arrow-left"></i>
+                                                Back to Stock
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="modal-footer">
                                         <a href="/manager/stock?box=<?php echo $box->id ?>"
                                             class="btn btn-secondary ms-auto">

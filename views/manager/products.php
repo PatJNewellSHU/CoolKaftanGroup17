@@ -103,8 +103,22 @@ include_once 'components/navbar.php';
                                             <label for="price">Price</label>
                                         </div>
                                     </div>
+                                    <?php if(isset($_REQUEST['stock'])): ?>
+                                        <div class="modal-footer">
+                                            <a href="/manager/stock?stock=<?php echo $_REQUEST['stock'] ?>"
+                                                class="btn btn-secondary ms-auto me-auto">
+                                                <i class="bi bi-arrow-left"></i>
+                                                Back to Stock
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="modal-footer">
-                                        <a href="#" type="submit" name="delete" class="btn btn-danger ms-auto">
+                                    <a href="/manager/stock?product=<?php echo $id ?>"
+                                            class="btn btn-secondary ms-auto">
+                                            <i class="bi bi-eye-fill"></i>
+                                            View Stock
+                                        </a>
+                                        <a href="#" type="submit" name="delete" class="btn btn-danger">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>
