@@ -16,11 +16,27 @@
                         <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], '/settings?view=site') ? "active text-dark" : "text-dark"
                   )?>" aria-current="page" href="/settings?view=site">Site Settings</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo (str_contains($_SERVER['REQUEST_URI'], '/settings?view=about') ? "active text-dark" : "text-dark"
+                  )?>" aria-current="page" href="/settings?view=about">Site Information</a>
+                    </li>
                 </ul>
             </div>
-            <div class="col-12 overflow-x-auto">
-                a
-            </div>
+            <?php if($_REQUEST['view'] == ''): ?>
+                <div class="col-12 overflow-x-auto">
+                Account
+                </div>
+            <?php endif ?>
+            <?php if($_REQUEST['view'] == 'site'): ?>
+                <div class="col-12 overflow-x-auto">
+                Site
+                </div>
+            <?php endif ?>
+            <?php if($_REQUEST['view'] == 'about'): ?>
+                <div class="col-12 overflow-x-auto">
+                <pre><?php echo(phpinfo());?></pre>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </body>

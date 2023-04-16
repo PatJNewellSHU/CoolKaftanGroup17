@@ -35,6 +35,16 @@ class managerController {
 
         $boxes = $box->get();
 
+        if(!$_REQUEST['message'])
+        {
+
+            if($boxes == null)
+            {
+                $_REQUEST['message'] = 'Table is empty.';
+            } else {
+                $_REQUEST['message'] = \number_format(count($boxes)) . ' items loaded from database.';
+            }
+        }
         return require __DIR__.'/../../views/manager/boxes.php';
     }
 
@@ -109,6 +119,17 @@ class managerController {
 
         $stock = $stock->get();
 
+
+        if(!$_REQUEST['message'])
+        {
+            if($stock == null)
+            {
+                $_REQUEST['message'] = 'Table is empty.';
+            } else {
+                $_REQUEST['message'] = \number_format(count($boxes) + count($stock) + count($products)) . ' items loaded from database.';
+            }
+        }
+
         return require __DIR__.'/../../views/manager/stock.php';
     }
 
@@ -167,23 +188,76 @@ class managerController {
     public static function products()
     {
         authenticationHelper::isAuth('manager');
-    
-        $products = [
-            0 => [
-                'id' => 1,
-                'name' => 'Blue Kaftan',
-                'colour' => 'Blue',
-                'size' => 'XL',
-                'price' => 10.43,
-                'units' => 12, // Calculated from amount of stock
-                'barcode' => '12345678',
-                'created_at'=> date("Y-m-d H:i:s"),
-                'updated_at'=> date("Y-m-d H:i:s")
-            ]
-        ];
+
+        $product = new productModel();
+
+        managerController::basicFilter($_REQUEST, $product);
+
+        $products = $product->get();
+
+        if(!$_REQUEST['message'])
+        {
+            if($products == null)
+            {
+                $_REQUEST['message'] = 'Table is empty.';
+            } else {
+                $_REQUEST['message'] = \number_format(count($products)) . ' products loaded from database.';
+            }
+        }
 
         return require __DIR__.'/../../views/manager/products.php';
   
+    }
+
+    public static function addProduct()
+    {
+        $product = new productModel();
+
+        $product = $product->create([
+            'name' => $_REQUEST['name'],
+            'colour' => $_REQUEST['colour'],
+            'size' => $_REQUEST['size'],
+            'barcode' => $_REQUEST['barcode'],
+            'price' => $_REQUEST['price'],
+        ]);
+        
+        return header("location: /manager/products?message=New product added."); 
+    }
+
+    public static function editProduct()
+    {
+        if(!isset($_REQUEST['product']))
+        {
+            return header("location: /manager/products");
+        }
+
+        $box = new productModel();
+
+        $box = $box->find($_REQUEST['product']);
+        $box = $box->edit([
+            'name' => $_REQUEST['name'],
+            'colour' => $_REQUEST['colour'],
+            'size' => $_REQUEST['size'],
+            'barcode' => $_REQUEST['barcode'],
+            'price' => $_REQUEST['price'],
+        ]);
+        
+        return header("location: /manager/products?product=".$_REQUEST['product']."&message=Changes saved.");
+    }
+
+    public static function deleteProduct()
+    {
+        if(!isset($_REQUEST['product']))
+        {
+            return header("location: /manager/products");
+        }
+
+        $product = new productModel();
+
+        $product = $product->find($_REQUEST['product']);
+        $product->delete();
+
+        return header("location: /manager/products?message=Product deleted.");
     }
 
     public static function basicFilter($request, $model)

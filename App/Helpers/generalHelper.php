@@ -29,7 +29,7 @@ class generalHelper {
                 {
                     $value = $value . "s";
                 }
-                $value = $diff->$constant . ' ' . $v . ($diff->$constant > 1 ? $value : '');
+                $value = $diff->$constant . ' ' . $v . ($diff->$constant > 0 ? $value : '');
             } else {
                 unset($string[$constant]);
             }

@@ -70,8 +70,14 @@ switch ($url) {
     case (preg_match('/manager\/products.*/', $request)? true: false):
         managerController::products();
         break;
-    case '/manager/addItem':
-        managerController::addItem();
+    case '/manager/add/product':
+        managerController::addProduct();
+        break;
+    case (preg_match('/manager\/delete\/product.*/', $request)? true: false):
+        managerController::deleteProduct();
+        break;
+    case (preg_match('/manager\/edit\/product.*/', $request)? true: false):
+        managerController::editProduct();
         break;
     case '/400':
         http_response_code(400);

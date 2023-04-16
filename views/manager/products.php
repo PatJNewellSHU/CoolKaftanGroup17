@@ -24,44 +24,41 @@ include_once 'components/navbar.php';
                         <td>Name</td>
                         <td>Colour</td>
                         <td>Size</td>
-                        <td>Number of units</td>
                         <td>Price</td>
-
+                        <td>Created</td>
+                        <td>Updated</td>
                     </thead>
                     <?php
-
-                        for ($i=0; $i<count($products); $i++):
-                            $id = $products[$i]['id'];
-                            $name = $products[$i]['name'];
-                            $colour = $products[$i]['colour'];
-                            $size = $products[$i]['size'];
-                            $price = $products[$i]['price'];
-                            $units = $products[$i]['units'];
-                    
+                    foreach ($products as $p => $product):                   
                     ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#product_<?php echo $id; ?>">
+                    <tr data-bs-toggle="modal" data-bs-target="#product_<?php echo $product->id; ?>">
                         <td>
-                            <?php echo $id; ?>
+                            <?php echo $product->id; ?>
                         </td>
                         <td>
-                            <?php echo $name; ?>
+                            <?php echo $product->name; ?>
                         </td>
                         <td>
-                            <?php echo $colour; ?>
+                            <?php echo $product->colour; ?>
                         </td>
                         <td>
-                            <?php echo $size; ?>
+                            <?php echo $product->size; ?>
                         </td>
-                        <td><?php echo $units; ?></td>
                         <td>
-                            <?php echo $price; ?>
+                            <?php echo $product->price; ?>
+                        </td>
+                        <td>
+                            <?php echo App\Helpers\generalHelper::time_format($product->created_at) ?>
+                        </td>
+                        <td>
+                            <?php echo App\Helpers\generalHelper::time_format($product->updated_at) ?>
                         </td>
                     </tr>
-                    <div class="modal fade" id="product_<?php echo $id; ?>" tabindex="-1"
+                    <div class="modal fade" id="product_<?php echo $product->id; ?>" tabindex="-1"
                         aria-labelledby="product" aria-hidden="true">
-                        <form method="POST" action="/manager/all/edit">
+                        <form method="POST" action="/manager/edit/product?product=<?php echo $product->id ?>">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -70,7 +67,7 @@ include_once 'components/navbar.php';
                                                 Editing
                                             </div>
                                             <div class="modal-title fs-5" id="exampleModalLabel">
-                                                <?php echo $ProdName; ?>
+                                                <?php echo $product->name; ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -81,25 +78,25 @@ include_once 'components/navbar.php';
 
                                         <div class="form-floating mb-3">
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="name" required value="<?php echo $name; ?>">
+                                                placeholder="name" required value="<?php echo $product->name; ?>">
                                             <label for="name">Name</label>
                                         </div>
 
                                         <div class="form-floating mb-3">
                                             <input type="text" name="colour" class="form-control" id="colour"
-                                                placeholder="colour" value="<?php echo $colour; ?>" required>
+                                                placeholder="colour" value="<?php echo $product->colour; ?>" required>
                                             <label for="colour">Colour</label>
                                         </div>
 
                                         <div class="form-floating mb-3">
                                             <input type="text" name="size" class="form-control" id="size"
-                                                placeholder="size" required value="<?php echo $size; ?>">
+                                                placeholder="size" required value="<?php echo $product->size; ?>">
                                             <label for="size">Size</label>
                                         </div>
 
                                         <div class="form-floating mb-3">
                                             <input type="text" name="price" class="form-control" id="price"
-                                                placeholder="price" required value="<?php echo $price; ?>">
+                                                placeholder="price" required value="<?php echo $product->price; ?>">
                                             <label for="price">Price</label>
                                         </div>
                                     </div>
@@ -113,17 +110,18 @@ include_once 'components/navbar.php';
                                         </div>
                                     <?php endif; ?>
                                     <div class="modal-footer">
-                                    <a href="/manager/stock?product=<?php echo $id ?>"
+                                    <a href="/manager/stock?product=<?php echo $product->id ?>"
                                             class="btn btn-secondary ms-auto">
                                             <i class="bi bi-eye-fill"></i>
                                             View Stock
                                         </a>
-                                        <a href="#" type="submit" name="delete" class="btn btn-danger">
+                                        <a href="manager/delete/product?product=<?php echo $product->id ?>" name="delete" class="btn btn-danger">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i>
-                                            Save changes</button>
+                                            Save changes
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +129,7 @@ include_once 'components/navbar.php';
                         </form>
                     </div>
 
-                    <?php endfor ?>
+                    <?php endforeach ?>
                 </table>
             </div>
         </div>
@@ -143,32 +141,37 @@ include_once 'components/navbar.php';
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form method="POST" action="/manager/addItem">
+            <form method="POST" action="/manager/add/product">
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodName" class="form-control" id="prodName" placeholder="name"
+                    <input type="text" name="name" class="form-control" id="name" placeholder="name"
                         required>
-                    <label for="prodName">Product Name</label>
+                    <label for="name">Name</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodDetail" class="form-control" id="prodDetail"
+                    <input type="text" name="colour" class="form-control" id="colour"
                         placeholder="details" required>
-                    <label for="prodDetail">Product Details</label>
+                    <label for="colour">Colour</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodSize" class="form-control" id="prodSize" placeholder="size"
+                    <input type="text" name="size" class="form-control" id="size" placeholder="size"
                         required>
-                    <label for="prodSize">Product Size</label>
+                    <label for="size">Size</label>
+                </div>
+                
+                <div class="form-floating mb-3">
+                    <input type="text" name="barcode" class="form-control" id="barcode" placeholder="barcode"
+                        required>
+                    <label for="barcode">Barcode</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodPrice" class="form-control" id="prodPrice" placeholder="price"
+                    <input type="text" name="price" class="form-control" id="price" placeholder="price"
                         required>
-                    <label for="prodPrice">Product Price</label>
+                    <label for="price">Price</label>
                 </div>
-
 
                 <button type="submit" name="submit" class="btn btn-primary">
                     Submit
@@ -176,9 +179,54 @@ include_once 'components/navbar.php';
             </form>
         </div>
     </div>
-    <?php
-    include_once 'components/filter_table.php';
-    ?>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter" aria-labelledby="filterLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="filterLabel">Table Filter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form method="GET">
+                <div class="form-floating mb-3">
+                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan"
+                        value="<?php echo $_REQUEST['search'] ?>">
+                    <label for="searchinput">Search</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="order" id="orderselect" aria-label="order select">
+                        <option <?php echo(($_REQUEST['order']=='' || $_REQUEST['order']=='id_desending' ) ? "selected"
+                            : "" ) ?> value="id_desending">ID (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='id_asending' ) ? "selected" : "" ) ?>
+                            value="id_asending">ID (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_desending' ) ? "selected" : "" ) ?>
+                            value="created_desending">Created (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_asending' ) ? "selected" : "" ) ?>
+                            value="created_asending">Created (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_desending' ) ? "selected" : "" ) ?>
+                            value="updated_desending">Updated (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_asending' ) ? "selected" : "" ) ?>
+                            value="updated_asending">Updated (Asending)</option>
+                    </select>
+                    <label for="orderselect">Order By</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
+                        <option <?php echo(($_REQUEST['showing']=='' || $_REQUEST['showing']=='all' ) ? "selected" : ""
+                            ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['showing']=='25' ) ? "selected" : "" ) ?> value="25">Max: 25
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='50' ) ? "selected" : "" ) ?> value="50">Max: 50
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='100' ) ? "selected" : "" ) ?> value="100">Max: 100
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='200' ) ? "selected" : "" ) ?> value="200">Max: 200
+                        </option>
+                    </select>
+                    <label for="showingselect">Showing</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
     </div>
     <?php
     if($_GET['product'] != null)

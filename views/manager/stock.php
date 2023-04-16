@@ -172,11 +172,33 @@
         </div>
         <div class="offcanvas-body">
             <form method="POST" action="/manager/add/stock">
+                <?php if($_REQUEST['product']): ?>
+                <div class="card mb-3">
+                    <div class="card-body row">
+                        <div class="col-auto">
+                            <div class="mt-1 mb-1">
+                                <b>Note:</b> We've preselected the product you are viewing the stock for.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <?php if($_REQUEST['box']): ?>
+                <div class="card mb-3">
+                    <div class="card-body row">
+                        <div class="col-auto">
+                            <div class="mt-1 mb-1">
+                                <b>Note:</b> We've preselected the box you are viewing the stock for.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
 
                 <div class="form-floating mb-3">
                     <select class="form-select" name="product" id="product" aria-label="showing select">
                         <?php foreach($products as $product): ?>
-                        <option value="<?php echo $product->id ?>">#
+                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="<?php echo $product->id ?>">#
                             <?php echo $product->id ?>:
                             <?php echo $product->name ?>
                         </option>
@@ -187,7 +209,7 @@
                 <div class="form-floating mb-3">
                     <select class="form-select" name="box" id="box" aria-label="showing select">
                         <?php foreach($boxes as $box): ?>
-                        <option value="<?php echo $box->id ?>">Box: #
+                        <option <?php echo(($_REQUEST['box']==$box->id ) ? "selected" : "" ) ?> value="<?php echo $box->id ?>">Box: #
                             <?php echo $box->id ?>
                         </option>
                         <?php endforeach ?>

@@ -48,8 +48,14 @@ class dbHelper {
     //If these dont work i sincerely apologise - I'll rewrite them again back to how they used to be 
     public function create($table, $columns=[], $values=[])
     {
+        // Get last object in database and get it's ID
+        $statement = $this->connection->prepare("SELECT MAX(id) FROM " . $table);
+        $statement->execute();
+        
+        $lastItem = $statement->get_result()->fetch_assoc()['MAX(id)'];
+
         // Inject id/created_at/updated_at into values string
-        $values['id'] = $this->count($table)+1;
+        $values['id'] = $lastItem+1;
         $values['updated_at'] = date("Y-m-d H:i:s");
         $values['created_at'] = date("Y-m-d H:i:s");
 
