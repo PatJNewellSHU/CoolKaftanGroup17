@@ -19,7 +19,6 @@ class mailHelper {
         foreach ($performance as $p => $perm) {
             $products[$perm->product_id][$p] = $perm->getProduct();
         }
-
         print_r($products);
         die();
 

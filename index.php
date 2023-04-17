@@ -67,6 +67,15 @@ switch ($url) {
     case (preg_match('/manager\/performance.*/', $request)? true: false):
         managerController::performance();
         break;
+    case '/manager/add/performance':
+        managerController::addPerformance();
+        break;
+    case (preg_match('/manager\/delete\/performance.*/', $request)? true: false):
+        managerController::deletePerformance();
+        break;
+    case (preg_match('/manager\/edit\/performance.*/', $request)? true: false):
+        managerController::editPerformance();
+        break;
     case (preg_match('/manager\/products.*/', $request)? true: false):
         managerController::products();
         break;

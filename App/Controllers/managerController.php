@@ -182,10 +182,68 @@ class managerController {
     {
         authenticationHelper::isAuth('manager');
 
+        $performance = new performanceModel();
         $products = new productModel();
         $products = $products->get();
 
+        managerController::basicFilter($_REQUEST, $performance);
+
+        $performance = $performance->get();
+
+        if(!$_REQUEST['message'])
+        {
+            if($performance == null)
+            {
+                $_REQUEST['message'] = 'Table is empty.';
+            } else {
+                $_REQUEST['message'] = \number_format(count($performance)) . ' products loaded from database.';
+            }
+        }
+
         return require __DIR__.'/../../views/manager/performance.php';
+    }
+
+    public static function addPerformance()
+    {
+        $performance = new performanceModel();
+
+        $performance = $performance->create([
+            'product_id' => intval($_REQUEST['product'])
+        ]);
+
+        return header("location: /manager/performance?message=New product added."); 
+    }
+
+    public static function editPerformance()
+    {
+        if(!isset($_REQUEST['performance']))
+        {
+            return header("location: /manager/performance");
+        }
+
+        $performance = new performanceModel();
+
+        $performance = $performance->find(intval($_REQUEST['performance']));
+        $performance = $performance->edit([
+            'product_id' => intval($_REQUEST['product']),
+        ]);
+        
+        return header("location: /manager/performance?performance=".$_REQUEST['performance']."&message=Changes saved.");   
+    }
+
+    public static function deletePerformance()
+    {
+        if(!isset($_REQUEST['performance']))
+        {
+            return header("location: /manager/performance");
+        }
+
+        $performance = new performanceModel();
+
+        $performance = $performance->find($_REQUEST['performance']);
+        $performance->delete();
+
+        return header("location: /manager/performance?message=Performance deleted.");
     }
 
     public static function products()
