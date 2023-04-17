@@ -12,20 +12,24 @@ class mailHelper {
 
         $performance = new performanceModel();
         $performance = $performance
-            ->where('created_at', '>', $user->last_email);
-
-        print_r($performance);
-        print_r($performance->get());
-        die();
+            ->where('created_at', '>', $user->last_email)
+            ->get();
 
         $products = [];
         foreach ($performance as $p => $perm) {
-            $products[$perm->product_id] += $perm->getProduct();
-            $products[$perm->product_id] += $perm;
+            $products[$perm->product_id][$p] = $perm->getProduct();
+            //$products[$perm->product_id] += $perm;
         }
 
         print_r($products);
         die();
+
+        // item 1 -> product 1
+        // item 2 -> product 2
+        // item 3 -> product 1
+
+        // product 1 -> [item 1, item 3]
+        // product 2 -> [item 2]
 
         // Format the data in HTML
         $subject = 'Performance';
