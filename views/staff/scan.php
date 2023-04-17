@@ -57,6 +57,9 @@
                         </select>
                     <label for="type">Box</label>
                 </div>
+                  <button type="submit" name="submit" class="btn btn-success">
+                        Submit
+                      </button>
                      </div>
                   </div>
                   <?php endif; ?>
