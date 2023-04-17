@@ -20,7 +20,6 @@
                     <thead class="table-head">
                         <td>#</td>
                         <td>Type</td>
-                        <td>Products</td>
                         <td>Shelf</td>
                         <td>Created</td>
                         <td>Updated</td>
@@ -37,9 +36,6 @@
                         </td>
                         <td>
                             <?php echo((($box->box_type== '0' ) ? "mixed" : "non-mixed" )) ?>
-                        </td>
-                        <td>
-                            <?php echo number_format(count($box->getProducts())) ?>
                         </td>
                         <td>
                             <?php echo str_replace('_', ' ', $box->shelf) ?>
