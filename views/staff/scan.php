@@ -32,6 +32,7 @@
          </div>
       </nav>
       <main class="py-4">
+         <h1>pls dont scan random fucking barcodes</h1>
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-12 col-lg-6">
@@ -45,20 +46,28 @@
                   <?php else: ?>
                      <div class="card">
                      <div class="card-body">
-                        <?php echo $product->name ?>
-                        <div class="form-floating mb-3">
-                    <select class="form-select" name="box" id="box" aria-label="showing select">
+                     <form action="/staff/scan/submit" method="POST">
+                           <?php echo $product->name ?>
+                           <div class="form-floating mb-3">
+                        <select class="form-select" name="box" id="box" aria-label="showing select">
                         <?php foreach($boxes as $box): ?>
-                        <option <?php echo(($_REQUEST['box']==$box->id ) ? "selected" : "" ) ?> value="<?php echo $box->id ?>">Box: #
+                           <option value="<?php echo $box->id ?>">Box: #
                             <?php echo $box->id ?>
-                        </option>
+                           </option>
                         <?php endforeach ?>
-                    </select>
+                        </select>
+                        
                     <label for="type">Box</label>
+
+                    <input type="text" class = "invisible" name="id" value = "<?php echo $product->id ?>">
                 </div>
+                  <button type="submit" name="submit" class="btn btn-success">
+                        Submit
+                      </button>
                      </div>
                   </div>
                   <?php endif; ?>
+                  </form>
                </div>
             </div>
          </div>

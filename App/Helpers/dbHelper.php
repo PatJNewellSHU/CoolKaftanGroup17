@@ -18,6 +18,7 @@ class dbHelper {
     {
 
         $statement = $this->connection->prepare($query);
+        
 
         if($statement == false)
         {

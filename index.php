@@ -67,6 +67,15 @@ switch ($url) {
     case (preg_match('/manager\/performance.*/', $request)? true: false):
         managerController::performance();
         break;
+    case '/manager/add/performance':
+        managerController::addPerformance();
+        break;
+    case (preg_match('/manager\/delete\/performance.*/', $request)? true: false):
+        managerController::deletePerformance();
+        break;
+    case (preg_match('/manager\/edit\/performance.*/', $request)? true: false):
+        managerController::editPerformance();
+        break;
     case (preg_match('/manager\/products.*/', $request)? true: false):
         managerController::products();
         break;
@@ -78,6 +87,9 @@ switch ($url) {
         break;
     case (preg_match('/manager\/edit\/product.*/', $request)? true: false):
         managerController::editProduct();
+        break;
+    case (preg_match('/staff\/scan\/submit.*/', $request)? true: false):
+        staffController::submitScan();
         break;
     case '/400':
         http_response_code(400);

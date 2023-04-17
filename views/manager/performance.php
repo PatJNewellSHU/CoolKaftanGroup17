@@ -24,17 +24,28 @@
                         <td>Created</td>
                         <td>Updated</td>
                     </thead>
+                    <?php
+                    foreach ($performance as $v => $perf):                   
+                    ?>
 
                     <!-- Database Item -->
-                    <tr data-bs-toggle="modal" data-bs-target="#editModal_ID">
-                        <td>0</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
+                    <tr data-bs-toggle="modal" data-bs-target="#perf_<?php echo $perf->id ?>">
+                        <td>
+                            <?php echo $perf->id ?>
+                        </td>
+                        <td>
+                            <?php echo $perf->product_id ?>
+                        </td>
+                        <td>
+                            <?php echo App\Helpers\generalHelper::time_format($perf->created_at) ?>
+                        </td>
+                        <td>
+                            <?php echo App\Helpers\generalHelper::time_format($perf->updated_at) ?>
+                        </td>
                     </tr>
-                    <div class="modal fade" id="editModal_ID" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="perf_<?php echo $perf->id ?>" tabindex="-1" aria-labelledby="perf_"
                         aria-hidden="true">
-                        <form method="POST" action="/manager/all/edit">
+                        <form method="POST" action="/manager/edit/performance?performance=<?php echo $perf->id ?>">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -42,43 +53,37 @@
                                             <div class="fw-bold">
                                                 Editing
                                             </div>
-                                            <div class="modal-title fs-5" id="exampleModalLabel">
-                                                <?php echo $ProdName; ?>
+                                            <div class="modal-title fs-5" id="box">
+                                                Performance: #
+                                                <?php echo number_format($perf->id); ?>
                                             </div>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodName" class="form-control" id="prodName"
-                                                placeholder="name" required value="<?php echo $ProdName; ?>">
-                                            <label for="productname">Product Name</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodDetail" class="form-control" id="prodDetail"
-                                                placeholder="details" required>
-                                            <label for="prodDetail" value="<?php echo $ProdDetail; ?>">Product
-                                                Details</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodSize" class="form-control" id="prodSize"
-                                                placeholder="size" required value="<?php echo $ProdSize; ?>">
-                                            <label for="prodSize">Product Size</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="prodPrice" class="form-control" id="prodPrice"
-                                                placeholder="price" required value="<?php echo $ProdPrice; ?>">
-                                            <label for="prodPrice">Product Price</label>
+                                    <div class="form-floating mb-3">
+                                            <select class="form-select" name="product" id="product"
+                                                aria-label="showing select">
+                                                <?php foreach($products as $product): ?>
+                                                <option <?php echo(($perf->product_id==$product->id ) ? "selected" : "" )
+                                                    ?> value="<?php echo $product->id ?>">#<?php echo $product->id ?>:
+                                                    <?php echo $product->name ?>
+                                                </option>
+                                                <?php endforeach ?>
+                                            </select>
+                                            <label for="type">Product</label>
                                         </div>
                                     </div>
+
                                     <div class="modal-footer">
-                                        <a href="#" class="btn btn-danger ms-auto" data-bs-dismiss="modal">
+                                        <a href="/manager/products?product=<?php echo $perf->product_id ?>&performance=<?php echo $perf->id ?>"
+                                            class="btn btn-secondary ms-auto">
+                                            <i class="bi bi-eye-fill"></i>
+                                            View Product
+                                        </a>
+                                        <a href="/manager/delete/performance?performance=<?php echo $perf->id ?>"
+                                            class="btn btn-danger">
                                             <i class="bi bi-x-lg"></i>
                                             Delete
                                         </a>
@@ -90,6 +95,8 @@
 
                         </form>
                     </div>
+
+                    <?php endforeach; ?>
 
                 </table>
             </div>
@@ -103,7 +110,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form method="POST" action="/manager/addItem">
+            <form method="POST" action="/manager/add/performance">
                 <div class="card mb-3">
                     <div class="card-body row">
                         <div class="col-auto">
@@ -117,10 +124,8 @@
                 <div class="form-floating mb-3">
                     <select class="form-select" name="product" id="product" aria-label="showing select">
                         <?php foreach($products as $product): ?>
-                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="
-                            <?php echo $product->id ?>">#
-                            <?php echo $product->id ?>:
-                            <?php echo $product->name ?>
+                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="<?php echo $product->id ?>">
+                        #<?php echo $product->id ?>: <?php echo $product->name ?>
                         </option>
                         <?php endforeach ?>
                     </select>
@@ -128,8 +133,9 @@
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-primary">
-                    Add
+                    <i class="bi bi-plus-lg"></i> Add
                 </button>
+
             </form>
         </div>
     </div>
@@ -151,8 +157,11 @@
                 </ul>
 
                 <button type="submit" name="submit" class="btn btn-primary">
-                    Submit
+                    <i class="bi bi-check-lg"></i> Save
                 </button>
+                <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
+                    aria-controls="offcanvasExample"><i class="bi bi-rocket-takeoff-fill"></i> Send Test
+                    Notification</a>
             </form>
         </div>
     </div>
@@ -166,28 +175,57 @@
         <div class="offcanvas-body">
             <form method="GET">
                 <div class="form-floating mb-3">
-                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan">
+                    <input type="text" name="search" class="form-control" id="searchinput" placeholder="Cool Kaftan"
+                        value="<?php echo $_REQUEST['search'] ?>">
                     <label for="searchinput">Search</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="order" id="orderselect" aria-label="order select">
-                        <option selected value="desending">Desending</option>
-                        <option value="asending">Asending</option>
+                        <option <?php echo(($_REQUEST['order']=='' || $_REQUEST['order']=='id_desending' ) ? "selected"
+                            : "" ) ?> value="id_desending">ID (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='id_asending' ) ? "selected" : "" ) ?>
+                            value="id_asending">ID (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_desending' ) ? "selected" : "" ) ?>
+                            value="created_desending">Created (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='created_asending' ) ? "selected" : "" ) ?>
+                            value="created_asending">Created (Asending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_desending' ) ? "selected" : "" ) ?>
+                            value="updated_desending">Updated (Desending)</option>
+                        <option <?php echo(($_REQUEST['order']=='updated_asending' ) ? "selected" : "" ) ?>
+                            value="updated_asending">Updated (Asending)</option>
                     </select>
                     <label for="orderselect">Order By</label>
                 </div>
                 <div class="form-floating mb-3">
                     <select class="form-select" name="showing" id="showingselect" aria-label="showing select">
-                        <option selected value="all">All</option>
-                        <option value="25">Max: 25</option>
-                        <option value="50">Max: 50</option>
-                        <option value="100">Max: 100</option>
-                        <option value="200">Max: 200</option>
+                        <option <?php echo(($_REQUEST['showing']=='' || $_REQUEST['showing']=='all' ) ? "selected" : ""
+                            ) ?> value="all">All</option>
+                        <option <?php echo(($_REQUEST['showing']=='25' ) ? "selected" : "" ) ?> value="25">Max: 25
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='50' ) ? "selected" : "" ) ?> value="50">Max: 50
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='100' ) ? "selected" : "" ) ?> value="100">Max: 100
+                        </option>
+                        <option <?php echo(($_REQUEST['showing']=='200' ) ? "selected" : "" ) ?> value="200">Max: 200
+                        </option>
                     </select>
                     <label for="showingselect">Showing</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Save</button>
             </form>
         </div>
     </div>
+    <?php
+    if($_GET['performance'] != null)
+    {
+        echo("
+        <script defer>
+            window.onload = function(e){ 
+                var modal = new window.bootstrap.Modal('#perf_" . $_GET['performance'] . "');
+                modal.show();
+            }
+        </script>
+        ");
+    }  
+?>
 </body>
