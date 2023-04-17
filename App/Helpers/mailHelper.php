@@ -16,63 +16,60 @@ class mailHelper {
             ->get();
 
         $products = [];
-        foreach ($performance as $p => $perm) {
-            $products[$perm->product_id][$p] = $perm->getProduct();
+
+        foreach ($performance as $perm) {
+            $product_id = $perm->product_id;
+            $products[$product_id]['product'] = $perm->getProduct();
+            $products[$product_id]['scans'][$perm->id] = $perm;
+            $products[$product_id]['scan_count'] = count($products[$product_id]['scans']);
         }
 
-        print_r($products);
-        die();
 
-        // item 1 -> product 1
-        // item 2 -> product 2
-        // item 3 -> product 1
-
-        // product 1 -> [item 1, item 3]
-        // product 2 -> [item 2]
 
         // Format the data in HTML
         $subject = 'Performance';
         $message = '
                     <html>
                     <head>
-                    <title>' . $subject . '</title>
+                        <title>' . $subject . '</title>
                     </head>
                     <body>
-                    <h1>Product Performance Report</h1>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Performance</th>
-                        </tr>
-                        </thead>
-                        <tbody>';
-                            foreach ($performance as $p => $performance) {
+                        <h1>Product Performance Report</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Sales</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                            foreach ($products as $product) {
                                 $message .= '
-                        <tr>
-                            <td>' . $performance->getProduct()->name . '</td>
-                        </tr>';
+                            <tr>
+                                <td>' . $product['product']->name . '</td>
+                                <td>' . $product['scan_count'] . '</td>
+                            </tr>';
                             }
                             $message .= '
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </body>
                     </html>
                     ';
 
         // Send the email
         $to = 'coolkaftan17performance@gmail.com';
-        
         $headers = 'From: sender@example.com' . "\r\n" .
             'Reply-To: sender@example.com' . "\r\n" .
             'Content-type: text/html; charset=UTF-8' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        $mail = mail($to, $subject, $message, $headers);
+        mail($to, $subject, $message, $headers);
 
-        $user->edit([
-            'last_email' => now(),
-        ]);
+        // $user->edit([
+        //     'last_email' => date("Y-m-d H:i:s")
+        // ]);
+
 
     }
 
