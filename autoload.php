@@ -23,4 +23,5 @@ require_once(__DIR__ . "/App/Models/boxModel.php");
 require_once(__DIR__ . "/App/Models/productModel.php");
 require_once(__DIR__ . "/App/Models/stockModel.php");
 require_once(__DIR__ . "/App/Models/userModel.php");
+require_once(__DIR__ . "/App/Models/performanceModel.php");
 

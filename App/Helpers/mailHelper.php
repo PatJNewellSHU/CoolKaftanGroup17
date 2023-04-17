@@ -12,9 +12,11 @@ class mailHelper {
 
         $performance = new performanceModel();
         $performance = $performance
-            ->where('created_at', '>', $user->last_email)
-            ->get();
+            ->where('created_at', '>', $user->last_email);
 
+        print_r($performance);
+        print_r($performance->get());
+        die();
 
         $products = [];
         foreach ($performance as $p => $perm) {

@@ -22,8 +22,9 @@ abstract class Model {
 
     public function where($item, $del="=", $value)
     {
+
         $this->conditions['lim-'.count($this->conditions)] = $item." ".$del." '".$value ."'";
-        
+
         return $this;
     }
 
