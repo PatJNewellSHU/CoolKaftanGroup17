@@ -46,6 +46,16 @@
                      <div class="card">
                      <div class="card-body">
                         <?php echo $product->name ?>
+                        <div class="form-floating mb-3">
+                    <select class="form-select" name="box" id="box" aria-label="showing select">
+                        <?php foreach($boxes as $box): ?>
+                        <option <?php echo(($_REQUEST['box']==$box->id ) ? "selected" : "" ) ?> value="<?php echo $box->id ?>">Box: #
+                            <?php echo $box->id ?>
+                        </option>
+                        <?php endforeach ?>
+                    </select>
+                    <label for="type">Box</label>
+                </div>
                      </div>
                   </div>
                   <?php endif; ?>

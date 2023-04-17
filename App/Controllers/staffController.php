@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\authenticationHelper;
 use App\Models\productModel;
+use App\Models\boxModel;
 
 class staffController {
 
@@ -13,6 +14,10 @@ class staffController {
         {
             $product = new productModel();
             $product = $product->find($_REQUEST['scan']);
+
+            $boxes = new boxModel();
+        
+            $boxes = $boxes->get();
             
         }
 
