@@ -35,8 +35,11 @@ class staffController {
         {
             if(isset($_REQUEST['id']))
             {
-                
-                create('performance',['proudct_id','created_at','updated_at'],[$_REQUEST['id'],date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
+                $performance = new performanceModel();
+                $performance->create([
+                    'product_id' => $_REQUEST['id'],
+                ]);
+                // reate('performance',['proudct_id','created_at','updated_at'],[$_REQUEST['id'],date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
 
             }
         }

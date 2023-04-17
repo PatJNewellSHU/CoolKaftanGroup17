@@ -150,10 +150,8 @@
             <form method="POST" action="/manager/addItem">
 
                 <ul>
-                    <li>notify when empty?</li>
-                    <li>notify when almost empty (threshold)?</li>
-                    <li>notify on scan?</li>
-                    <li>how often do u want to send an email about bad products? (weekly/monthly/etc)</li>
+                    <li>email_threshhold</li>
+                    <li>last_email</li>
                 </ul>
 
                 <button type="submit" name="submit" class="btn btn-primary">
