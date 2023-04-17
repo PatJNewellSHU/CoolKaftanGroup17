@@ -55,7 +55,10 @@
                            </option>
                         <?php endforeach ?>
                         </select>
+                        
                     <label for="type">Box</label>
+
+                    <input type="text" class = "invisible" name="id" value = "<?php echo $product->id ?>">
                 </div>
                      </div>
                   </div>
