@@ -128,7 +128,7 @@
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-primary">
-                    Submit
+                    Add
                 </button>
             </form>
         </div>

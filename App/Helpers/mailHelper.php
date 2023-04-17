@@ -18,7 +18,6 @@ class mailHelper {
         $products = [];
         foreach ($performance as $p => $perm) {
             $products[$perm->product_id][$p] = $perm->getProduct();
-            //$products[$perm->product_id] += $perm;
         }
 
         print_r($products);

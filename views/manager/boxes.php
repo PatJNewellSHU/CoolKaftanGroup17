@@ -163,7 +163,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">
-                    Submit
+                <i class="bi bi-plus-lg"></i> Add
                 </button>
             </form>
         </div>
@@ -222,7 +222,7 @@
                     <label for="showingselect">Shelf</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Save</button>
             </form>
         </div>
     </div>
