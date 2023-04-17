@@ -79,6 +79,9 @@ switch ($url) {
     case (preg_match('/manager\/edit\/product.*/', $request)? true: false):
         managerController::editProduct();
         break;
+    case (preg_match('/staff\/scan\/submit.*/', $request)? true: false):
+        staffController::submitScan();
+        break;
     case '/400':
         http_response_code(400);
         require __DIR__ . '/views/other/400.php';
