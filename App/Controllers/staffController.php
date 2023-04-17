@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\authenticationHelper;
+use App\Models\productModel;
 
 class staffController {
 
@@ -10,7 +11,9 @@ class staffController {
     {
         if(isset($_REQUEST['scan']))
         {
-            echo $_REQUEST['scan'];
+            $product = new productModel();
+            $product = $product->find($_REQUEST['scan']);
+            
         }
 
         authenticationHelper::isAuth('staff');

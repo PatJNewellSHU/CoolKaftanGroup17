@@ -35,25 +35,33 @@
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-12 col-lg-6">
-                  <div class="card">
+                  <?php if($_REQUEST['scan'] == null): ?>
+                     <div class="card">
                      <div class="card-body">
                         <div id="reader"></div>
                         <div id="result"></div>
                      </div>
                   </div>
+                  <?php else: ?>
+                     <div class="card">
+                     <div class="card-body">
+                        <?php echo $product->name ?>
+                     </div>
+                  </div>
+                  <?php endif; ?>
                </div>
             </div>
          </div>
       </main>
       <script src = "../../public/js/reader.js"></script>
-      <div id="button_Container" class="d-flex justify-content-center" class="invisible">
+      <!-- <div id="button_Container" class="d-flex justify-content-center" class="invisible">
          <div id="submit_Button">
             <button class="btn btn-success my-2" id="submit_Button">submit</button>
          </div>
          <div id="clear_Button">
             <button class="btn btn-success my-2" id="clear_Button">clear</button>
          </div>
-      </div>
+      </div> -->
 
       <!-- <script>
          // Copyright fix ;)
