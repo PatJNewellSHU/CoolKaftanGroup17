@@ -10,9 +10,15 @@ class userModel extends Model {
         'id',
         'username',
         'password',
-        'isStaff',
-        'isManager',
+        'email',
+        'last_email',
+        'email_threshold',
         'created_at',
         'updated_at'
-    ];           
+    ];
+
+    public function canSendEmail()
+    {
+        
+    }
 }

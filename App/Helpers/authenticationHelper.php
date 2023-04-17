@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\userModel;
+
 class authenticationHelper {
 
     public static function isAuth($type)
@@ -54,6 +56,17 @@ class authenticationHelper {
                 }
             }
         }
+    }
+
+    public static function getUser()
+    {
+        if(isset($_SESSION['userId'])) 
+        {
+            $user = new userModel();
+            return $user->find($_SESSION['userId']);
+        }
+
+        return null;
     }
 
 }

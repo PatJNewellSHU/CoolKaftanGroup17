@@ -182,6 +182,9 @@ class managerController {
     {
         authenticationHelper::isAuth('manager');
 
+        $products = new productModel();
+        $products = $products->get();
+
         return require __DIR__.'/../../views/manager/performance.php';
     }
 

@@ -21,8 +21,6 @@
                     <thead class="table-head">
                         <td>#</td>
                         <td>Product</td>
-                        <td>Stock</td>
-                        <td>Box</td>
                         <td>Created</td>
                         <td>Updated</td>
                     </thead>
@@ -30,8 +28,6 @@
                     <!-- Database Item -->
                     <tr data-bs-toggle="modal" data-bs-target="#editModal_ID">
                         <td>0</td>
-                        <td>Dummy</td>
-                        <td>Dummy</td>
                         <td>Dummy</td>
                         <td>Dummy</td>
                         <td>Dummy</td>
@@ -119,27 +115,17 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="prodName" class="form-control" id="prodName" placeholder="name" required>
-                    <label for="prodName">Product Name</label>
+                    <select class="form-select" name="product" id="product" aria-label="showing select">
+                        <?php foreach($products as $product): ?>
+                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="
+                            <?php echo $product->id ?>">#
+                            <?php echo $product->id ?>:
+                            <?php echo $product->name ?>
+                        </option>
+                        <?php endforeach ?>
+                    </select>
+                    <label for="type">Product</label>
                 </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodDetail" class="form-control" id="prodDetail" placeholder="details"
-                        required>
-                    <label for="prodDetail">Product Details</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodSize" class="form-control" id="prodSize" placeholder="size" required>
-                    <label for="prodSize">Product Size</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="prodPrice" class="form-control" id="prodPrice" placeholder="price"
-                        required>
-                    <label for="prodPrice">Product Price</label>
-                </div>
-
 
                 <button type="submit" name="submit" class="btn btn-primary">
                     Submit
@@ -161,6 +147,7 @@
                     <li>notify when empty?</li>
                     <li>notify when almost empty (threshold)?</li>
                     <li>notify on scan?</li>
+                    <li>how often do u want to send an email about bad products? (weekly/monthly/etc)</li>
                 </ul>
 
                 <button type="submit" name="submit" class="btn btn-primary">
