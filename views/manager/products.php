@@ -109,6 +109,15 @@ include_once 'components/navbar.php';
                                             </a>
                                         </div>
                                     <?php endif; ?>
+                                    <?php if(isset($_REQUEST['performance'])): ?>
+                                        <div class="modal-footer">
+                                            <a href="/manager/performance?performance=<?php echo $_REQUEST['performance'] ?>"
+                                                class="btn btn-secondary ms-auto me-auto">
+                                                <i class="bi bi-arrow-left"></i>
+                                                Back to Performance
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="modal-footer">
                                     <a href="/manager/stock?product=<?php echo $product->id ?>"
                                             class="btn btn-secondary ms-auto">
@@ -120,7 +129,7 @@ include_once 'components/navbar.php';
                                             Delete
                                         </a>
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i>
-                                            Save changes
+                                            <i class="bi bi-check-lg"></i> Save changes
                                         </button>
                                     </div>
                                 </div>
@@ -174,7 +183,7 @@ include_once 'components/navbar.php';
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-primary">
-                    Submit
+                    <i class="bi bi-plus-lg"></i> Add
                 </button>
             </form>
         </div>
@@ -223,7 +232,7 @@ include_once 'components/navbar.php';
                     </select>
                     <label for="showingselect">Showing</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Save</button>
             </form>
         </div>
     </div>
