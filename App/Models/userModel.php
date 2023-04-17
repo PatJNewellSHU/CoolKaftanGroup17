@@ -4,9 +4,9 @@ namespace App\Models;
 
 class userModel extends Model {
 
-    private $table = "user";
+    public $table = "user";
 
-    private $columns = [
+    public $columns = [
         'id',
         'username',
         'password',

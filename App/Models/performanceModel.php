@@ -8,7 +8,7 @@ class performanceModel extends Model {
 
     public $table = 'performance';
 
-    private $columns = [
+    public $columns = [
         'id',
         'product_id',
         'created_at',
@@ -17,6 +17,7 @@ class performanceModel extends Model {
 
     public function getProduct()
     {
-        return ProductModel::find($this->id);
+        $product = new productModel();
+        return $product->find($this->product_id);
     }
 }

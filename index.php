@@ -7,7 +7,7 @@ use App\Controllers\accountController;
 use App\Controllers\staffController;
 use App\Controllers\managerController;
 
-use App\Models\boxModel;
+use App\Helpers\mailHelper;
 
 $request = $_SERVER['REQUEST_URI'];
 
@@ -84,11 +84,9 @@ switch ($url) {
         require __DIR__ . '/views/other/400.php';
         break;
     case '/test':
-        $box = new boxModel();
-        print_r($box->find(1)->edit([
-            'box_type' => 0,
-            'shelf' => 'top_floor'
-        ]));
+        $email = mailHelper::go();
+        var_dump($email);
+        die();
         break;
     default: // Any other (random files)
         http_response_code(404);
