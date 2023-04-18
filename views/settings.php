@@ -1,6 +1,5 @@
 <?php 
         include_once("manager/components/navbar.php");
-        // var_dump($results);
 ?>
 
 <body>

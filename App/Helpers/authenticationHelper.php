@@ -4,6 +4,13 @@ namespace App\Helpers;
 
 use App\Models\userModel;
 
+/**
+ * Deals with functions regarding user authentication.
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Helpers
+ * @since      Class available since Release 1.0.1
+ */ 
 class authenticationHelper {
 
     public static function isAuth($type)

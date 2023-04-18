@@ -72,42 +72,52 @@
                      <?php else: ?>
                      <div class="card">
                         <div class="card-body">
-                           <h2>
-                              <?php echo $product->name ?>
-                           </h2>
                            <ul class="list-group list-group-flush mb-2">
-                              <li class="list-group-item">ID:
-                                 <?php echo $product->id ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>ID:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->id ?></span>
                               </li>
-                              <li class="list-group-item">Name:
-                                 <?php echo $product->name ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h2 mb-0'>Name:</span>
+                                 <span class='ms-auto h2 mb-0'><?php echo $product->name ?></span>
                               </li>
-                              <li class="list-group-item">Colour:
-                                 <?php echo $product->colour ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Colour:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->colour ?></span>
                               </li>
-                              <li class="list-group-item">Size:
-                                 <?php echo $product->size ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Size:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->size ?></span>
                               </li>
-                              <li class="list-group-item">Barcode:
-                                 <?php echo $product->barcode ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Barcode:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->barcode ?></span>
                               </li>
-                              <li class="list-group-item">Price:
-                                 <?php echo $product->price ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Price:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->price ?></span>
                               </li>
-                              <li class="list-group-item">Created:
-                                 <?php echo $product->created_at ?>
-                                 -
-                                 <?php echo App\Helpers\generalHelper::time_format($product->created_at) ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Created:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->created_at ?></span>
+                                 <span class='ms-auto h4 mb-0'><?php echo App\Helpers\generalHelper::time_format($product->created_at) ?></span>
                               </li>
-                              <li class="list-group-item">Updated:
-                                 <?php echo $product->updated_at ?>
-                                 -
-                                 <?php echo App\Helpers\generalHelper::time_format($product->updated_at) ?>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h4 mb-0'>Updated:</span>
+                                 <span class='ms-auto h4 mb-0'><?php echo $product->updated_at ?></span>
+                                 <span class='ms-auto h4 mb-0'><?php echo App\Helpers\generalHelper::time_format($product->updated_at) ?></span>
+                              </li>
+                              <li class="list-group-item w-100 d-flex">
+                                 <span class='me-auto h2 mb-0'>Stock:</span>
+                                 <span class='ms-auto h2 mb-0'><?php echo number_format(count($product->getStock())) ?></span>
                               </li>
                            </ul>
                            <button type="submit" class="btn btn-success d-block w-100">
                               Submit
                            </button>
+                           <a class="btn btn-secondary mt-2 d-block w-100" href='/staff'>
+                              Cancel
+                           </a> 
                         </div>
                      </div>
                      <?php endif; ?>

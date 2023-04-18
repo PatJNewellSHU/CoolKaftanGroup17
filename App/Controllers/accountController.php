@@ -4,7 +4,16 @@ namespace App\Controllers;
 
 use App\Helpers\authenticationHelper;
 use App\Helpers\dbHelper;
+use App\Helpers\mailHelper;
+use App\Models\productModel;
 
+/**
+ * Deals with functions regarding a user's account.
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Controllers
+ * @since      Class available since Release 1.0.0
+ */ 
 class accountController {
 
     
@@ -86,7 +95,9 @@ class accountController {
 
     public static function sendTestNotification()
     {
+
         $user = authenticationHelper::getUser();
+        
         $subject = 'This is a test message!';
         $message = '
                     <html>

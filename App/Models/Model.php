@@ -4,8 +4,13 @@ namespace App\Models;
 
 use App\Helpers\dbHelper;
 
-// Work in progress, pls be kind
-
+/**
+ * Provides basic template functions to amalgamate and associate data-model functions.  
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Models
+ * @since      Class available since Release 1.0.3
+ */ 
 abstract class Model {
 
     public $connection;

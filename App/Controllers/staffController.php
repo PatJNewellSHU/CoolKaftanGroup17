@@ -8,7 +8,16 @@ use App\Models\productModel;
 use App\Models\performanceModel;
 use App\Models\boxModel;
 use App\Models\stockModel;
+use App\Models\userModel;
+use App\Helpers\mailHelper;
 
+/**
+ * Deals with functions used on the staff panel. 
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Controllers
+ * @since      Class available since Release 1.0.0
+ */ 
 class staffController {
 
     public static function scan()
@@ -31,7 +40,7 @@ class staffController {
     public static function submitScan()
     {
         authenticationHelper::isAuth('staff');
-
+        $users = new userModel();
         $boxes = new boxModel();
         $boxes = $boxes->get();
 
@@ -68,7 +77,20 @@ class staffController {
             'product_id' => intval($_REQUEST['scan']),
         ]);
 
-       // TODO: EMAIL system
+       foreach($users->get() as $user)
+       {
+
+        // Check if the date is surpassed the email threshold
+        $new_date = strtotime(date('Y-m-d', strtotime($user->last_email . ' +'.$user->email_threshold.' day')));
+
+        if ($new_date < strtotime(date('Y-m-d H:i:s'))) {
+            // Performance report
+            mailHelper::send_report($user);
+            
+            // Low stock notification
+            mailHelper::send_low_stock_notification($user);
+        }
+       }
 
         return header("location: /staff?box=".intval($_REQUEST['box'])."&message=Scan successful");
 

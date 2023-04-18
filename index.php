@@ -8,6 +8,7 @@ use App\Controllers\staffController;
 use App\Controllers\managerController;
 
 use App\Helpers\mailHelper;
+use App\Helpers\authenticationHelper;
 
 $request = $_SERVER['REQUEST_URI'];
 
@@ -105,9 +106,6 @@ switch ($url) {
         require __DIR__ . '/views/other/400.php';
         break;
     case '/test':
-        $email = mailHelper::go();
-        var_dump($email);
-        die();
         break;
     default: // Any other (random files)
         http_response_code(404);

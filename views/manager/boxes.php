@@ -1,6 +1,5 @@
 <?php 
         include_once("components/navbar.php");
-       // var_dump($boxes);
 ?>
 
 <body>

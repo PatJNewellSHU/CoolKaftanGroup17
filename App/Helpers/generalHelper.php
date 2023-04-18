@@ -2,6 +2,13 @@
 
 namespace App\Helpers;
 
+/**
+ * Provides a basic generalised helper functions.  
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Helpers
+ * @since      Class available since Release 1.0.1
+ */ 
 class generalHelper {
 
     public static function time_format($datetime, $full = false)

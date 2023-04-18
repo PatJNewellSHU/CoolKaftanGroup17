@@ -9,6 +9,14 @@ use App\Models\boxModel;
 use App\Models\performanceModel;
 use App\Models\stockModel;
 use App\Models\userModel;
+
+/**
+ * Deals with functions used on the manager panel. 
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Controllers
+ * @since      Class available since Release 1.0.0
+ */ 
 class managerController {
 
     public static function boxes()
@@ -346,7 +354,6 @@ class managerController {
             {
                 if(\str_contains($request['order'], 'id'))
                 {
-                    // order by id ...
                     if(\str_contains($request['order'], 'asending'))
                     {
                         $model = $model->orderBy('id', 'ASC');
@@ -360,7 +367,6 @@ class managerController {
 
                 if(\str_contains($request['order'], 'created'))
                 {
-                    // order by date ...
                     if(\str_contains($request['order'], 'asending'))
                     {
                         $model = $model->orderBy('created_at', 'ASC');
@@ -374,7 +380,6 @@ class managerController {
 
                 if(\str_contains($request['order'], 'updated'))
                 {
-                    // order by date ...
                     if(\str_contains($request['order'], 'asending'))
                     {
                         $model = $model->orderBy('updated_at', 'ASC');

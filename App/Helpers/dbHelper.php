@@ -1,6 +1,14 @@
 <?php
 
 namespace App\Helpers;
+
+/**
+ * Provides a basic and low-level inteface with the database. 
+ *
+ * @copyright  2023 Cool-Kaftan-Group:17
+ * @category   Helpers
+ * @since      Class available since Release 1.0.1
+ */ 
 class dbHelper {
 
     function __construct()
