@@ -109,8 +109,7 @@
                                                 aria-label="showing select">
                                                 <?php foreach($products as $product): ?>
                                                 <option <?php echo(($s->product_id==$product->id ) ? "selected" : "" )
-                                                    ?> value="
-                                                    <?php echo $product->id ?>">#
+                                                    ?> value="<?php echo $product->id ?>">#
                                                     <?php echo $product->id ?>:
                                                     <?php echo $product->name ?>
                                                 </option>
@@ -210,7 +209,7 @@
                     <select class="form-select" name="box" id="box" aria-label="showing select">
                         <?php foreach($boxes as $box): ?>
                         <option <?php echo(($_REQUEST['box']==$box->id ) ? "selected" : "" ) ?> value="<?php echo $box->id ?>">Box: #
-                            <?php echo $box->id ?>
+                            <?php echo $box->id ?> <?php echo $box->nickname ?>
                         </option>
                         <?php endforeach ?>
                     </select>

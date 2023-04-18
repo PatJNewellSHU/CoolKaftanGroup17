@@ -198,3 +198,32 @@ a:hover > .card {
 .toast-header {
     border-radius: 16px;
 }
+#result {
+    position: absolute;
+    top: 0;
+    z-index: 1023;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#result.found {
+    background-color: rgb(254 254 254 / 50%);
+    backdrop-filter: blur(2px);
+    display: flex;
+}
+#result > h2 {
+    margin-top: auto;
+    margin-bottom: 0px;
+    color: black;
+    background-color: white;
+}
+#result > p {
+    margin-bottom: auto;
+    color: black;
+    background-color: white;
+}
