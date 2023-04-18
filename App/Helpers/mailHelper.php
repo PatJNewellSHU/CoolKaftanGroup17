@@ -75,7 +75,7 @@ class mailHelper {
     public static function go_low_stock()
     {
         $item = "";
-        $to_email = "coolkaftan17performance@gmail.com";
+        $to_email = "coolkaftantestemail@gmail.com";
         $subject = "Low Stock";
         $body = "<h1 style='color:red'>Low Stock Alert</h1>";
         $body .= "<b>This item is low on stock: $item </b>";
