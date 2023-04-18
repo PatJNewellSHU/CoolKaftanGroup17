@@ -21,10 +21,8 @@ class mailHelper {
             $product_id = $perm->product_id;
             $products[$product_id]['product'] = $perm->getProduct();
             $products[$product_id]['scans'][$perm->id] = $perm;
-            $products[$product_id]['scan_count'] = count($products[$product_id]['scans']);
+            $products[$product_id]['scan_count'] = number_format(count($products[$product_id]['scans']));
         }
-
-
 
         // Format the data in HTML
         $subject = 'Performance';
@@ -35,19 +33,19 @@ class mailHelper {
                     </head>
                     <body>
                         <h1>Product Performance Report</h1>
-                        <table>
+                        <table style="border-collapse: collapse; width: 100%; max-width: 600px; margin: 0 auto;">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Sales</th>
+                                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ccc;">Product Name</th>
+                                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ccc;">Performance</th>
                                 </tr>
                             </thead>
                             <tbody>';
                             foreach ($products as $product) {
                                 $message .= '
                             <tr>
-                                <td>' . $product['product']->name . '</td>
-                                <td>' . $product['scan_count'] . '</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ccc;">' . $product['product']->name . '</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ccc;">' . $product['scan_count'] . '</td>
                             </tr>';
                             }
                             $message .= '
@@ -57,8 +55,9 @@ class mailHelper {
                     </html>
                     ';
 
+
         // Send the email
-        $to = 'coolkaftan17performance@gmail.com';
+        $to = 'ethan11310@gmail.com';
         $headers = 'From: sender@example.com' . "\r\n" .
             'Reply-To: sender@example.com' . "\r\n" .
             'Content-type: text/html; charset=UTF-8' . "\r\n" .
