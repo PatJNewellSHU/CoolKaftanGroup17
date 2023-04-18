@@ -39,8 +39,11 @@ class staffController {
                 $performance->create([
                     'product_id' => $_REQUEST['id'],
                 ]);
-                // reate('performance',['proudct_id','created_at','updated_at'],[$_REQUEST['id'],date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
 
+            authenticationHelper::isAuth('staff');
+
+            return require __DIR__ . '../../../views/staff/scan.php';      
+              
             }
         }
 
