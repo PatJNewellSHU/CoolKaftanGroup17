@@ -32,7 +32,6 @@
          </div>
       </nav>
       <main class="py-4">
-         <h1>pls dont scan random fucking barcodes</h1>
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-12 col-lg-6">
