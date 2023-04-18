@@ -17,6 +17,7 @@ class accountController {
     public static function settings()
     {
         authenticationHelper::isAuth(['manager', 'staff']);
+        $user = authenticationHelper::getUser();
         return require __DIR__ . '../../../views/settings.php';
     }
 
@@ -104,9 +105,42 @@ class accountController {
             'Content-type: text/html; charset=UTF-8' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        mail('ethan11310@gmail.com', $subject, $message, $headers);
+        mail(authenticationHelper::getUser()->email, $subject, $message, $headers);
         
         header("location: /manager/performance?message=Email send! Check your inbox.");
+    }
+
+    public static function editAccount()
+    {
+        print_r($_REQUEST);
+
+        $user = authenticationHelper::getUser();
+
+        $user->edit([
+            'username' => $_REQUEST['username'],
+            'email' => $_REQUEST['email'],
+            'last_email' => $_REQUEST['last_email'],
+            'email_threshold' => $_REQUEST['threshold'],
+        ]);
+
+        if($_REQUEST['remember'] == 'on')
+        {
+            if($_REQUEST['new_password'] == "" || $_REQUEST['new_password_confirm'] == "")
+            {
+                header("location: /manager/settings?message=Password fields blank.");
+            }
+
+            if($_REQUEST['new_password'] != $_REQUEST['new_password_confirm'])
+            {
+                header("location: /manager/settings?message=Password fields do not match.");
+            }
+
+            $user->edit([
+                'password' => $_REQUEST['new_password']
+            ]);
+        }
+
+        header("location: /manager/settings?message=Changes saved");
     }
         
 }

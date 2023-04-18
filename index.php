@@ -34,11 +34,14 @@ switch ($url) {
     case '/logout' :
         accountController::logout();
         break;
-    case '/settings' :
+    case (preg_match('/settings.*/', $request)? true: false):
         accountController::settings();
         break;    
     case '/account/edit/notification':
         accountController::editNotification();
+        break;
+    case '/account/edit':
+        accountController::editAccount();
         break;
     case '/account/sendnotif':
         accountController::sendTestNotification();

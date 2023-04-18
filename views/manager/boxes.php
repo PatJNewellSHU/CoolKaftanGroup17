@@ -19,11 +19,7 @@
                 <table class="table table-hover">
                     <thead class="table-head">
                         <td>#</td>
-<<<<<<< HEAD
                         <td>Nickname</td>
-=======
-                        <!-- <td>Nickname</td> -->
->>>>>>> 44b48eb5825df3a0c5fca4223740b098249ebf96
                         <td>Type</td>
                         <td>Shelf</td>
                         <td>Created</td>
