@@ -19,7 +19,11 @@
                 <table class="table table-hover">
                     <thead class="table-head">
                         <td>#</td>
+<<<<<<< HEAD
                         <td>Nickname</td>
+=======
+                        <!-- <td>Nickname</td> -->
+>>>>>>> 44b48eb5825df3a0c5fca4223740b098249ebf96
                         <td>Type</td>
                         <td>Shelf</td>
                         <td>Created</td>
@@ -35,6 +39,9 @@
                         <td>
                             <?php echo $box->id ?>
                         </td>
+                        <!-- <td>
+                            <?php echo $box->nickname ?>
+                        </td> -->
                         <td>
                             <?php echo $box->nickname ?>
                         </td>
@@ -168,6 +175,10 @@
                     </select>
                     <label for="showingselect">Shelf</label>
                 </div>
+                <!-- <div class="form-floating mb-3">
+                   <input type="text" class="form-text" name='nickname' id='nickname' aria-label='nickname'>
+                    <label for="showingselect">Nickname</label>
+                </div> -->
 
                 <button type="submit" class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Add
