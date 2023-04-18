@@ -53,6 +53,7 @@ class managerController {
         $box = new boxModel();
 
         $box = $box->create([
+            'nickname' => $_REQUEST['nickname'],
             'box_type' => $_REQUEST['box_type'],
             'shelf' => $_REQUEST['shelf']
         ]);
@@ -86,6 +87,7 @@ class managerController {
 
         $box = $box->find($_REQUEST['box']);
         $box = $box->edit([
+            'nickname' => $_REQUEST['nickname'],
             'box_type' => intval($_REQUEST['box_type']),
             'shelf' => $_REQUEST['shelf']
         ]);
@@ -196,7 +198,7 @@ class managerController {
             {
                 $_REQUEST['message'] = 'Table is empty.';
             } else {
-                $_REQUEST['message'] = \number_format(count($performance)) . ' products loaded from database.';
+                $_REQUEST['message'] = \number_format(count($performance)) . ' performance loaded from database.';
             }
         }
 
@@ -211,7 +213,7 @@ class managerController {
             'product_id' => intval($_REQUEST['product'])
         ]);
 
-        return header("location: /manager/performance?message=New product added."); 
+        return header("location: /manager/performance?message=New performance added."); 
     }
 
     public static function editPerformance()

@@ -62,12 +62,15 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3">
                                             <select class="form-select" name="product" id="product"
                                                 aria-label="showing select">
                                                 <?php foreach($products as $product): ?>
-                                                <option <?php echo(($perf->product_id==$product->id ) ? "selected" : "" )
-                                                    ?> value="<?php echo $product->id ?>">#<?php echo $product->id ?>:
+                                                <option <?php echo(($perf->product_id==$product->id ) ? "selected" : ""
+                                                    )
+                                                    ?> value="
+                                                    <?php echo $product->id ?>">#
+                                                    <?php echo $product->id ?>:
                                                     <?php echo $product->name ?>
                                                 </option>
                                                 <?php endforeach ?>
@@ -124,8 +127,11 @@
                 <div class="form-floating mb-3">
                     <select class="form-select" name="product" id="product" aria-label="showing select">
                         <?php foreach($products as $product): ?>
-                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="<?php echo $product->id ?>">
-                        #<?php echo $product->id ?>: <?php echo $product->name ?>
+                        <option <?php echo(($_REQUEST['product']==$product->id ) ? "selected" : "" ) ?> value="
+                            <?php echo $product->id ?>">
+                            #
+                            <?php echo $product->id ?>:
+                            <?php echo $product->name ?>
                         </option>
                         <?php endforeach ?>
                     </select>
@@ -147,18 +153,35 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form method="POST" action="/manager/addItem">
+            <form method="POST" action="/account/edit/notification">
 
-                <ul>
-                    <li>email_threshhold</li>
-                    <li>last_email</li>
-                </ul>
+                <div class="form-floating mb-3">
+                    <input type="datetime-local" name="last_email" class="form-control" id="last_email"
+                        placeholder="last_email"
+                        value="<?php echo(App\Helpers\authenticationHelper::getUser()->last_email) ?>" required=""
+                        control-id="ControlID-3">
+                    <label for="colour">Last Email</label>
+                    <div id="last_email" class="form-text text-dark p-1">
+                        Date of the last notification email was sent regarding performance.
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="threshold" class="form-control" id="threshold" placeholder="threshold"
+                        required="" value="<?php echo(App\Helpers\authenticationHelper::getUser()->email_threshold) ?>"
+                        control-id="ControlID-2">
+                    <label for="threshold">Email Threshold</label>
+                    <div id="threshold" class="form-text text-dark p-1">
+                        Amount of days required to pass until another email can be sent. Setting this value to 0 will
+                        mean you recieve an email every time a product is scanned.
+                    </div>
+                </div>
 
                 <button type="submit" name="submit" class="btn btn-primary">
                     <i class="bi bi-check-lg"></i> Save
                 </button>
-                <a class="btn btn-secondary" data-bs-toggle="offcanvas" href="#filter" role="button"
-                    aria-controls="offcanvasExample"><i class="bi bi-rocket-takeoff-fill"></i> Send Test
+                <a class="btn btn-secondary" href="/account/sendnotif" aria-controls="offcanvasExample"><i
+                        class="bi bi-rocket-takeoff-fill"></i> Send Test
                     Notification</a>
             </form>
         </div>

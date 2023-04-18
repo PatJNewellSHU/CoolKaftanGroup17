@@ -71,5 +71,42 @@ class accountController {
         }
         header("location: /?error=Something went wrong, try again.");
     }
+
+    public static function editNotification()
+    {
+        $user = authenticationHelper::getUser();
+        $user->edit([
+            'last_email' => $_REQUEST['last_email'],
+            'email_threshold' => $_REQUEST['threshold']
+        ]);
+
+        header("location: /manager/performance?message=Notification settings saved.");
+    }
+
+    public static function sendTestNotification()
+    {
+        $user = authenticationHelper::getUser();
+        $subject = 'This is a test message!';
+        $message = '
+                    <html>
+                    <head>
+                        <title>' . $subject . '</title>
+                    </head>
+                    <body>
+                        <h1>This is a test message.</h1>
+                    </body>
+                    </html>
+                    ';
+
+        // Send the email
+        $headers = 'From: inventory@coolkaftan.com' . "\r\n" .
+            'Reply-To: inventory@coolkaftan.com' . "\r\n" .
+            'Content-type: text/html; charset=UTF-8' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail('ethan11310@gmail.com', $subject, $message, $headers);
+        
+        header("location: /manager/performance?message=Email send! Check your inbox.");
+    }
         
 }

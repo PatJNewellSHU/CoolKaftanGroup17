@@ -19,6 +19,7 @@
                 <table class="table table-hover">
                     <thead class="table-head">
                         <td>#</td>
+                        <td>Nickname</td>
                         <td>Type</td>
                         <td>Shelf</td>
                         <td>Created</td>
@@ -33,6 +34,9 @@
                     <tr data-bs-toggle="modal" data-bs-target="#box_<?php echo $box->id ?>">
                         <td>
                             <?php echo $box->id ?>
+                        </td>
+                        <td>
+                            <?php echo $box->nickname ?>
                         </td>
                         <td>
                             <?php echo((($box->box_type== '0' ) ? "mixed" : "non-mixed" )) ?>
@@ -65,6 +69,10 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="nickname" class="form-control" id="nickname" placeholder="nickname" required value="<?php echo $box->nickname; ?>">
+                                        <label for="nickname">Nickname</label>
+                                    </div>
                                         <div class="form-floating mb-3">
                                             <select class="form-select" name="box_type" id="type"
                                                 aria-label="showing select">
@@ -138,7 +146,10 @@
         </div>
         <div class="offcanvas-body">
             <form method="POST" action="/manager/add/box">
-
+            <div class="form-floating mb-3">
+                <input type="text" name="nickname" class="form-control" id="nickname" placeholder="nickname" required>
+                    <label for="nickname">Nickname</label>
+            </div>
             <div class="form-floating mb-3">
                     <select class="form-select" name="box_type" id="box_type" aria-label="Box Type">
                         <option value="0">Mixed Only</option>

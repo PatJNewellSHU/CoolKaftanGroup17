@@ -37,6 +37,12 @@ switch ($url) {
     case '/settings' :
         accountController::settings();
         break;    
+    case '/account/edit/notification':
+        accountController::editNotification();
+        break;
+    case '/account/sendnotif':
+        accountController::sendTestNotification();
+        break;
     case '/staff':
         staffController::scan();
         break;
