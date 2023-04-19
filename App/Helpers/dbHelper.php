@@ -64,7 +64,12 @@ class dbHelper {
         $lastItem = $statement->get_result()->fetch_assoc()['MAX(id)'];
 
         // Inject id/created_at/updated_at into values string
-        $values['id'] = $lastItem+1;
+        
+        if($values['id'] == null)
+        {
+            $values['id'] = $lastItem+1;
+        }
+
         $values['updated_at'] = date("Y-m-d H:i:s");
         $values['created_at'] = date("Y-m-d H:i:s");
 
