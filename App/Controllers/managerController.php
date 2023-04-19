@@ -285,6 +285,7 @@ class managerController {
         $product = new productModel();
 
         $product = $product->create([
+            'id' => $_REQUEST['id'],
             'name' => $_REQUEST['name'],
             'colour' => $_REQUEST['colour'],
             'size' => $_REQUEST['size'],
@@ -306,6 +307,7 @@ class managerController {
 
         $box = $box->find($_REQUEST['product']);
         $box = $box->edit([
+            'id' => $_REQUEST['id'],
             'name' => $_REQUEST['name'],
             'colour' => $_REQUEST['colour'],
             'size' => $_REQUEST['size'],

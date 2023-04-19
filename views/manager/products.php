@@ -74,7 +74,11 @@ include_once 'components/navbar.php';
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-
+                                    <div class="form-floating mb-3">
+                                            <input type="number" name="id" class="form-control" id="id"
+                                                placeholder="id" required value="<?php echo $product->id; ?>">
+                                            <label for="id">ID</label>
+                                        </div>
 
                                         <div class="form-floating mb-3">
                                             <input type="text" name="name" class="form-control" id="name"
@@ -151,6 +155,12 @@ include_once 'components/navbar.php';
         </div>
         <div class="offcanvas-body">
             <form method="POST" action="/manager/add/product">
+
+                <div class="form-floating mb-3">
+                    <input type="number" name="id" class="form-control" id="id" placeholder="id"
+                        required>
+                    <label for="id">ID</label>
+                </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" name="name" class="form-control" id="name" placeholder="name"
