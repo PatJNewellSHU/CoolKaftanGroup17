@@ -49,16 +49,16 @@ class mailHelper {
                             <tr>
                                 <td style='padding: 10px; border-bottom: 1px solid #ccc;'>" . $product['product']->name . "</td>
                                 <td style='padding: 10px; border-bottom: 1px solid #ccc;'>" . $product['scan_count'] . "</td>
-                            </tr>
-                            <p style='width:100%;text-align: center;'>This is an automatic email. Your last email was ". \App\Helpers\generalHelper::time_format($user->last_email) . ", we won't send you another email for ".number_format($user->email_threshold)." days.</p>";
+                            </tr>;";
                             }
                             $message .= "
                             </tbody>
                         </table>
+                            <p style='width:100%;text-align: center;'>This is an automatic email. Your last email was " . \App\Helpers\generalHelper::time_format($user->last_email) . ", we won't send you another email for " . number_format($user->email_threshold) . " days.</p>
                     </body>
                     </html>
                     ";
-
+        $subject = 'Performace';                    
         $headers = 'From: coolkaftan17performance@gmail.com' . "\r\n" .
             'Reply-To: coolkaftan17performance@gmail.com' . "\r\n" .
             'Content-type: text/html; charset=UTF-8' . "\r\n" .
@@ -134,10 +134,7 @@ class mailHelper {
                     </body>
                     </html>
                     ";
-
-        print_r($message);
-        die();
-
+        $subject = 'Stock Low';                   
         $headers = 'From: coolkaftan17performance@gmail.com' . "\r\n" .
             'Reply-To: coolkaftan17performance@gmail.com' . "\r\n" .
             'Content-type: text/html; charset=UTF-8' . "\r\n" .

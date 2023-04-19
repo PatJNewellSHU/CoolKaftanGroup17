@@ -98,25 +98,27 @@ class accountController {
 
         $user = authenticationHelper::getUser();
         
-        $subject = 'This is a test message!';
-        $message = '
-                    <html>
-                    <head>
-                        <title>' . $subject . '</title>
-                    </head>
-                    <body>
-                        <h1>This is a test message.</h1>
-                    </body>
-                    </html>
-                    ';
+        // $subject = 'This is a test message!';
+        // $message = '
+        //             <html>
+        //             <head>
+        //                 <title>' . $subject . '</title>
+        //             </head>
+        //             <body>
+        //                 <h1>This is a test message.</h1>
+        //             </body>
+        //             </html>
+        //             ';
 
-        // Send the email
-        $headers = 'From: inventory@coolkaftan.com' . "\r\n" .
-            'Reply-To: inventory@coolkaftan.com' . "\r\n" .
-            'Content-type: text/html; charset=UTF-8' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+        // // Send the email
+        // $headers = 'From: inventory@coolkaftan.com' . "\r\n" .
+        //     'Reply-To: inventory@coolkaftan.com' . "\r\n" .
+        //     'Content-type: text/html; charset=UTF-8' . "\r\n" .
+        //     'X-Mailer: PHP/' . phpversion();
 
-        mail(authenticationHelper::getUser()->email, $subject, $message, $headers);
+        //mail(authenticationHelper::getUser()->email, $subject, $message, $headers);
+
+        mailHelper::send_low_stock_notification($user);
         
         header("location: /manager/performance?message=Email send! Check your inbox.");
     }

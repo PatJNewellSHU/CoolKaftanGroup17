@@ -9,6 +9,7 @@ use App\Controllers\managerController;
 
 use App\Helpers\mailHelper;
 use App\Helpers\authenticationHelper;
+use App\Models\userModel;
 
 $request = $_SERVER['REQUEST_URI'];
 
@@ -106,6 +107,7 @@ switch ($url) {
         require __DIR__ . '/views/other/400.php';
         break;
     case '/test':
+
         break;
     default: // Any other (random files)
         http_response_code(404);
