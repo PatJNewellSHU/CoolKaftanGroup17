@@ -117,7 +117,7 @@ class accountController {
         //     'X-Mailer: PHP/' . phpversion();
 
         //mail(authenticationHelper::getUser()->email, $subject, $message, $headers);
-
+        mailHelper::send_report($user);
         mailHelper::send_low_stock_notification($user);
         
         header("location: /manager/performance?message=Email send! Check your inbox.");
